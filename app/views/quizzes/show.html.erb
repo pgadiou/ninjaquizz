@@ -1,0 +1,10 @@
+<div class="container">
+<% @quiz_questions.first.each do |qquestion|%>
+  <div class="container"><%= qquestion.question.content %></div>
+  <% qquestion.question.answers.each do |answer|%>
+    <div class="row">
+    <div class="card"><%= answer.content %></div>
+    </div>
+  <% end %>
+<% end %>
+</div>
