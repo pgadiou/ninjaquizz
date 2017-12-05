@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-xs-12 col-lg-6">
           <input type="hidden" value="<%= answer.id %>" name="answer_id">
+          <input type="hidden" value="<%= @start %>" name="start">
           <%= f.submit "#{answer.content}", class: 'btn btn-success btn-block' %>
         </div>
       </div>

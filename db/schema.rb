@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205162911) do
+ActiveRecord::Schema.define(version: 20171205182317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,9 @@ ActiveRecord::Schema.define(version: 20171205162911) do
     t.bigint "round_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["round_id"], name: "index_result_scores_on_round_id"
+    t.index ["user_id"], name: "index_result_scores_on_user_id"
   end
 
   create_table "rounds", force: :cascade do |t|
@@ -127,6 +129,11 @@ ActiveRecord::Schema.define(version: 20171205162911) do
     t.boolean "admin", default: false
     t.string "name"
     t.bigint "quiz_id"
+    t.integer "total_score"
+    t.time "average_time"
+    t.integer "ranking"
+    t.integer "no_correct_answers"
+    t.integer "pin_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["quiz_id"], name: "index_users_on_quiz_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -141,6 +148,7 @@ ActiveRecord::Schema.define(version: 20171205162911) do
   add_foreign_key "quiz_questions", "rounds"
   add_foreign_key "quizzes", "users"
   add_foreign_key "result_scores", "rounds"
+  add_foreign_key "result_scores", "users"
   add_foreign_key "rounds", "categories"
   add_foreign_key "rounds", "quizzes"
   add_foreign_key "users", "quizzes"
