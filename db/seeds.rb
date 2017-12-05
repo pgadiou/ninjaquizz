@@ -1,3 +1,4 @@
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -21,6 +22,11 @@ user_3 = User.create(
   password: "12345678",
 
 )
+
+barman = User.create(
+        email: "example@gmail.com",
+        password: "12345678"
+    )
 
 choix_multiple = Type.new(name: "choix multiples x4")
 choix_multiple.save!
@@ -161,5 +167,3 @@ quiz_test_question_4 = QuizQuestion.new()
 quiz_test_question_4.question = question_4
 quiz_test_question_4.round = round_quiz_test
 quiz_test_question_4.save!
-
-
