@@ -1,9 +1,10 @@
-<%= simple_form_for(@quiz_answer) do |f| %>
+<%= simple_form_for([@quiz_question, @quiz_answer]) do |f| %>
   <% @answers.each do |answer| %>
     <div class="container ">
       <div class="row">
         <div class="col-xs-12 col-lg-6">
-          <%= f.submit "#{answer.content}", input_html: { value: answer.id}, class: 'btn btn-success btn-block' %>
+          <input type="hidden" value="<%= answer.id %>" name="answer_id">
+          <%= f.submit "#{answer.content}", class: 'btn btn-success btn-block' %>
         </div>
       </div>
     </div>
