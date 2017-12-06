@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206094431) do
+ActiveRecord::Schema.define(version: 20171206114532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20171206094431) do
   end
 
   create_table "result_scores", force: :cascade do |t|
-    t.integer "round_score"
-    t.integer "average_time_round"
+    t.integer "round_score", default: 0
+    t.integer "time_to_answer", default: 0
     t.integer "ranking"
     t.integer "no_correct_answers"
     t.bigint "round_id"
@@ -118,11 +118,11 @@ ActiveRecord::Schema.define(version: 20171206094431) do
     t.boolean "admin", default: false
     t.string "name"
     t.bigint "quiz_id"
-    t.integer "total_score"
-    t.time "average_time"
+    t.integer "total_score", default: 0
     t.integer "ranking"
-    t.integer "no_correct_answers"
+    t.integer "no_correct_answers", default: 0
     t.integer "pin_number"
+    t.integer "total_time", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["quiz_id"], name: "index_users_on_quiz_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
