@@ -11,14 +11,15 @@
         <% @answers.each do |answer| %>
           <div class="col-xs-12 col-sm-6">
             <% if answer.is_correct %>
-                <div class="answer-hidden correct-answer">
-              <% else %>
-                <div class="answer-hidden">
-              <% end %>
-              <h4><%= answer.content %></h4>
-            </div>
-          </div>
+              <div class="answer-hidden correct-answer">
+            <% else %>
+              <div class="answer-hidden">
+            <% end %>
+            <h4><%= answer.content %></h4>
+              </div>
+              </div>
         <% end %>
+          </div>
       </div>
     </div>
   </div>
@@ -48,17 +49,18 @@
     </script>
 
 <% else %>
-
-</div>
-<%= simple_form_for(@quiz_answer) do |f| %>
-  <% @answers.each do |answer| %>
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-xs-12 col-lg-6">
-          <%= f.submit "#{answer.content}", input_html: { value: answer.id}, class: 'btn btn-success btn-block' %>
+  <%= simple_form_for([@quiz_question, @quiz_answer]) do |f| %>
+    <% @answers.each do |answer| %>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-xs-12 col-lg-6">
+            <input type="hidden" value="<%= answer.id %>" name="answer_id">
+            <input type="hidden" value="<%= @start %>" name="start">
+            <%= f.submit "#{answer.content}", class: 'btn btn-success btn-block' %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+
 <% end %>
