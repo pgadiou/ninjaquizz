@@ -17,7 +17,7 @@ class QuizAnswersController < ApplicationController
     @round = @quiz_answer.quiz_question.round
 
     if ResultScore.where(user_id: current_user.id, round_id: @round.id).empty?
-      @result = ResultScore.new(user_id: current_user.id, average_time_round: @time_to_answer, round_score: @score_question, round_id: @round.id)
+      @result = ResultScore.new(user_id: current_user.id, time_to_answer: @time_to_answer, round_score: @score_question, round_id: @round.id)
       @result.save
     else
       @result = ResultScore.find_by(user_id: current_user.id, round_id: @round.id)
@@ -30,9 +30,9 @@ class QuizAnswersController < ApplicationController
     #total_score
     current_user.total_score += @score_question
     #ranking
-    current_user.ranking = User.all.map { |user| user.total_score }.sort { |x,y| y <=> x }.index("#{current_user.total_score}") + 1
+    current_user.ranking = User.all.map { |user| user.total_score }.sort { |x,y| y <=> x }.index("#{current_user.total_score}")
     #average_time need to divide by number of questions
-    @number_of_questions = @round.quizz.rounds.map { |round| round.no_of_questions }.join("+")
+    @number_of_questions = @round.quiz.rounds.map { |round| round.no_of_questions }.reduce(:+)
     current_user.total_time += @time_to_answer
     #number of correct answers
     current_user.no_correct_answers += 1 if @quiz_answer.answer.is_correct?
