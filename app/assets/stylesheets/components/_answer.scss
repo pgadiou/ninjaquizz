@@ -1,0 +1,21 @@
+.answer-hidden {
+  color: white;
+  background-color: $blue;
+  opacity: 0;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.answer-displayed {
+  opacity: 1;
+}
+
+.correct-displayed {
+  color: white;
+  background-color: $yellow;
+}

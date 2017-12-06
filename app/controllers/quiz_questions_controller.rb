@@ -5,6 +5,7 @@ class QuizQuestionsController < ApplicationController
     @answers = @quiz_question.question.answers
     @quiz_answer = QuizAnswer.new
     @start = Time.now
+    @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
   end
 
 end
