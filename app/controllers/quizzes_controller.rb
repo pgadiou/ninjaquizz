@@ -20,6 +20,8 @@ class QuizzesController < ApplicationController
  #  end
 
   def show
+    @quiz = Quiz.find(params[:id])
+    @first_round = Rounds.where(round_id: @round.id).first
   end
 
   # def edit
