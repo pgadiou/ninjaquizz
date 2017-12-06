@@ -1,4 +1,4 @@
-<% unless current_user.admin? %>
+<% if current_user.admin? %>
   <div class="hidden-xs hidden-sm">
     <div class="container text-center" id='container_question'>
       <h2><strong>QUESTION</strong></h2>
