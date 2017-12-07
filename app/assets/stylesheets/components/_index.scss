@@ -4,3 +4,12 @@
 @import "question";
 @import "answer";
 @import "button";
+
+.container {
+  background-color: white;
+  border-radius: 30px;
+}
+
+body {
+  background-color: $blue;
+}
