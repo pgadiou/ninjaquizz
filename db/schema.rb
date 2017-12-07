@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205141349) do
+ActiveRecord::Schema.define(version: 20171206215105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,15 +30,11 @@ ActiveRecord::Schema.define(version: 20171205141349) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.integer "total_score"
-    t.integer "average_time"
-    t.integer "ranking"
-    t.integer "no_correct_answers"
+  create_table "question_displayers", force: :cascade do |t|
+    t.bigint "quiz_question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "pin_number"
+    t.index ["quiz_question_id"], name: "index_question_displayers_on_quiz_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -53,12 +49,12 @@ ActiveRecord::Schema.define(version: 20171205141349) do
   end
 
   create_table "quiz_answers", force: :cascade do |t|
-    t.bigint "question_id"
     t.bigint "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quiz_question_id"
     t.index ["answer_id"], name: "index_quiz_answers_on_answer_id"
-    t.index ["question_id"], name: "index_quiz_answers_on_question_id"
+    t.index ["quiz_question_id"], name: "index_quiz_answers_on_quiz_question_id"
   end
 
   create_table "quiz_questions", force: :cascade do |t|
@@ -80,18 +76,21 @@ ActiveRecord::Schema.define(version: 20171205141349) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "round_count", default: 0
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
   create_table "result_scores", force: :cascade do |t|
-    t.integer "round_score"
-    t.integer "average_time_round"
+    t.integer "round_score", default: 0
+    t.integer "time_to_answer", default: 0
     t.integer "ranking"
     t.integer "no_correct_answers"
     t.bigint "round_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["round_id"], name: "index_result_scores_on_round_id"
+    t.index ["user_id"], name: "index_result_scores_on_user_id"
   end
 
   create_table "rounds", force: :cascade do |t|
@@ -101,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171205141349) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "question_count", default: 0
     t.index ["category_id"], name: "index_rounds_on_category_id"
     t.index ["quiz_id"], name: "index_rounds_on_quiz_id"
   end
@@ -127,20 +127,27 @@ ActiveRecord::Schema.define(version: 20171205141349) do
     t.boolean "admin", default: false
     t.string "name"
     t.bigint "quiz_id"
+    t.integer "total_score", default: 0
+    t.integer "ranking"
+    t.integer "no_correct_answers", default: 0
+    t.integer "pin_number"
+    t.integer "total_time", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["quiz_id"], name: "index_users_on_quiz_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "question_displayers", "quiz_questions"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "types"
   add_foreign_key "quiz_answers", "answers"
-  add_foreign_key "quiz_answers", "questions"
+  add_foreign_key "quiz_answers", "quiz_questions"
   add_foreign_key "quiz_questions", "questions"
   add_foreign_key "quiz_questions", "rounds"
   add_foreign_key "quizzes", "users"
   add_foreign_key "result_scores", "rounds"
+  add_foreign_key "result_scores", "users"
   add_foreign_key "rounds", "categories"
   add_foreign_key "rounds", "quizzes"
   add_foreign_key "users", "quizzes"
