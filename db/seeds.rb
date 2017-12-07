@@ -10,6 +10,10 @@ User.destroy_all
 Quiz.destroy_all
 Question.destroy_all
 
+
+
+
+
 @user_1 = User.create(
   email: "thomas@gmail.com",
   password: "12345678",
