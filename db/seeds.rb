@@ -142,7 +142,7 @@ quiz_test = Quiz.new(name: "le Wagon",
                     no_of_rounds: 1,
                     time_per_question: 10,
                     pin_number: 123456)
-quiz_test.user = user_1
+quiz_test.user = barman
 quiz_test.save!
 
 round_quiz_test = Round.new(no_of_questions: 4)

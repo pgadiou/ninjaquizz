@@ -1,6 +1,58 @@
+<% unless current_user.admin? %>
+  <div class="hidden-xs hidden-sm">
+    <div class="container text-center" id='container_question'>
+      <h2><strong>QUESTION</strong></h2>
+      <h3 class="question-hidden">
+        <div><%=  @quiz_question.question.content %></div>
+      </h3>
+    </div>
+    <div class="container text-center">
+      <div class="row">
+        <% @answers.each do |answer| %>
+          <div class="col-xs-12 col-sm-6">
+            <% if answer.is_correct %>
+                <div class="answer-hidden correct-answer">
+              <% else %>
+                <div class="answer-hidden">
+              <% end %>
+              <h4><%= answer.content %></h4>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="hidden-md hidden-lg">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="question-displayed"><p><%=  @quiz_question.question.content %></p></div>
+        </div>
+        <div class="col-xs-12">
+          <div class="btn btn-control" id="show question">Show Question</div>
+        </div>
+        <div class="col-xs-12">
+          <div class="btn btn-control" id="show answers">Show answers</div>
+        </div>
+        <div class="col-xs-12">
+          <div class="btn btn-control" id="correct answer">Show correct answer</div>
+        </div>
+        <div class="col-xs-12">
+          <div class="btn btn-control" id="next"><%= link_to "Next Question", quiz_question_path(@next_quiz_question) %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script>
+    </script>
+
+<% else %>
+
+</div>
 <%= simple_form_for(@quiz_answer) do |f| %>
   <% @answers.each do |answer| %>
-    <div class="container ">
+    <div class="container text-center">
       <div class="row">
         <div class="col-xs-12 col-lg-6">
           <%= f.submit "#{answer.content}", input_html: { value: answer.id}, class: 'btn btn-success btn-block' %>
@@ -8,4 +60,5 @@
       </div>
     </div>
   <% end %>
+<% end %>
 <% end %>
