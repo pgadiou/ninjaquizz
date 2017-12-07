@@ -1,10 +1,17 @@
 // Import your components CSS files here.
 @import "alert";
 @import "navbar";
-<<<<<<< HEAD
 @import "login_form";
-=======
+
 @import "question";
 @import "answer";
 @import "button";
->>>>>>> 0d99c36ab0cd2e0111c622f1cbfb9f02a8efa0c7
+
+.container {
+  background-color: white;
+  border-radius: 30px;
+}
+
+body {
+  background-color: $blue;
+}
