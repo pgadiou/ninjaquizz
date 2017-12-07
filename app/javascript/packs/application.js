@@ -1,3 +1,3 @@
 import "bootstrap";
 
-import "./quiz_question_next.js"
+// import "./quiz_question_next.js"

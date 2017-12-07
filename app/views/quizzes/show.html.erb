@@ -1,10 +1,45 @@
-<div class="container">
-<% @quiz_questions.first.each do |qquestion|%>
-  <div class="container"><%= qquestion.question.content %></div>
-  <% qquestion.question.answers.each do |answer|%>
-    <div class="row">
-    <div class="card"><%= answer.content %></div>
+<div id="quiz" data-admin="<%= current_user.id == 1 ? true : false %>">
+  <% if current_user.id == 1 %>
+    <% if @quiz.round_count < @quiz.no_of_rounds %>
+      <div class="hidden-xs hidden-sm">
+        <div class="container text-center">
+          <h3><%= "Welcome to the game" %></h3>
+          <h3>To do = display number of connected users through action cable</h3>
+        </div>
+      </div>
+      <div class="hidden-md hidden-lg">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+    <div class="container text-center">
+        <h3><%= "Results" %></h3>
     </div>
+    <% end %>
+  <% else %>
+  <div class="container text-center">chaussette</div>
   <% end %>
-<% end %>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
+      { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
+      { received: (data) => {
+        console.log("event");
+        quiz = document.getElementById("quiz");
+        if (quiz.dataset.admin == "true") {
+          quiz.innerHTML = data.admin_partial;
+          }
+        else {
+          quiz.innerHTML = data.player_partial;
+          }
+        }
+    })
+  </script>
+<% end %>
