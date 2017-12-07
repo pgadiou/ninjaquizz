@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20171206114532) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "round_count", default: 0
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20171206114532) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "question_count", default: 0
     t.index ["category_id"], name: "index_rounds_on_category_id"
     t.index ["quiz_id"], name: "index_rounds_on_quiz_id"
   end
