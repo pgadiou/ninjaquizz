@@ -20,12 +20,13 @@
 <div class="answer-container">
   <%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
     <% answers.each do |answer| %>
-                <input type="hidden" value="<%= answer.id %>" name="answer_id">
-                <input type="hidden" value="<%= @start %>" name="start">
-                <%= f.submit "#{answer.content}", class: 'card-answer' %>
-</div>
+      <input type="hidden" value="<%= answer.id %>" name="answer_id">
+      <input type="hidden" value="<%= @start %>" name="start">
+      <%= f.submit "#{answer.content}", class: 'answer-card' %>
     <% end %>
   <% end %>
+</div>
+
 
 
 
