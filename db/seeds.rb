@@ -159,33 +159,19 @@ Question.destroy_all
 @quiz_test_question_1.round = @round_quiz_test
 @quiz_test_question_1.save!
 
-@question_displayer_1 = QuestionDisplayer.new()
-@question_displayer_1.quiz_question = @quiz_test_question_1
-@question_displayer_1.save!
 
 @quiz_test_question_2 = QuizQuestion.new()
 @quiz_test_question_2.question = @question_2
 @quiz_test_question_2.round = @round_quiz_test
 @quiz_test_question_2.save!
 
-@question_displayer_2 = QuestionDisplayer.new()
-@question_displayer_2.quiz_question = @quiz_test_question_2
-@question_displayer_2.save!
 
 @quiz_test_question_3 = QuizQuestion.new()
 @quiz_test_question_3.question = @question_3
 @quiz_test_question_3.round = @round_quiz_test
 @quiz_test_question_3.save!
 
-@question_displayer_3 = QuestionDisplayer.new()
-@question_displayer_3.quiz_question = @quiz_test_question_3
-@question_displayer_3.save!
-
 @quiz_test_question_4 = QuizQuestion.new()
 @quiz_test_question_4.question = @question_4
 @quiz_test_question_4.round = @round_quiz_test
 @quiz_test_question_4.save!
-
-@question_displayer_4 = QuestionDisplayer.new()
-@question_displayer_4.quiz_question = @quiz_test_question_4
-@question_displayer_4.save!
