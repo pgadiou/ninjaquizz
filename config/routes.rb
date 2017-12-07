@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :show_question
       get :show_answers
       get :show_correct_answer
+      get :show_wait_room
     end
   end
 
