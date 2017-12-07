@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206114532) do
+ActiveRecord::Schema.define(version: 20171206215105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20171206114532) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "question_displayers", force: :cascade do |t|
+    t.bigint "quiz_question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_question_id"], name: "index_question_displayers_on_quiz_question_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -69,6 +76,7 @@ ActiveRecord::Schema.define(version: 20171206114532) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "round_count", default: 0
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
@@ -92,6 +100,7 @@ ActiveRecord::Schema.define(version: 20171206114532) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "question_count", default: 0
     t.index ["category_id"], name: "index_rounds_on_category_id"
     t.index ["quiz_id"], name: "index_rounds_on_quiz_id"
   end
@@ -129,6 +138,7 @@ ActiveRecord::Schema.define(version: 20171206114532) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "question_displayers", "quiz_questions"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "types"
   add_foreign_key "quiz_answers", "answers"
