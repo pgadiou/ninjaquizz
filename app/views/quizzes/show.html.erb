@@ -5,6 +5,7 @@
         <div class="container text-center">
           <h3><%= "Welcome to the game" %></h3>
           <h3>To do = display number of connected users through action cable</h3>
+          <div class="container" id="waiting-room"></div>
         </div>
       </div>
       <div class="hidden-md hidden-lg">
@@ -17,9 +18,7 @@
         </div>
       </div>
     <% else %>
-    <div class="container text-center">
-        <h3><%= "Results" %></h3>
-    </div>
+      <%= render 'quizzes_results' %>
     <% end %>
   <% else %>
   <div class="container text-center">chaussette</div>
@@ -34,12 +33,16 @@
         console.log("event");
         quiz = document.getElementById("quiz");
         if (quiz.dataset.admin == "true") {
-          quiz.innerHTML = data.admin_partial;
+          if(data.event == "new_player") {
+            document.getElementById("waiting-room").insertAdjacentHTML('afterbegin', data.new_player_partial)
+          }
+          else {
+            quiz.innerHTML = data.admin_partial}
           }
         else {
           quiz.innerHTML = data.player_partial;
           }
         }
-    })
+      })
   </script>
 <% end %>

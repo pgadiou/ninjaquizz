@@ -9,15 +9,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    quiz = Quiz.find_by(pin_number: params[:pin_number])
+    @quiz = Quiz.find_by(pin_number: params[:pin_number])
     build_resource(sign_up_params)
-    if quiz
+    if @quiz
       resource.email = SecureRandom.hex(10) + "@gmail.com"
       resource.password = SecureRandom.hex(10)
-      resource.quiz = quiz
+      resource.quiz = @quiz
       resource.save
+      @user_name = params[:user][:name]
       yield resource if block_given?
       if resource.persisted?
+        broadcast_player_arrival
         if resource.active_for_authentication?
           set_flash_message! :notice, :signed_up
           sign_up(resource_name, resource)
@@ -86,4 +88,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+    def broadcast_player_arrival
+    ActionCable.server.broadcast("quiz_room_#{@quiz.id}", {
+      event: "new_player",
+      new_player_partial: ApplicationController.renderer.render(
+        partial: "quizzes/new_player",
+        locals: {user_name: @user_name}),
+      })
+  end
+
 end
