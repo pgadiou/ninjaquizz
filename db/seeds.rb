@@ -39,7 +39,6 @@ Question.destroy_all
 @customized = Category.new(name: "custom")
 @customized.save!
 
-<<<<<<< HEAD
 api_category = Category.new(name: "API")
 api_category.save!
 
@@ -47,7 +46,7 @@ new_quiz = Quiz.new(name: "random question from api",
                     no_of_rounds: 1,
                     time_per_question: 10,
                     pin_number: 123456,
-                    user: barman)
+                    user: @barman)
 new_quiz.save!
 
 
@@ -74,7 +73,7 @@ quiz = JSON.parse(quiz_serialized)
   new_question = Question.new(
     content: quiz["results"][j]["question"],
     category: api_category,
-    type: choix_multiple
+    type: @choix_multiple
     )
   new_question.save!
 
