@@ -12,11 +12,11 @@ class QuizQuestionsController < ApplicationController
 
   def show_answers
     @quiz_answer = QuizAnswer.new
+    @start = Time.now
     broadcast_show_answers
   end
 
   def show_correct_answer
-    @quiz_answer = QuizAnswer.new
     broadcast_show_correct_answer
   end
 
@@ -24,8 +24,8 @@ class QuizQuestionsController < ApplicationController
 
   def set_quiz_question
     @quiz_question = QuizQuestion.find(params[:id])
-    @answers = @quiz_question.question.answers
     @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
+    @answers = @quiz_question.question.answers
   end
 
   def broadcast_before_question
