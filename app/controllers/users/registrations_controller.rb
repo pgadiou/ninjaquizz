@@ -1,5 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -9,12 +9,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    quiz = Quiz.find_by(pin_number: params[:pin_number])
+    @quiz = Quiz.find_by(pin_number: params[:pin_number])
     build_resource(sign_up_params)
-    if quiz
+    if @quiz
       resource.email = SecureRandom.hex(10) + "@gmail.com"
       resource.password = SecureRandom.hex(10)
-      resource.quiz = quiz
+      resource.quiz = @quiz
       resource.save
       yield resource if block_given?
       if resource.persisted?
@@ -22,6 +22,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
           set_flash_message! :notice, :signed_up
           sign_up(resource_name, resource)
           respond_with resource, location: after_sign_up_path_for(resource)
+          @player = resource
+          broadcast_wait_room
         else
           set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
           expire_data_after_sign_in!
@@ -35,10 +37,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      flash[:alert] = "Code invalide"
+      flash[:alert] = "Invalid code"
       render :new
     end
+
   end
+
 
   # GET /resource/edit
   # def edit
@@ -68,7 +72,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :avatar])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -86,4 +90,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def broadcast_wait_room
+    ActionCable.server.broadcast("quiz_room_#{@quiz.id}", {
+      event: "new_team",
+      admin_partial: ApplicationController.renderer.render(
+          partial: "quiz_questions/quiz_question_admin_wait_room",
+          locals: {player: @player}),
+      current_user_id: @player.id,
+      })
+  end
+
 end
+
