@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   resources :rounds, only: :show
+  mount ActionCable.server => "/cable"
 end
