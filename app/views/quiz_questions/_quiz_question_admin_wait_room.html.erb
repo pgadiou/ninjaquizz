@@ -1,7 +1,11 @@
 <div class="col-sm-4">
-  <div class="card">
-    <%= player.avatar %>
-    <%= player.name %>
+  <div class="card mother">
+    <div class="child">
+      <h2><%= player.name %></h2>
+    </div>
+    <div class="child">
+      <%= image_tag "#{player.avatar}.png", class: "avatar-big" %>
+    </div>
   </div>
 </div>
 

@@ -2,16 +2,22 @@
 @import "alert";
 @import "navbar";
 @import "login_form";
-@import "avatar";
 
 @import "question";
 @import "answer";
 @import "button";
 
+@import "avatar";
+@import "avatar_big";
+@import "card";
+@import "mother";
+@import "welcome";
+
 .container {
   background-color: white;
   border-radius: 30px;
 }
+
 
 body {
   background-color: $blue;

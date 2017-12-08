@@ -16,7 +16,18 @@
     margin-bottom: 20px;
     margin-top: 20px;
   }
-  #user_avatar_ninja {
-    visibility: hidden;
+
+  .avatar-label {
+    margin-top: 10px;
+  }
+  .radio label, .checkbox label {
+    padding-left: 0px;
+  }
+}
+#new_user{
+  .radio_buttons {
+    input {
+      display: none;
+    }
   }
 }
