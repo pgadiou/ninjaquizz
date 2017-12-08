@@ -95,7 +95,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def broadcast_wait_room
     ActionCable.server.broadcast("quiz_room_#{@quiz.id}", {
-      event: "new_team"
+      event: "new_team",
       admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_wait_room",
           locals: {player: @player}),
