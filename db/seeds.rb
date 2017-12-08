@@ -52,7 +52,7 @@ new_quiz.save!
 
 
 new_round = Round.new(
-  no_of_questions: 10,
+  no_of_questions: 3,
   quiz: new_quiz,
   category: api_category,
   )
@@ -70,7 +70,7 @@ quiz = JSON.parse(quiz_serialized)
 
 # création d'une question avec l'API
 
-(0..9).each do |j|
+(0..2).each do |j|
   new_question = Question.new(
     content: quiz["results"][j]["question"],
     category: api_category,

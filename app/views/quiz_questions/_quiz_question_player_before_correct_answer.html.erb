@@ -1,9 +1,9 @@
 <div class="answer-container" id="flexanswer">
- <% answers.each do |answer| %>
-   <%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
+<% answers.each do |answer| %>
+  <%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
      <input type="hidden" value="<%= answer.id %>" name="answer_id">
-     <input type="hidden" value="<%= @start %>" name="start">
+     <input type="hidden" value="<%= start %>" name="start">
      <%= f.submit "#{answer.content}", class: 'card-answer' %>
-   <% end %>
- </div>
+  <% end %>
 <% end %>
+</div>
