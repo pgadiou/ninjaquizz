@@ -1,31 +1,12 @@
-<!--  <div class="container">
-  <div class="answer-container">
-
-    <%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
-      <% answers.each do |answer| %>
-          <div class="row">
-          <div class="col-xs-12 col-lg-6">
-              <input type="hidden" value="<%= answer.id %>" name="answer_id">
-              <input type="hidden" value="<%= @start %>" name="start">
-              <%= f.submit "#{answer.content}", class: 'card-answer' %>
-            /</div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %> -->
-
-
-
-<div class="answer-container">
-  <%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
+<%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
+  <div class="answer-container" id="flexanswer">
     <% answers.each do |answer| %>
-                <input type="hidden" value="<%= answer.id %>" name="answer_id">
-                <input type="hidden" value="<%= @start %>" name="start">
-                <%= f.submit "#{answer.content}", class: 'card-answer' %>
-</div>
+      <input type="hidden" value="<%= answer.id %>" name="answer_id">
+      <input type="hidden" value="<%= @start %>" name="start">
+      <%= f.submit "#{answer.content}", class: 'card-answer' %>
     <% end %>
-  <% end %>
+  </div>
+<% end %>
 
 
 
