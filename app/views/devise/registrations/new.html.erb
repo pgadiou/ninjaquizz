@@ -2,24 +2,78 @@
   <div class="row">
     <div class="col-xs-12 col-sm-4 col-sm-offset-4">
       <div class="form-login">
-        <h2>Sign up</h2>
+        <h2>Welcome!</h2>
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
             <%= f.error_notification %>
             <div class="form-inputs">
               <%= f.input :name %>
-              <label for="code">Game #</label>
+              <label for="code">Game #
+              </label>
               <input type="text" name="pin_number">
               <%#= f.input :email, required: true, autofocus: true %>
               <%#= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
               <%#= f.input :password_confirmation, required: true %>
-              <%= f.input :avatar, as: :radio_buttons, collection: ["Ninja1", "Ninja2","Ninja3", "Ninja4", "Ninja5", "Ninja6", "Ninja7", "Ninja8"], class: "avatar" %>
+              <div class="form-group radio_buttons optional user_avatar">
+                <label class="control-label radio_buttons optional">Avatar
+                </label>
+                <input type="hidden" name="user[avatar]" value="">
+                <span class="radio">
+                  <label for="user_avatar_ninja1">
+                    <input class="radio_buttons optional" type="radio" value="Ninja1" name="user[avatar]" id="user_avatar_ninja">
+                    <%= image_tag 'Ninja1.png', class: "avatar" %>
+                  </label>
+                </span>
+                <span class="radio">
+                  <label for="user_avatar_ninja2">
+                    <input class="radio_buttons optional" type="radio" value="Ninja2" name="user[avatar]" id="user_avatar_ninja">
+                    <%= image_tag 'Ninja2.png', class: "avatar" %>
+                  </label>
+                  </span>
+                <span class="radio">
+                  <label for="user_avatar_ninja3">
+                    <input class="radio_buttons optional" type="radio" value="Ninja3" name="user[avatar]" id="user_avatar_ninja">
+                    <%= image_tag 'Ninja3.png', class: "avatar" %>
+                  </label>
+                </span>
+                <span class="radio">
+                  <label for="user_avatar_ninja4">
+                    <input class="radio_buttons optional" type="radio" value="Ninja4" name="user[avatar]" id="user_avatar_ninja">
+                    <%= image_tag 'Ninja4.png', class: "avatar" %>
+                  </label>
+                </span>
+                <span class="radio">
+                  <label for="user_avatar_ninja5">
+                    <input class="radio_buttons optional" type="radio" value="Ninja5" name="user[avatar]" id="user_avatar_ninja">
+                    <%= image_tag 'Ninja5.png', class: "avatar" %>
+                  </label>
+                </span>
+                <span class="radio">
+                  <label for="user_avatar_ninja6">
+                    <input class="radio_buttons optional" type="radio" value="Ninja6" name="user[avatar]" id="user_avatar_ninja">
+                    <%= image_tag 'Ninja6.png', class: "avatar" %>
+                  </label>
+                  </span>
+                  <span class="radio">
+                    <label for="user_avatar_ninja7">
+                      <input class="radio_buttons optional" type="radio" value="Ninja7" name="user[avatar]" id="user_avatar_ninja">
+                      <%= image_tag 'Ninja7.png', class: "avatar" %>
+                    </label>
+                  </span>
+                  <span class="radio">
+                    <label for="user_avatar_ninja8">
+                      <input class="radio_buttons optional" type="radio" value="Ninja8" name="user[avatar]" id="user_avatar_ninja">
+                      <%= image_tag 'Ninja8.png', class: "avatar" %>
+                    </label>
+                  </span>
+                </div>
+
             </div>
 
             <div class="form-actions">
-              <%= f.button :submit, "Join", class: "btn btn-primary" %>
+              <%= f.button :submit, "Join game!", class: "btn btn-primary" %>
             </div>
           <% end %>
-        <%= render "devise/shared/links" %>
+<!--         <%= render "devise/shared/links" %> -->
       </div>
     </div>
   </div>
