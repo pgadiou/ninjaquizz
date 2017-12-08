@@ -33,7 +33,6 @@
 
 <% content_for :after_js do %>
   <script>
-    // scrollLastTeamIntoView();
     App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
       { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
       { received: (data) => {
