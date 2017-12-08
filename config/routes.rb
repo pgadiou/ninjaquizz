@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations' }
   root to: 'pages#home'
-  resources :quizzes
+  resources :quizzes do
+    member do
+      get :show_results
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :quiz_questions, only: :show do
     resources :quiz_answers, only: :create
@@ -12,6 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :rounds, only: :show
+  resources :rounds, only: :show do
+    member do
+      get :show_round_results
+    end
+  end
   mount ActionCable.server => "/cable"
 end
