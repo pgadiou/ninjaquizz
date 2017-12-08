@@ -20,6 +20,10 @@ class QuizQuestionsController < ApplicationController
     broadcast_show_correct_answer
   end
 
+  def show_wait_room
+    broadcast_wait_room
+  end
+
   private
 
   def set_quiz_question

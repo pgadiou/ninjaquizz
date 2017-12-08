@@ -4,7 +4,10 @@
       <div class="hidden-xs hidden-sm">
         <div class="container text-center">
           <h3><%= "Welcome to the game" %></h3>
-          <h3>To do = display number of connected users through action cable</h3>
+          <div class="container">
+            <div class="row" id="new_team">
+            </div>
+          </div>
         </div>
       </div>
       <div class="hidden-md hidden-lg">
@@ -22,24 +25,31 @@
     </div>
     <% end %>
   <% else %>
-  <div class="container text-center">chaussette</div>
+  <div class="container text-center">Other teams are joining</div>
   <% end %>
 </div>
 
 <% content_for :after_js do %>
   <script>
+    // scrollLastTeamIntoView();
     App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
       { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
       { received: (data) => {
         console.log("event");
         quiz = document.getElementById("quiz");
         if (quiz.dataset.admin == "true") {
-          quiz.innerHTML = data.admin_partial;
+          if (data.event == "new_team") {
+            new_team = document.getElementById("new_team");
+            new_team.insertAdjacentHTML("afterbegin", data.admin_partial);
           }
-        else {
-          quiz.innerHTML = data.player_partial;
+          else {
+            quiz.innerHTML = data.admin_partial;
           }
         }
-    })
+        else {
+          quiz.innerHTML = data.player_partial;
+        }
+        }
+      })
   </script>
 <% end %>
