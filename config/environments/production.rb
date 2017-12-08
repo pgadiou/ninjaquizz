@@ -6,7 +6,7 @@ Rails.application.configure do
   config.cache_classes = true
 
   # config/environments/production.rb
-  config.action_cable.url = "wss://www.ninjaquiz.ninja.top/cable"
+  config.action_cable.url = "ws://www.ninjaquiz.ninja.top/cable"
   config.action_cable.allowed_request_origins = [ "http://www.ninjaquiz.ninja.top", "https://www.ninjaquiz.ninja.top" ]
 
   # Eager load code on boot. This eager loads most of Rails and
