@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206114532) do
-
+ActiveRecord::Schema.define(version: 20171207165734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -125,6 +124,7 @@ ActiveRecord::Schema.define(version: 20171206114532) do
     t.integer "no_correct_answers", default: 0
     t.integer "pin_number"
     t.integer "total_time", default: 0
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["quiz_id"], name: "index_users_on_quiz_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
