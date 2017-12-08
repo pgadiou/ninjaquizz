@@ -24,7 +24,7 @@
         <div class="col-xs-12">
           <div class="btn btn-control" id="next">
             <% if quiz_question.round.quiz_questions.last == quiz_question %>
-              <%= link_to "Finish round", show_round_results_round_path(round), remote: true %>
+              <%= link_to "Finish round", show_round_results_round_path(quiz_question.round), remote: true %>
             <% else %>
               <%= link_to "Next Question", quiz_question_path(next_quiz_question), remote: true %>
             <% end %>
