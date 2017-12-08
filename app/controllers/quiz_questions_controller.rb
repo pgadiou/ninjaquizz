@@ -3,7 +3,6 @@ class QuizQuestionsController < ApplicationController
 
   def show
     broadcast_before_question
-    @quiz_question.round.question_count += 1
   end
 
   def show_question
@@ -28,7 +27,9 @@ class QuizQuestionsController < ApplicationController
 
   def set_quiz_question
     @quiz_question = QuizQuestion.find(params[:id])
-    @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
+    unless @quiz_question == @quiz_question.round.quiz_questions.last
+      @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
+    end
     @answers = @quiz_question.question.answers
   end
 
@@ -61,7 +62,7 @@ class QuizQuestionsController < ApplicationController
           locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
         player_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_player_before_correct_answer",
-          locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers}),
+          locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start}),
         current_user_id: current_user.id,
         })
   end

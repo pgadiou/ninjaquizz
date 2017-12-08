@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :quiz
+  belongs_to :quiz, optional: :true
+  has_many :quizzes, dependent: :destroy
 end

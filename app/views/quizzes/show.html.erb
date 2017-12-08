@@ -1,5 +1,5 @@
-<div id="quiz" data-admin="<%= current_user.id == 1 ? true : false %>">
-  <% if current_user.id == 1 %>
+<div id="quiz" data-admin="<%= current_user == @quiz.user %>">
+  <% if current_user == @quiz.user %>
     <% if @quiz.round_count < @quiz.no_of_rounds %>
       <div class="hidden-xs hidden-sm">
         <div class="container text-center">
