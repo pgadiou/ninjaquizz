@@ -1,43 +1,44 @@
 
 # This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# The data can then be loaded with the rails db:seed command (or create!d alongside the database with db:setup).
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create!(name: 'Luke', movie: movies.first)
 Quiz.destroy_all
 Question.destroy_all
+User.destroy_all
 
-@user_1 = User.create(
+user_1 = User.create!(
   email: "thomas@gmail.com",
   password: "12345678",
 )
 # @user_1.save!
 
-@user_2 = User.create(
+user_2 = User.create!(
   email: "damien@gmail.com",
   password: "12345678",
 )
 # @user_2.save!
 
-@user_3 = User.create(
+user_3 = User.create!(
   email: "tanguy@gmail.com",
   password: "12345678",
 )
 # @user_3.save!
 
-@barman = User.create(
+barman = User.create!(
         email: "example@gmail.com",
         password: "12345678"
     )
 # @barman.save!
 
-@choix_multiple = Type.new(name: "choix multiples x4")
-@choix_multiple.save!
+choix_multiple = Type.new(name: "choix multiples x4")
+choix_multiple.save!
 
-@customized = Category.new(name: "custom")
-@customized.save!
+customized = Category.new(name: "custom")
+customized.save!
 
 api_category = Category.new(name: "API")
 api_category.save!
@@ -46,12 +47,12 @@ new_quiz = Quiz.new(name: "random question from api",
                     no_of_rounds: 1,
                     time_per_question: 10,
                     pin_number: 123456,
-                    user: @barman)
+                    user: barman)
 new_quiz.save!
 
 
 new_round = Round.new(
-  no_of_questions: 10,
+  no_of_questions: 3,
   quiz: new_quiz,
   category: api_category,
   )
@@ -69,11 +70,11 @@ quiz = JSON.parse(quiz_serialized)
 
 # création d'une question avec l'API
 
-(0..9).each do |j|
+(0..2).each do |j|
   new_question = Question.new(
     content: quiz["results"][j]["question"],
     category: api_category,
-    type: @choix_multiple
+    type: choix_multiple
     )
   new_question.save!
 

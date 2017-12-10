@@ -3,7 +3,8 @@
   padding: 10px 20px;
   margin-top: 50px;
   border-radius: 3px;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-align: center;
+ ;
   h2 {
     font-size: 20px;
     font-weight: bold;
@@ -14,5 +15,19 @@
     width: 100%;
     margin-bottom: 20px;
     margin-top: 20px;
+  }
+
+  .avatar-label {
+    margin-top: 10px;
+  }
+  .radio label, .checkbox label {
+    padding-left: 0px;
+  }
+}
+#new_user{
+  .radio_buttons {
+    input {
+      display: none;
+    }
   }
 }

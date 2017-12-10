@@ -1,6 +1,8 @@
 class QuizAnswersController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def create
+
     @quiz_answer = QuizAnswer.new(quiz_question_id: params[:quiz_question_id].to_i, answer_id: params[:answer_id].to_i)
     @quiz_answer.save
 
@@ -8,7 +10,7 @@ class QuizAnswersController < ApplicationController
     #round_score
     @start = params[:start]
     @time_to_answer = @quiz_answer.created_at.to_time - @start.to_time
-    if @quiz_answer.answer.is_correct?
+    if @quiz_answer.answer.is_correct
       @score_question = 100 + (1 - @time_to_answer / 30).round(2) * 100
     else
       @score_question = 0

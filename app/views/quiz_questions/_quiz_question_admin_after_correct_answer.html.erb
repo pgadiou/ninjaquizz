@@ -2,7 +2,7 @@
     <div class="container text-center" id='container_question'>
       <h2><strong>QUESTION</strong></h2>
       <h3 class="question-hidden question-displayed">
-        <div><%=  quiz_question.question.content %></div>
+        <div><%=  raw quiz_question.question.content %></div>
       </h3>
       <div class="row">
         <% answers.each do |answer| %>
@@ -23,7 +23,7 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-xs-12">
-          <div class="question-displayed"><p><%=  quiz_question.question.content %></p></div>
+          <div class="question-displayed"><p><%= raw quiz_question.question.content %></p></div>
         </div>
         <div class="col-xs-12">
           <div class="btn btn-control" id="show question"><%= link_to "Question", show_question_quiz_question_path(quiz_question), remote: true %></div>
@@ -36,8 +36,8 @@
         </div>
         <div class="col-xs-12">
           <div class="btn btn-control" id="next">
-            <% if quiz_question.round.question_count == quiz_question.round.no_of_questions %>
-              <%= link_to "Finish round", round_path(quiz_question.round), remote: true %>
+            <% if quiz_question.round.quiz_questions.last == quiz_question %>
+              <%= link_to "Finish round", show_round_results_round_path(quiz_question.round), remote: true %>
             <% else %>
               <%= link_to "Next Question", quiz_question_path(next_quiz_question), remote: true %>
             <% end %>
