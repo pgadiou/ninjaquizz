@@ -1,4 +1,4 @@
-<div class="answer-container" id="flexanswer">
+<div class="answer-container answer_form" id="flexanswer">
 <% answers.each do |answer| %>
   <%= simple_form_for([quiz_question, quiz_answer], remote: true) do |f| %>
      <input type="hidden" value="<%= answer.id %>" name="answer_id">
@@ -7,3 +7,4 @@
   <% end %>
 <% end %>
 </div>
+

@@ -31,6 +31,26 @@
 
 <% content_for :after_js do %>
   <script>
+
+    const onAnswerSelect = () => {
+      const answers = document.getElementsByClassName("card-answer");
+
+      const answerSelect = () => {
+        for (var i = 0; i< answers.length; i++) {
+          answers[i].classList.add("unselected_answer", "disabled_item");
+          event.currentTarget.classList.remove("unselected_answer");
+          event.currentTarget.classList.add("selected_answer");
+        }
+
+        event.currentTarget.classList.add("selected_answer");
+        console.log("coucou");
+      };
+
+      for (var i = 0; i< answers.length; i++) {
+        answers[i].addEventListener("click", answerSelect);
+      }
+    }
+
     App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
       { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
       { received: (data) => {
@@ -47,6 +67,7 @@
         }
         else {
           quiz.innerHTML = data.player_partial;
+          onAnswerSelect();
         }
         }
       })
