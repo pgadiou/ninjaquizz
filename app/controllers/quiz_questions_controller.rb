@@ -31,6 +31,7 @@ class QuizQuestionsController < ApplicationController
       @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
     end
     @answers = @quiz_question.question.answers
+    @quiz = @quiz_question.round.quiz
   end
 
   def broadcast_before_question
@@ -67,16 +68,23 @@ class QuizQuestionsController < ApplicationController
         })
   end
 
-    def broadcast_show_correct_answer
-      ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
-        admin_partial: ApplicationController.renderer.render(
-          partial: "quiz_questions/quiz_question_admin_after_correct_answer",
-          locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
-        player_partial: ApplicationController.renderer.render(
-          partial: "quiz_questions/quiz_question_player_after_correct_answer",
-          locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers}),
-        current_user_id: current_user.id,
+  def broadcast_show_correct_answer
+    ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
+      admin_partial: ApplicationController.renderer.render(
+        partial: "quiz_questions/quiz_question_admin_after_correct_answer",
+        locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
+      current_user_id: current_user.id,
         })
-  end
 
+    @quiz.users.each do |user|
+      unless user == @quiz.user
+        ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
+          player_partial: ApplicationController.renderer.render(
+            partial: "quiz_questions/quiz_question_player_after_correct_answer",
+            locals: {quiz_question: @quiz_question, user_id: user.id}),
+          current_user_id: current_user.id,
+            })
+      end
+    end
+  end
 end

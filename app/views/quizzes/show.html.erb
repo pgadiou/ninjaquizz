@@ -47,8 +47,27 @@
         }
         else {
           quiz.innerHTML = data.player_partial;
+          });
         }
         }
+      })
+
+    App['player_quiz_room_<%= current_user.id %>'] = App.cable.subscriptions.create(
+      { channel: 'QuizRoomChannel', player_id: <%= current_user.id %> },
+      { received: (data) => {
+        console.log("event player");
+        quiz = document.getElementById("quiz");
+        if (quiz.dataset.admin == "false") {
+          if (data.event == "question_answer") {
+          quiz.innerHTML = data.player_partial;
+          var el = document.querySelector(".svg");
+          var elWrapperClone = el.innerHTML;
+          document.getElementById("button").addEventListener("click", function() {
+          el.innerHTML = elWrapperClone;
+          });
+          }
+        }
+      }
       })
   </script>
 <% end %>
