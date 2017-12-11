@@ -8,23 +8,3 @@
 <% end %>
 </div>
 
-<% content_for :after_js do %>
-  <script>
-
-  const onAnswerSelect = () => {
-    const answers = document.getElementsByClassName("card-answer");
-
-    const answerSelect = () => {
-      answers.classList.add("unselected_answer", "disabled_item");
-      event.currentTarget.classList.add("selected_answer");
-      event.currentTarget.classList.remove("unselected_answer");
-    };
-
-    for (var i = 0; i< answers.length; i++) {
-      answers[i].addEventListener("click", answerSelect);
-    }
-  }
-  </script>
-<% end %>
-
-
