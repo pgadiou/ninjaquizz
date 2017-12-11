@@ -1,9 +1,30 @@
-<div class="answer-container" id="flexanswer">
+<div class="answer-container answer_form" id="flexanswer">
 <% answers.each do |answer| %>
-  <%= simple_form_for([quiz_question, quiz_answer]) do |f| %>
+  <%= simple_form_for([quiz_question, quiz_answer], remote: true) do |f| %>
      <input type="hidden" value="<%= answer.id %>" name="answer_id">
      <input type="hidden" value="<%= start %>" name="start">
      <%= f.submit "#{answer.content}", class: 'card-answer' %>
   <% end %>
 <% end %>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+
+  const onAnswerSelect = () => {
+    const answers = document.getElementsByClassName("card-answer");
+
+    const answerSelect = () => {
+      answers.classList.add("unselected_answer", "disabled_item");
+      event.currentTarget.classList.add("selected_answer");
+      event.currentTarget.classList.remove("unselected_answer");
+    };
+
+    for (var i = 0; i< answers.length; i++) {
+      answers[i].addEventListener("click", answerSelect);
+    }
+  }
+  </script>
+<% end %>
+
+
