@@ -40,6 +40,7 @@ class QuizAnswersController < ApplicationController
     current_user.no_correct_answers += 1 if @quiz_answer.answer.is_correct?
     # save
     current_user.save
+    head :no_content
   end
 
 end
