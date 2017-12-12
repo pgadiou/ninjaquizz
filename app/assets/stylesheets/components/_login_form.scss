@@ -7,7 +7,7 @@
   height: 100vh;
   margin-bottom: 20px;
 
-  .form-inputs {
+  .form-sign-up {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -51,6 +51,6 @@
 }
 
 input, input[placeholder]{
-    color:red;
+    color: $gray;
     text-align:center;
   }
