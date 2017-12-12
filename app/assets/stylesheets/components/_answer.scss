@@ -81,6 +81,22 @@
    background-color: $red;
  }
 
+.answer_form > form {
+  width: 80%;
+}
 
 
+.unselected_answer {
+  opacity: 0.4;
+}
 
+.selected_answer {
+  background-color: #00d66c;
+  color: white !important;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.disabled_item {
+  pointer-events:none;
+}

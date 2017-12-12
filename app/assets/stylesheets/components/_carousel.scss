@@ -1,0 +1,51 @@
+.container {
+  width:350px;
+  height:150px;
+  position:relative;
+  overflow:hidden;
+}
+
+.css-carousel {
+  width:500%;
+  -webkit-animation: css-carousel 20s linear infinite;
+  -moz-animation: css-carousel 20s linear infinite;
+  -ms-animation: css-carousel 20s linear infinite;
+  animation: css-carousel 20s linear infinite;
+}
+
+.css-carousel .css-img{
+  display:inline-block;
+}
+.css-carousel img:not(:first-child){
+  float:left;
+}
+
+@-webkit-keyframes css-carousel {
+  0%, 23% {margin-left:0}
+  25%, 48% { margin-left:-100%; }
+  50%, 73% { margin-left:-200%; }
+  75%, 98% { margin-left:-300%;}
+  100% { margin-left:0;}
+
+}
+@-moz-keyframes css-carousel {
+  0%, 23% {margin-left:0}
+  25%, 48% { margin-left:-100%; }
+  50%, 73% { margin-left:-200%; }
+  75%, 98% { margin-left:-300%;}
+  100% { margin-left:0;}
+}
+@-ms-keyframes css-carousel {
+  0%, 23% {margin-left:0}
+  25%, 48% { margin-left:-100%; }
+  50%, 73% { margin-left:-200%; }
+  75%, 98% { margin-left:-300%;}
+  100% { margin-left:0;}
+}
+@keyframes css-carousel {
+  0%, 23% {margin-left:0}
+  25%, 48% { margin-left:-100%; }
+  50%, 73% { margin-left:-200%; }
+  75%, 98% { margin-left:-300%;}
+  100% { margin-left:0;}
+}
