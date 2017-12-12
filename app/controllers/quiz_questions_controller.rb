@@ -79,9 +79,10 @@ class QuizQuestionsController < ApplicationController
     @quiz.users.each do |user|
       unless user == @quiz.user
         ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
+          event: "question_answer",
           player_partial: ApplicationController.renderer.render(
             partial: "quiz_questions/quiz_question_player_after_correct_answer",
-            locals: {quiz_question: @quiz_question, user_id: user.id}),
+            locals: {quiz_answer: QuizAnswer.where(quiz_question_id: @quiz_question.id, user_id: user.id).last, quiz_question: @quiz_question, user: user}),
           current_user_id: current_user.id,
             })
       end

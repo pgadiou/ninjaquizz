@@ -1,4 +1,4 @@
-class QuizRoomChannel < ApplicationCable::Channel
+class PlayerQuizRoomChannel < ApplicationCable::Channel
   def subscribed
     stream_from "player_quiz_room_#{params[:player_id]}"
   end
