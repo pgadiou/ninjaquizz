@@ -1,27 +1,21 @@
 <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
   <% if current_user == @quiz.user %>
-    <% if @quiz.round_count < @quiz.no_of_rounds %>
-      <div class="hidden-xs hidden-sm">
-        <div class="container text-center welcome">
-          <h1>Welcome to the game!</h1>
-          <div class="row" id="new_team">
-          </div>
-        </div>
+  <div class="hidden-xs hidden-sm">
+    <div class="container text-center welcome">
+      <h1>Welcome to the game!</h1>
+      <div class="row" id="new_team">
       </div>
-      <div class="hidden-md hidden-lg">
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% else %>
-    <div class="container text-center">
-        <h3><%= "Results" %></h3>
     </div>
-    <% end %>
+  </div>
+  <div class="hidden-md hidden-lg">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <% else %>
   <div class="container text-center">
     <h1>Welcome to the game!</h1>
@@ -65,11 +59,31 @@
             quiz.innerHTML = data.admin_partial;
           }
         }
-        else {
+        else if (data.player_partial) {
           quiz.innerHTML = data.player_partial;
-          onAnswerSelect();
+          }
         }
+      });
+
+    App['player_quiz_room_<%= current_user.id %>'] = App.cable.subscriptions.create(
+      { channel: 'PlayerQuizRoomChannel', player_id: <%= current_user.id %> },
+      { received: (data) => {
+        console.log("event player");
+        quiz = document.getElementById("quiz");
+        if (quiz.dataset.admin == "false") {
+          if (data.event == "question_answer") {
+          quiz.innerHTML = data.player_partial;
+          var el = document.querySelector(".svg");
+          var elWrapperClone = el.innerHTML;
+          document.getElementById("button").addEventListener("click", function() {
+          el.innerHTML = elWrapperClone;
+          });
+          }
+          else if (data.event == "player_results") {
+            quiz.innerHTML = data.player_partial;
+          }
         }
-      })
+      }
+      });
   </script>
 <% end %>

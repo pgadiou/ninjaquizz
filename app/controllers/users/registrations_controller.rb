@@ -99,6 +99,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_wait_room",
           locals: {player: @player}),
+      player_partial: ApplicationController.renderer.render(
+          partial: "quiz_questions/quiz_question_player_wait_room",
+          locals: {nb_players: @quiz.users.length}),
       current_user_id: @player.id,
       })
   end

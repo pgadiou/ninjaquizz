@@ -70,9 +70,21 @@
    background-color: #00D66C;
  }
 
+ .container-text-failure {
+   height : 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   font: "ubuntu";
+   font-size: 3em;
+   background-color: $red;
+ }
+
 .answer_form > form {
   width: 80%;
 }
+
 
 .unselected_answer {
   opacity: 0.4;
