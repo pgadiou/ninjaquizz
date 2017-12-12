@@ -1,16 +1,19 @@
-<div class="container text-center">
+
   <% if quiz_answer.answer.is_correct %>
-    <div class="svg">
+  <div class="container-text">
+    <div class="svg text-center">
       <svg width="200" height="200" viewBox="-263.5 236.5 26 26">
         <g class="svg-success">
           <circle cx="-250.5" cy="249.5" r="12"/>
           <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
         </g>
       </svg>
-      <h4>Awesome sauce! You scored <%= quiz_answer.points%> points</h4>
+      <div class="central-text"><h4>Correct! You scored <%= quiz_answer.points%> points</h4></div>
     </div>
+  </div>
   <% else %>
-    <div class="svg">
+  <div class="container-text-failure">
+    <div class="svg text-center">
       <svg width="200" height="200" viewBox="-263.5 236.5 26 26">
         <g class="svg-failure">
           <circle cx="-250.5" cy="249.5" r="12"/>
@@ -18,7 +21,8 @@
           <path d="M-247 246l-6 8-7.8"/>
         </g>
       </svg>
-       <h4> Loser! </h4>
+       <div class="central-text"><h4>Correct! You scored <%= quiz_answer.points%> points</h4></div>
+    </div>
     </div>
   <% end %>
-</div>
+

@@ -1,6 +1,6 @@
 .svg-success {
   stroke-width: 2px;
-  stroke: #8EC343;
+  stroke: white;
   fill:none;
   & path {
     stroke-dasharray:17px, 17px;
@@ -40,7 +40,7 @@
 
 .svg-failure {
   stroke-width: 2px;
-  stroke: red;
+  stroke: white;
   fill:none;
   & path {
     stroke-dasharray:17px, 17px;
