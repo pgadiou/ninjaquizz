@@ -4,7 +4,18 @@
   margin-top: 50px;
   border-radius: 3px;
   text-align: center;
- ;
+  height: 100vh;
+  margin-bottom: 20px;
+
+  .form-inputs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    padding-bottom: 100px;
+  }
+
   h2 {
     font-size: 20px;
     font-weight: bold;
@@ -21,6 +32,12 @@
     margin-top: 10px;
     margin-bottom: 30px;
   }
+
+  .avatar-block {
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+
   .radio label, .checkbox label {
     padding-left: 0px;
   }
@@ -32,3 +49,8 @@
     }
   }
 }
+
+input, input[placeholder]{
+    color:red;
+    text-align:center;
+  }
