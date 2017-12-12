@@ -70,5 +70,33 @@
    background-color: #00D66C;
  }
 
+ .container-text-failure {
+   height : 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   font: "ubuntu";
+   font-size: 3em;
+   background-color: $red;
+ }
+
+.answer_form > form {
+  width: 80%;
+}
 
 
+.unselected_answer {
+  opacity: 0.4;
+}
+
+.selected_answer {
+  background-color: #00d66c;
+  color: white !important;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.disabled_item {
+  pointer-events:none;
+}
