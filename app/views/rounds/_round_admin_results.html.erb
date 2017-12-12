@@ -2,6 +2,7 @@
 
 <div class="podium">
 
+  <% unless users.ranked[2].nil? %>
   <div class="podium-left podium-item">
     <%= image_tag "third-place.png" %>
     <div class="results-description">
@@ -14,7 +15,9 @@
       </div>
     </div>
   </div>
+  <% end %>
 
+  <% unless users.ranked[0].nil? %>
   <div class="podium-top podium-item">
     <%= image_tag "first-place.png" %>
     <div class="results-description">
@@ -27,7 +30,9 @@
       </div>
     </div>
   </div>
+  <% end %>
 
+  <% unless users.ranked[1].nil? %>
   <div class="podium-right podium-item">
     <%= image_tag "second-place.png" %>
     <div class="results-description">
@@ -40,6 +45,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 
 </div>
 
