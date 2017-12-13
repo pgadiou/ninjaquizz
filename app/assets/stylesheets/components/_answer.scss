@@ -22,36 +22,13 @@
   background-color: $green;
 }
 
-.card-answer {
-  color: #606060 !important;
-  background-color: white;
-  border-radius: 10em;
-  width: 100%;
-  padding:  6vh;
-  font-size: 20px;
-  border: solid 1px #DCDCDC;
-  font-family: "Ubuntu" !important;
-  align-item: center !important;
-  -webkit-box-shadow: 6px 6px 20px -3px rgba(214,214,214,0.5);
-  -moz-box-shadow: 6px 6px 20px -3px rgba(214,214,214,0.5);
-  box-shadow: 6px 6px 20px -3px rgba(214,214,214,0.5);
-  text-decoration: none;
-  white-space: normal;
-
-}
-.card-answer:hover {
-  background-color: #00d66c;
-  color: white !important;
-  text-decoration: none;
-}
 
 .answer-container {
-  height: 100vh;
-  background-color: #F5F5F5;
+  height: calc(100vh - 70px);
   display:flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  justify-content: space-evenly !important;
+  justify-content: center !important;
 }
 
 .central-text {
@@ -85,6 +62,7 @@
 
 .answer_form > form {
   width: 80%;
+  margin: 15px 0;
 }
 
 
@@ -92,8 +70,8 @@
   opacity: 0.4;
 }
 
-.selected_answer {
-  background-color: #00d66c;
+.ninja-input.selected_answer {
+  background-color: $ninja-green;
   color: white !important;
   text-decoration: none;
   opacity: 1;
