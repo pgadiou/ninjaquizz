@@ -1,3 +1,13 @@
+<% unless current_user == @quiz.user %>
+<div class="hidden-md hidden-lg">
+  <div class="avatar-container">
+    <div class="avatar-badge">
+      <%= image_tag "#{current_user.avatar}.png" %>
+    </div>
+  </div>
+</div>
+<% end %>
+
 <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
   <% if current_user == @quiz.user %>
     <div class="hidden-xs hidden-sm">
@@ -9,7 +19,7 @@
           </div>
           <div class="join-child">
             <i class="fa fa-th" aria-hidden="true"></i>
-            <h1>123456</h1>
+            <h1><%= @quiz.pin_number %></h1>
           </div>
         </div>
         <div class="row" id="new_team">
@@ -36,7 +46,7 @@
   <script>
 
     const onAnswerSelect = () => {
-      const answers = document.getElementsByClassName("card-answer");
+      const answers = document.getElementsByClassName("ninja-input");
 
       const answerSelect = () => {
         for (var i = 0; i< answers.length; i++) {
