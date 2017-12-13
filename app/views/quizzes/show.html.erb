@@ -1,10 +1,13 @@
-
-
-<div class="avatar-container">
-  <div class="avatar-badge">
-    <%= image_tag "#{current_user.avatar}.png" %>
+<% unless current_user == @quiz.user %>
+<div class="hidden-md hidden-lg">
+  <div class="avatar-container">
+    <div class="avatar-badge">
+      <%= image_tag "#{current_user.avatar}.png" %>
+    </div>
   </div>
 </div>
+<% end %>
+
 <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
   <% if current_user == @quiz.user %>
     <div class="hidden-xs hidden-sm">
