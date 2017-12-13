@@ -13,24 +13,32 @@ User.destroy_all
 user_1 = User.create!(
   email: "thomas@gmail.com",
   password: "12345678",
+  name: "Thomas",
+  avatar: "Ninja2"
 )
 # @user_1.save!
 
 user_2 = User.create!(
   email: "damien@gmail.com",
   password: "12345678",
+  name: "Damien",
+  avatar: "Ninja3"
 )
 # @user_2.save!
 
 user_3 = User.create!(
   email: "tanguy@gmail.com",
   password: "12345678",
+  name: "Tanguy",
+  avatar: "Ninja4"
 )
 # @user_3.save!
 
 barman = User.create!(
         email: "example@gmail.com",
-        password: "12345678"
+        password: "12345678",
+        name: "Barman",
+        avatar: "Ninja5"
     )
 # @barman.save!
 

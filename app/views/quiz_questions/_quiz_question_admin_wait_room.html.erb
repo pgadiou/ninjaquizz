@@ -1,17 +1,29 @@
-<div class="col-sm-4">
-  <div class="card-player mother">
-    <div class="child">
-      <h3><%= player.name %></h3>
-    </div>
-    <% if player.avatar == "" %>
-      <div class="child">
-        <%= image_tag "#{["Ninja1", "Ninja2", "Ninja3", "Ninja4", "Ninja5", "Ninja6", "Ninja7", "Ninja8"].sample}.png", class: "avatar-big" %>
-      </div>
+<div class="col-sm-3">
+  <div class="card-player mother" id="counter">
+    <% if nb_players < 2 %>
+      <h2><%= nb_players %> ninja playing!</h2>
     <% else %>
-      <div class="child">
-      <%= image_tag "#{player.avatar}.png", class: "avatar-big" %>
-      </div>
+      <h2><%= nb_players %> ninjas playing!</h2>
     <% end %>
   </div>
 </div>
-
+<% User.all.reverse.each do |user| %>
+  <div class="col-sm-3">
+    <div class="card-player mother">
+      <div class="child">
+        <h3><%= user.name %></h3>
+      </div>
+      <% if user.avatar == "" || user.avatar.nil? %>
+        <div class="child">
+          <% user.avatar = ["Ninja1", "Ninja2", "Ninja3", "Ninja4", "Ninja5", "Ninja6", "Ninja7", "Ninja8"].sample %>
+          <% user.save %>
+          <%= image_tag "#{user.avatar}.png", class: "avatar-big" %>
+        </div>
+      <% else %>
+        <div class="child">
+          <%= image_tag "#{user.avatar}.png", class: "avatar-big" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

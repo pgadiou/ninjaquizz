@@ -1,0 +1,36 @@
+.join {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h1 {
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 25px;
+  }
+  .join-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fa-hand-o-right {
+    font-size: 30px;
+    color: $green;
+    padding-top: 5px;
+    margin-right: 10px;
+  }
+
+  .fa-th {
+    font-size: 28px;
+    color: $green;
+    padding-top: 12px;
+    margin-right: 10px;
+  }
+
+}
+
+
