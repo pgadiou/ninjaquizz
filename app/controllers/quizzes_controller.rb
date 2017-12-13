@@ -1,6 +1,4 @@
 class QuizzesController < ApplicationController
-
-  skip_before_action :authenticate_user!, only: :show
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :show_results]
 
  # def new

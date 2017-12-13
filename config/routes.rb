@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'users/registrations' }
-  root to: 'pages#home'
+  devise_scope :user do
+    authenticated :user do
+      root :to => 'pages#home'
+    end
+    unauthenticated :user do
+      root :to => 'users/registrations#new', as: :unauthenticated_root
+    end
+  end
+
   resources :quizzes do
     member do
       get :show_results
