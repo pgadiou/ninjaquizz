@@ -1,6 +1,8 @@
 <div class="home-container">
   <div class="avatar-home">
-    <%= image_tag "Ninja1.png" %>
+    <%= link_to quiz_path(current_user.quizzes.first.id) do %>
+      <%=  image_tag "Ninja1.png" %>
+    <% end %>
   </div>
   <div class="home-title">
     <h1>NINJA QUIZ</h1>
