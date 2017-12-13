@@ -1,17 +1,13 @@
 <div class="hidden-xs hidden-sm wrapper">
     <div class="container text-center" id='container_question'>
       <h2><strong>QUESTION</strong></h2>
-      <h3 class="question-hidden question-displayed">
+      <h3 class="question-displayed">
         <div><%=  raw quiz_question.question.content %></div>
       </h3>
       <div class="row">
         <% answers.each do |answer| %>
           <div class="col-xs-12 col-sm-6">
-            <% if answer.is_correct %>
-                <div class="answer-hidden answer-displayed correct-answer">
-              <% else %>
-                <div class="answer-hidden answer-displayed">
-              <% end %>
+            <div class="answer-displayed">
               <h4><%= answer.content %></h4>
             </div>
           </div>
