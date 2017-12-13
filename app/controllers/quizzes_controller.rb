@@ -27,7 +27,9 @@ class QuizzesController < ApplicationController
   def show_results
     @users_ranked = User.where(quiz_id: @quiz.id).sort_by { |user| user[:total_score]}
     broadcast_total_results
-    @quiz.users. destroy
+    @quiz.users.each do |user|
+      user.destroy
+    end
   end
 
 
