@@ -9,6 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    @counter = 0
     @quiz = Quiz.find_by(pin_number: params[:pin_number])
     build_resource(sign_up_params)
     if @quiz
@@ -16,6 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.password = SecureRandom.hex(10)
       resource.quiz = @quiz
       resource.save
+      @counter += 1
       yield resource if block_given?
       if resource.persisted?
         if resource.active_for_authentication?
@@ -98,10 +100,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       event: "new_team",
       admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_wait_room",
-          locals: {player: @player}),
+          locals: {player: @player, nb_players: @quiz.users.length - 1}),
       player_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_player_wait_room",
-          locals: {nb_players: @quiz.users.length}),
+          locals: {nb_players: @quiz.users.length - 1}),
       current_user_id: @player.id,
       })
   end
