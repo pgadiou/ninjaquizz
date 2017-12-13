@@ -23,7 +23,7 @@ class QuizzesController < ApplicationController
   end
 
   def show_results
-    @users_ranked = User.where(quiz_id: @quiz.id).sort_by { |user| user[:total_score]}
+    @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
     broadcast_total_results
     @quiz.users.each do |user|
       user.destroy
