@@ -77,3 +77,41 @@
 .disabled_item {
   pointer-events:none;
 }
+
+.wrapper-display-admin {
+  background-color: #4f3d7b;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.question-number-admin {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.question-display-admin {
+  padding: 0.5em 0 0.5em 0;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+.answer-display-admin {
+  text-align: center;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 20em;
+  background-color: #6e57a7;
+  font-size: 1.5em;
+}
+
+.answer-container-admin {
+  vertical-align: middle;
+  padding: 0em;
+  max-width: 80vw;
+  min-width: 35vw;
+}
+
+.answer-center-admin {
+  display: flex;
+  justify-content: center;
+}
