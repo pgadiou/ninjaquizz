@@ -36,6 +36,16 @@
    }
 
  .container-text {
+   height : 80vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   align-items: center;
+   font: "ubuntu";
+   font-size: 3em;
+ }
+
+  .container-text-success {
    height : 100vh;
    display: flex;
    flex-direction: column;
