@@ -2,64 +2,70 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  width: 70%;
+  width: 80%;
   margin: auto;
   margin-bottom: 50px;
 }
 
 .podium-top.podium-item {
-  height: 300px;
-  img {
-    margin-bottom: 98px;
+  height: 535px;
+  > img {
+    width: 30%;
+    margin-bottom: 71px;
+  }
+  .results {
+    margin-bottom: 45px;
   }
 }
 
 .podium-right, .podium-left {
-  height: 250px;
+  height: 4100px;
 }
 
 .podium-item {
-  background-color: white;
+  background-color: $ninja-purple-light;
+  color: white;
+  font-weight: bold;
   padding: 0 20px 20px 20px;
   border-radius: 3px;
   text-align: center;
-  img {
-    width: 80%;
-    margin: auto;
-    margin-bottom: 50px;
+  margin: 0 10px;
+  > img {
+    width: 30%;
   }
 }
 
 .results-description {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
-  margin-top: 7px;
-  justify-content: space-evenly;
+  margin-top: 20px;
+  align-items: center;
+  height: 291px;
 }
 
 .results-description img {
-  width: 50px;
+  width: 25%;
 }
 
 .results {
-  text-align: left;
 }
 
 .name {
-  margin-bottom: 0px;
+  margin-bottom: 10px;
   font-weight: bolder;
-  text-transform: uppercase;
-  font-size: 15px;
+  font-size: 30px;
 }
+
 .points {
-  margin-bottom: 0;
-  opacity: 0.5;
-  font-size: 15px;
+  margin-bottom: 10px;
+  opacity: 0.8;
+  font-size: 25px;
 }
 
 .title {
   text-align: center;
   font-size: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 35px;
 }
 

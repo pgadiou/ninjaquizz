@@ -1,6 +1,10 @@
 <div class="hidden-md hidden-lg">
-  <div class="container text-center">
-    <h3>Waiting for other player</h3>
-    <p>Currently <%=nb_players %> ninja connected</p>
-  </div>
+    <div class="container text-center">
+      <h3>Waiting for other players</h3>
+      <% if nb_players > 1 %>
+        <p>Currently <%= nb_players %> ninjas connected</p>
+      <% else %>
+        <p>Currently <%= nb_players %> ninja connected</p>
+      <% end %>
+    </div>
 </div>

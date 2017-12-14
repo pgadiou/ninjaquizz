@@ -6,12 +6,12 @@
   <div class="podium-left podium-item">
     <%= image_tag "third-place.png" %>
     <div class="results-description">
-      <div class="avatar-results">
-        <%= image_tag "#{users_ranked[2].avatar}.png" %>
-      </div>
       <div class="results">
         <p class="name"><%= users_ranked[2].name%></p>
-        <p class="points"><%= users_ranked[2].total_score%> points</p>
+        <p class="points"><%= users_ranked[2].total_score%> pts</p>
+      </div>
+      <div class="avatar-results">
+        <%= image_tag "#{users_ranked[2].avatar}.png" %>
       </div>
     </div>
   </div>
@@ -21,12 +21,12 @@
   <div class="podium-top podium-item">
     <%= image_tag "first-place.png" %>
     <div class="results-description">
-      <div class="avatar-results">
-        <%= image_tag "#{users_ranked[0].avatar}.png" %>
-      </div>
       <div class="results">
         <p class="name"><%= users_ranked[0].name%></p>
-        <p class="points"><%= users_ranked[0].total_score%> points</p>
+        <p class="points"><%= users_ranked[0].total_score%> pts</p>
+      </div>
+      <div class="avatar-results">
+        <%= image_tag "#{users_ranked[0].avatar}.png", class: "avatar-podium" %>
       </div>
     </div>
   </div>
@@ -36,12 +36,12 @@
   <div class="podium-right podium-item">
     <%= image_tag "second-place.png" %>
     <div class="results-description">
-      <div class="avatar-results">
-        <%= image_tag "#{users_ranked[1].avatar}.png" %>
-      </div>
       <div class="results">
         <p class="name"><%= users_ranked[1].name%></p>
         <p class="points"><%= users_ranked[1].total_score%> points</p>
+      </div>
+      <div class="avatar-results">
+        <%= image_tag "#{users_ranked[1].avatar}.png", class: "avatar-podium" %>
       </div>
     </div>
   </div>
