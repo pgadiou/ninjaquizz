@@ -62,7 +62,6 @@
         }
 
         event.currentTarget.classList.add("selected_answer");
-        console.log("coucou");
       };
 
       for (var i = 0; i< answers.length; i++) {
@@ -84,8 +83,9 @@
             quiz.innerHTML = data.admin_partial;
           }
         }
-        else {
+        else if (data.player_partial){
           quiz.innerHTML = data.player_partial;
+          document.getElementById("avatar").innerHTML = "";
         }
         }
       });
@@ -97,12 +97,15 @@
         quiz = document.getElementById("quiz");
         if (quiz.dataset.admin == "false") {
           if (data.event == "question_answer") {
-          quiz.innerHTML = data.player_partial;
-          var el = document.querySelector(".svg");
-          var elWrapperClone = el.innerHTML;
-          document.getElementById("button").addEventListener("click", function() {
-          el.innerHTML = elWrapperClone;
-          });
+            quiz.innerHTML = data.player_partial;
+            var el = document.querySelector(".svg");
+            var elWrapperClone = el.innerHTML;
+            var avatarCountdown = document.getElementById("avatar-countdown");
+            if (avatarCountdown) {
+              var countdownId = avatarCountdown.dataset.countdownId;
+              clearTimeout(countdownId);
+            }
+            document.getElementById("avatar").innerHTML = "";
           }
           else if (data.event == "player_results") {
             quiz.innerHTML = data.player_partial;
@@ -110,12 +113,17 @@
           else if (data.event == "answer_display_player") {
             document.getElementById("avatar").innerHTML = data.player_partial_avatar_countdown;
             quiz.innerHTML = data.player_partial;
-            setTimeout(function(){ document.getElementById(“avatar”).innerHTML = data.player_partial_avatar_still;
-            quiz.innerHTML = data.player_partial_time_up; }, 6000);
+            var avatarCountdown = document.getElementById("avatar-countdown");
+            var countdownId = setTimeout(function() {
+              if (avatarCountdown) {
+                avatarCountdown.innerHTML = data.player_partial_avatar_still;
+                quiz.innerHTML = data.player_partial_time_up;
+              }
+            }, 6000);
+            avatarCountdown.dataset.countdownId = countdownId;
             onAnswerSelect();
           }
         }
-      }
-      });
+      }});
   </script>
 <% end %>

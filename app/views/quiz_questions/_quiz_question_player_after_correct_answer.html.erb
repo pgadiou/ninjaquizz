@@ -15,7 +15,7 @@
     </div>
   <% else %>
     <% if quiz_answer.answer.is_correct %>
-    <div class="container-text">
+    <div class="container-text-success">
       <div class="svg text-center">
         <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
           <g class="svg-success">
@@ -32,11 +32,11 @@
         <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
           <g class="svg-failure">
             <circle cx="-250.5" cy="249.5" r="12"/>
-            <path d="M-253 246l6 8-7.8"/>
-            <path d="M-247 246l-6 8-7.8"/>
+            <path d="M-253 246l6 8-7.8" />
+            <path d="M-247 246l-6 8-7.8" />
           </g>
         </svg>
-         <div class="central-text"><h4>Wrong!</h4></div>
+        <div class="central-text"><h4>Wrong!</h4></div>
       </div>
       </div>
     <% end %>
