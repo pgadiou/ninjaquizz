@@ -11,7 +11,7 @@
         <p class="points"><%= users_ranked[2].total_score%> pts</p>
       </div>
       <div class="avatar-results">
-        <%= image_tag "#{users_ranked[2].avatar}.png" %>
+        <%= image_tag "#{users_ranked[2].avatar}.png", class: "avatar-podium" %>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@
     <div class="results-description">
       <div class="results">
         <p class="name"><%= users_ranked[1].name%></p>
-        <p class="points"><%= users_ranked[1].total_score%> points</p>
+        <p class="points"><%= users_ranked[1].total_score%> pts</p>
       </div>
       <div class="avatar-results">
         <%= image_tag "#{users_ranked[1].avatar}.png", class: "avatar-podium" %>
