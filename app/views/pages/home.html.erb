@@ -1,4 +1,4 @@
-<% if current_user.nil? %>
+<% if User.where(user_id: current_user.id) == nil %>
   <% redirect_to new_user_registration %>
 <% end %>
 <div class="home-container">
