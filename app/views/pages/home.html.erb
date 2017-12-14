@@ -1,3 +1,6 @@
+<% if current_user.nil? %>
+  <% redirect_to new_user_registration %>
+<% end %>
 <div class="home-container">
   <div class="avatar-home">
     <%= link_to quiz_path(current_user.quizzes.first.id) do %>
