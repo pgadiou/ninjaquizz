@@ -66,6 +66,26 @@ class QuizQuestionsController < ApplicationController
           locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start}),
         current_user_id: current_user.id,
         })
+
+    @quiz.users.each do |user|
+      unless user == @quiz.user
+        ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
+          event: "answer_display_player",
+          player_partial: ApplicationController.renderer.render(
+            partial: "quiz_questions/quiz_question_player_before_correct_answer",
+            locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start}),
+          player_partial_time_up: ApplicationController.renderer.render(
+            partial: "quiz_questions/quiz_question_player_time_up"),
+          player_partial_avatar_countdown: ApplicationController.renderer.render(
+            partial: "quiz_questions/quiz_question_player_avatar_countdown",
+            locals: {user: user}),
+          player_partial_avatar_still: ApplicationController.renderer.render(
+            partial: "quiz_questions/quiz_question_player_avatar_still",
+            locals: {user: user}),
+          current_user_id: current_user.id,
+            })
+      end
+    end
   end
 
   def broadcast_show_correct_answer
