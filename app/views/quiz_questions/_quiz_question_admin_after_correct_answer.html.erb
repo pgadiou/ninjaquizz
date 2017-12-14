@@ -1,49 +1,49 @@
-<div class="hidden-xs hidden-sm wrapper">
-    <div class="container text-center" id='container_question'>
-      <h2><strong>QUESTION</strong></h2>
-      <h3 class="question-displayed">
-        <div><%=  raw quiz_question.question.content %></div>
-      </h3>
-      <div class="row">
-        <% answers.each do |answer| %>
-          <div class="col-xs-12 col-sm-6">
-            <% if answer.is_correct %>
-                <div class="answer-displayed correct-displayed">
-              <% else %>
-                <div class="answer-displayed">
-              <% end %>
-              <h4><%= answer.content %></h4>
-            </div>
+<div class="hidden-xs hidden-sm">
+  <div class="wrapper-display-admin">
+    <div class="question-display-admin">
+      <div><%=  raw quiz_question.question.content %></div>
+    </div>
+    <div class="answer-center-admin">
+      <div class="answer-container-admin">
+      <% answers.each do |answer| %>
+        <% if answer.is_correct %>
+          <div class="answer-hidden answer-display-admin correct-displayed">
+          </div>
+        <% else %>
+          <div class="answer-hidden answer-display-admin">
+            <%= answer.content %>
           </div>
         <% end %>
+      <% end %>
     </div>
   </div>
 </div>
-  <div class="hidden-md hidden-lg">
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="question-displayed"><p><%= raw quiz_question.question.content %></p></div>
-        </div>
-        <div class="col-xs-12">
-          <div class="btn btn-control" id="show question"><%= link_to "Question", show_question_quiz_question_path(quiz_question), remote: true %></div>
-        </div>
-        <div class="col-xs-12">
-          <div class="btn btn-control" id="show answers"><%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true %></div>
-        </div>
-        <div class="col-xs-12">
-          <div class="btn btn-control" id="correct answer"><%= link_to "Show correct answer", show_correct_answer_quiz_question_path(quiz_question), remote: true %></div>
-        </div>
-        <div class="col-xs-12">
-          <div class="btn btn-control" id="next">
-            <% if quiz_question.round.quiz_questions.last == quiz_question %>
-              <%= link_to "Finish round", show_round_results_round_path(quiz_question.round), remote: true %>
-            <% else %>
-              <%= link_to "Next Question", quiz_question_path(next_quiz_question), remote: true %>
-            <% end %>
-            </div>
+
+<div class="hidden-md hidden-lg">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="question-displayed"><p><%= raw quiz_question.question.content %></p></div>
+      </div>
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="show question"><%= link_to "Question", show_question_quiz_question_path(quiz_question), remote: true %></div>
+      </div>
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="show answers"><%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true %></div>
+      </div>
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="correct answer"><%= link_to "Show correct answer", show_correct_answer_quiz_question_path(quiz_question), remote: true %></div>
+      </div>
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="next">
+          <% if quiz_question.round.quiz_questions.last == quiz_question %>
+            <%= link_to "Finish round", show_round_results_round_path(quiz_question.round), remote: true %>
+          <% else %>
+            <%= link_to "Next Question", quiz_question_path(next_quiz_question), remote: true %>
+          <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
