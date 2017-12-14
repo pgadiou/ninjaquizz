@@ -39,25 +39,23 @@
    }
 
  .container-text {
-   height : 100vh;
+   height : 80vh;
    display: flex;
    flex-direction: column;
    justify-content: space-evenly;
    align-items: center;
    font: "ubuntu";
    font-size: 3em;
-   background-color: #00D66C;
  }
 
  .container-text-failure {
-   height : 100vh;
+   height : 80vh;
    display: flex;
    flex-direction: column;
    justify-content: space-evenly;
    align-items: center;
    font: "ubuntu";
    font-size: 3em;
-   background-color: $red;
  }
 
 .answer_form > form {

@@ -1,12 +1,14 @@
-<% unless current_user == @quiz.user %>
-<div class="hidden-md hidden-lg">
-  <div class="avatar-container">
-    <div class="avatar-badge">
-      <%= image_tag "#{current_user.avatar}.png" %>
+<div id="avatar">
+  <% unless current_user == @quiz.user %>
+  <div class="hidden-md hidden-lg">
+    <div class="avatar-container">
+      <div class="avatar-badge">
+        <%= image_tag "#{current_user.avatar}.png" %>
+      </div>
     </div>
   </div>
+  <% end %>
 </div>
-<% end %>
 
 <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
   <% if current_user == @quiz.user %>
@@ -82,10 +84,9 @@
             quiz.innerHTML = data.admin_partial;
           }
         }
-        else if (data.player_partial) {
+        else {
           quiz.innerHTML = data.player_partial;
-          onAnswerSelect();
-          }
+        }
         }
       });
 
@@ -105,6 +106,13 @@
           }
           else if (data.event == "player_results") {
             quiz.innerHTML = data.player_partial;
+          }
+          else if (data.event == "answer_display_player") {
+            document.getElementById("avatar").innerHTML = data.player_partial_avatar_countdown;
+            quiz.innerHTML = data.player_partial;
+            setTimeout(function(){ document.getElementById(“avatar”).innerHTML = data.player_partial_avatar_still;
+            quiz.innerHTML = data.player_partial_time_up; }, 6000);
+            onAnswerSelect();
           }
         }
       }
