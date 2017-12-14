@@ -1,4 +1,4 @@
-meta_product_name: "Ninjaquiz"
-meta_title: "Ninjaquiz - Become your own trivia game host"
+meta_product_name: "NinjaQuiz"
+meta_title: "NinjaQuiz - Show who's the boss. Become a ninja!"
 meta_description: "Ninja is an app allowing a host to create and animate a trivia game that several guests can join and participate to on their phone"
-meta_image: "logo.jpg"                       # should exist in `app/assets/images/`
+meta_image: "cover.jpg"                       # should exist in `app/assets/images/`

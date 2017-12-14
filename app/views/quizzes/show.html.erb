@@ -12,7 +12,16 @@
   <% if current_user == @quiz.user %>
     <div class="hidden-xs hidden-sm">
       <div class="container text-center welcome">
-        <h1>Get ready Ninjas!</h1>
+        <div class="join">
+          <div class="join-child">
+            <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+            <h1>ninjaquiz.ninja</h1>
+          </div>
+          <div class="join-child">
+            <i class="fa fa-th" aria-hidden="true"></i>
+            <h1><%= @quiz.pin_number %></h1>
+          </div>
+        </div>
         <div class="row" id="new_team">
         </div>
       </div>
@@ -21,14 +30,18 @@
       <div class="container text-center">
         <div class="row">
           <div class="col-xs-12">
-            <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+            <% if @quiz.rounds.length == 1 %>
+              <div class="btn btn-control" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
+            <% else %>
+              <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   <% else %>
     <div class="container text-center">
-      <h1>Get ready Ninjas!</h1>
+      <h1>Get ready ninjas!</h1>
     </div>
   <% end %>
 </div>
@@ -63,7 +76,7 @@
         if (quiz.dataset.admin == "true") {
           if (data.event == "new_team") {
             new_team = document.getElementById("new_team");
-            new_team.insertAdjacentHTML("afterbegin", data.admin_partial);
+            new_team.innerHTML = data.admin_partial;
           }
           else {
             quiz.innerHTML = data.admin_partial;

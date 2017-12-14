@@ -1,13 +1,22 @@
 .card-player {
-height: 275px;
+height: 240px;
 padding: 10px;
 border-radius: 5px;
-background-color: #ededed;
+background-color: $light-gray;
+color: $gray;
 margin-top: 20px;
 margin-bottom: 0.5em;
 box-shadow: 16px 17px 14px -12px rgba(191,191,191,0.57);
 opacity: 0.9;
 font-weight: bold;
+
+
+}
+
+#counter {
+  color: white;
+  background-color: transparent;
+  border: white 1px solid;
 }
 
 // .card {

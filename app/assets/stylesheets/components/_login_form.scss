@@ -1,19 +1,20 @@
 .form-login {
-  background: white;
-  padding: 10px 20px;
-  margin-top: 50px;
+  background: $ninja-purple-light;
+  padding: 20px 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 3px;
   text-align: center;
   height: 100vh;
-  margin-bottom: 20px;
 
   .form-sign-up {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 100vh;
-    padding-bottom: 100px;
+    height: 80vh;
+    padding-bottom: 50px;
+
   }
 
   h2 {
