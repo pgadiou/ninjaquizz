@@ -11,7 +11,7 @@ class QuizAnswersController < ApplicationController
     @start = params[:start]
     @time_to_answer = @quiz_answer.created_at.to_time - @start.to_time
     if @quiz_answer.answer.is_correct
-      @quiz_answer.points = 100 + (1 - @time_to_answer / 30).round(2) * 100
+      @quiz_answer.points = 100 + (1 - @time_to_answer / 10).round(2) * 100
     end
     @quiz_answer.save
 
