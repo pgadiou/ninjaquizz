@@ -75,6 +75,11 @@
         quiz = document.getElementById("quiz");
         if (quiz.dataset.admin == "true") {
           if (data.event == "new_team") {
+            const access = document.getElementById("access-info");
+            if (access.classList.contains("main")) {
+              access.classList.remove("main");
+              access.classList.add("secondary");
+            }
             new_team = document.getElementById("new_team");
             new_team.innerHTML = data.admin_partial;
           }
