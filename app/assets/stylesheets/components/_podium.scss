@@ -10,16 +10,16 @@
 .podium-top.podium-item {
   height: 535px;
   > img {
-    width: 30%;
+    width: 45%;
     margin-bottom: 71px;
   }
   .results {
-    margin-bottom: 45px;
+    margin-bottom: 1px;
   }
 }
 
 .podium-right, .podium-left {
-  height: 4100px;
+  height: 410px;
 }
 
 .podium-item {
@@ -31,7 +31,7 @@
   text-align: center;
   margin: 0 10px;
   > img {
-    width: 30%;
+    width: 45%;
   }
 }
 
@@ -41,14 +41,15 @@
   justify-content: space-around;
   margin-top: 20px;
   align-items: center;
-  height: 291px;
+  height: 210px;
 }
 
 .results-description img {
-  width: 25%;
+  width: 30%;
 }
 
 .results {
+  margin: 0px;
 }
 
 .name {
