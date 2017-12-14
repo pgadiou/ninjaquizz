@@ -14,7 +14,7 @@
   border-radius: 20px;
 }
 
-.correct-displayed {
+.answer-display-admin.correct-displayed {
   color: white;
   background-color: $green;
 }
@@ -39,22 +39,28 @@
    height : 100vh;
    display: flex;
    flex-direction: column;
-   justify-content: space-evenly;
+   justify-content: center;
    align-items: center;
    font: "ubuntu";
    font-size: 3em;
-   background-color: #00D66C;
+   background-color: $ninja-green;
+   position: fixed;
+   top: 0;
+   width: 100%;
  }
 
  .container-text-failure {
    height : 100vh;
    display: flex;
    flex-direction: column;
-   justify-content: space-evenly;
+   justify-content: center;
    align-items: center;
    font: "ubuntu";
    font-size: 3em;
    background-color: $red;
+   position: fixed;
+   top: 0;
+   width: 100%;
  }
 
 .answer_form > form {

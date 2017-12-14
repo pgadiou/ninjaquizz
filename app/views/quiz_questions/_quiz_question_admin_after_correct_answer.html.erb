@@ -8,6 +8,7 @@
         <% answers.each do |answer| %>
           <% if answer.is_correct %>
             <div class="answer-hidden answer-display-admin correct-displayed">
+              <%= answer.content %>
             </div>
           <% else %>
             <div class="answer-hidden answer-display-admin">
