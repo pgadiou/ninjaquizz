@@ -7,7 +7,7 @@
     <% end %>
   </div>
 </div>
-<% quiz.users.each do |user| %>
+<% quiz.users.reverse.each do |user| %>
   <% unless user.name == "Barman" %>
     <div class="col-sm-3">
       <div class="card-player mother">
