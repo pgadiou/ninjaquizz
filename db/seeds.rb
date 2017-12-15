@@ -122,7 +122,7 @@ question_2.category = customized
 question_2.type = choix_multiple
 question_2.save!
 
-answer_1_question_2 = Answer.new(content: "Michellangello",
+answer_1_question_2 = Answer.new(content: "Michelangelo",
   is_correct: false)
 answer_1_question_2.question = question_2
 answer_1_question_2.save!
@@ -137,7 +137,7 @@ answer_3_question_2 = Answer.new(content: "Leonardo",
 answer_3_question_2.question = question_2
 answer_3_question_2.save!
 
-answer_4_question_2 = Answer.new(content: "Raphaello",
+answer_4_question_2 = Answer.new(content: "Raffaello",
   is_correct: true)
 answer_4_question_2.question = question_2
 answer_4_question_2.save!
