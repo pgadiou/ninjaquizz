@@ -27,6 +27,7 @@ class QuizzesController < ApplicationController
     broadcast_total_results
     @quiz.users.each do |user|
       user.destroy
+      sign_out user
     end
   end
 
