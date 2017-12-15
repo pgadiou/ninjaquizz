@@ -136,5 +136,32 @@
   text-align: center;
 }
 
+.congrats {
+  font-size: 2em;
+  padding: 1em;
+  font-weight: bold;
+}
+.text-centered-results {
+  text-align: center;
+}
+
+.textresults {
+  padding: 1em;
+  font-size: 1.5em;
+}
+
+.text-centered-results-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.wrapper {
+  background-color: $ninja-purple;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+}
+
 
 
