@@ -9,8 +9,8 @@
             <path d="M-247 246l-6 8-7.8"/>
           </g>
         </svg>
-         <div class="central-text"><h4>You did not answer.. </h4></div>
-         <div class="central-text"><h4>Hurry up next time! </h4></div>
+         <div class="central-text"><h4>You did not answer... </h4></div>
+         <div class="central-text"><h4><%= ["Wake up!", "WTF!", "Zzzzzzzz...", "Hurry up next time!"].sample %> </h4></div>
       </div>
     </div>
   <% else %>
@@ -23,7 +23,7 @@
             <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
           </g>
         </svg>
-        <div class="central-text"><h4>Correct! You scored <%= quiz_answer.points%> points</h4></div>
+        <div class="central-text"><h4><%= ["Correct!", "Amazing!", "Well done!", "Good job!"].sample %> You scored <%= quiz_answer.points%> points</h4></div>
       </div>
     </div>
     <% else %>
@@ -36,7 +36,7 @@
             <path d="M-247 246l-6 8-7.8" />
           </g>
         </svg>
-        <div class="central-text"><h4>Wrong!</h4></div>
+        <div class="central-text"><h4><%= ["Come on dude, focus!", "Not quite!", "Wrong!", "Peut mieux faire..."].sample %></h4></div>
       </div>
       </div>
     <% end %>

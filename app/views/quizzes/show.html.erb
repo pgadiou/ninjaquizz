@@ -112,21 +112,21 @@
             }
             document.getElementById("avatar").innerHTML = "";
           }
-          else if (data.event == "player_results") {
-            quiz.innerHTML = data.player_partial;
+        else if (data.event == "player_results") {
+          quiz.innerHTML = data.player_partial;
           }
-          else if (data.event == "answer_display_player") {
-            document.getElementById("avatar").innerHTML = data.player_partial_avatar_countdown;
-            quiz.innerHTML = data.player_partial;
-            var avatarCountdown = document.getElementById("avatar-countdown");
-            var countdownId = setTimeout(function() {
-              if (avatarCountdown) {
-                avatarCountdown.innerHTML = data.player_partial_avatar_still;
-                quiz.innerHTML = data.player_partial_time_up;
-              }
-            }, 6000);
-            avatarCountdown.dataset.countdownId = countdownId;
-            onAnswerSelect();
+        else if (data.event == "answer_display_player") {
+          document.getElementById("avatar").innerHTML = data.player_partial_avatar_countdown;
+          quiz.innerHTML = data.player_partial;
+          var avatarCountdown = document.getElementById("avatar-countdown");
+          var countdownId = setTimeout(function() {
+            if (avatarCountdown) {
+              avatarCountdown.innerHTML = data.player_partial_avatar_still;
+              quiz.innerHTML = data.player_partial_time_up;
+            }
+          }, 6000);
+          avatarCountdown.dataset.countdownId = countdownId;
+          onAnswerSelect();
           }
         }
       }});

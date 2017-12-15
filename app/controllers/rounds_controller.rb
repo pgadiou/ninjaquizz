@@ -45,7 +45,10 @@ private
           event: "player_results",
           player_partial: ApplicationController.renderer.render(
             partial: "rounds/round_player_results",
-            locals: {player_ranking: @users_ranked.index(user), user_points: user.total_score}),
+            locals: {
+              player_ranking: @users_ranked.index(user),
+              user_points: user.total_score,
+              }),
           current_user_id: current_user.id,
         })
       end

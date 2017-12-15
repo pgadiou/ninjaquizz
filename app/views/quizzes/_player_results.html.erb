@@ -1,9 +1,41 @@
 
- <div class="text-centered-results">
-  <div class="hidden-md hidden-lg">
-    <h3>You ranked <%= player_ranking + 1 %> with <%= user_points %> points</h3>
+<div class="hidden-md hidden-lg">
+  <div class="avatar-container-score" id="avatar">
+    <div class="avatar-badge-score">
+      <%= image_tag "#{user.avatar}.png" %>
+    </div>
   </div>
-
 </div>
+<div class="hidden-md hidden-lg">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="show question">
+          <h3>Your rank: <%= ranking + 1 %></h3>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="show question">
+          <h3> Your score: <%= user_points %>pts</h3>
+        </div>
+      </div>
+       <div class="col-xs-12">
+        <div class="btn btn-control" id="show question">
+          <h3> # correct answers: <%= answers %></h3>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="btn btn-control" id="show question">
+          <h3> Average time to answer: <%= average_time / questions %></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 
 

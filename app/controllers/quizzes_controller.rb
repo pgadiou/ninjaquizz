@@ -24,6 +24,7 @@ class QuizzesController < ApplicationController
 
   def show_results
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
+    @rankings = User.where(quiz_id: @quiz.id).order(total_score: :desc)
     broadcast_total_results
     @quiz.users.each do |user|
       sign_out user
@@ -76,7 +77,13 @@ private
           event: "player_results",
           player_partial: ApplicationController.renderer.render(
             partial: "quizzes/player_results",
-            locals: {player_ranking: @users_ranked.index(user), user_points: user.total_score}),
+            locals: {
+              player_ranking: @users_ranked.index(user),
+              ranking: @rankings.index(user),
+              user_points: user.total_score,
+              answers: user.no_correct_answers,
+              average_time: user.total_time,
+              }),
           current_user_id: current_user.id,
         })
       end
