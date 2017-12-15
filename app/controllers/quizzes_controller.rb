@@ -26,8 +26,8 @@ class QuizzesController < ApplicationController
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
     broadcast_total_results
     @quiz.users.each do |user|
-      user.destroy
       sign_out user
+      user.destroy
     end
   end
 
