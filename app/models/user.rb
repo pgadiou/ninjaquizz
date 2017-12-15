@@ -7,4 +7,5 @@ class User < ApplicationRecord
   belongs_to :quiz, optional: :true
   has_many :quizzes, dependent: :destroy
   has_many :quiz_answers, dependent: :destroy
+  has_many :result_scores, dependent: :destroy
 end
