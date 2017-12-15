@@ -122,7 +122,7 @@ question_2.category = customized
 question_2.type = choix_multiple
 question_2.save!
 
-answer_1_question_2 = Answer.new(content: "Michellangello",
+answer_1_question_2 = Answer.new(content: "Michelangelo",
   is_correct: false)
 answer_1_question_2.question = question_2
 answer_1_question_2.save!
@@ -137,7 +137,7 @@ answer_3_question_2 = Answer.new(content: "Leonardo",
 answer_3_question_2.question = question_2
 answer_3_question_2.save!
 
-answer_4_question_2 = Answer.new(content: "Raphaello",
+answer_4_question_2 = Answer.new(content: "Raffaello",
   is_correct: true)
 answer_4_question_2.question = question_2
 answer_4_question_2.save!
@@ -167,7 +167,7 @@ answer_4_question_3 = Answer.new(content: "3768",
 answer_4_question_3.question = question_3
 answer_4_question_3.save!
 
-question_4 = Question.new(content: "A quoi servait la verrière du Wagon avant de former au code ?")
+question_4 = Question.new(content: "Selon les rumeurs, qu'abritait ce local avant d'accueilir le Wagon ?")
 question_4.category = customized
 question_4.type = choix_multiple
 question_4.save!
