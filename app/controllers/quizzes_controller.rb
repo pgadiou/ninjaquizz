@@ -29,6 +29,7 @@ class QuizzesController < ApplicationController
       sign_out user
       user.destroy
     end
+    @quiz.users.destroy_all
   end
 
 
