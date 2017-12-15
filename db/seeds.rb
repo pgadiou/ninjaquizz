@@ -167,7 +167,7 @@ answer_4_question_3 = Answer.new(content: "3768",
 answer_4_question_3.question = question_3
 answer_4_question_3.save!
 
-question_4 = Question.new(content: "A quoi servait la verrière du Wagon avant de former au code ?")
+question_4 = Question.new(content: "Selon les rumeurs, qu'abritait ce local avant d'accueilir le Wagon ?")
 question_4.category = customized
 question_4.type = choix_multiple
 question_4.save!
