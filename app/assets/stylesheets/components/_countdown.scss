@@ -12,7 +12,7 @@ svg circle-avatar {
   stroke-width: 4px;
   stroke: white;
   fill: none;
-  animation: countdown 6s linear infinite forwards;
+  animation: countdown 12s linear infinite forwards;
 }
 
 @keyframes countdown {
@@ -24,13 +24,18 @@ svg circle-avatar {
   }
 }
 
-.badge-countdown {
-  position: absolute;
-}
+// .badge-countdown {
+//   position: absolute;
+// }
 
 #avatar_countdown {
   position: absolute;
   z-index: 1;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #circle_countdown {
