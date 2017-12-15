@@ -44,6 +44,7 @@
   justify-content: center;
   padding: 70px;
 }
+
 .avatar-badge {
   height: 110px;
   width: 110px;
@@ -54,5 +55,6 @@
   justify-content: center;
   img {
     width: 80px;
+    flex: 0 0 auto;
   }
 }
