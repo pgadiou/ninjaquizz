@@ -5,7 +5,7 @@
     </div>
     <div class="answer-center-admin">
       <div class="answer-container-admin">
-      <% answers.each do |answer| %>
+      <% answers.shuffle.each do |answer| %>
         <div class="answer-display-admin">
           <%= answer.content %>
         </div>
