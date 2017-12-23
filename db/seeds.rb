@@ -81,7 +81,7 @@ quiz = JSON.parse(quiz_serialized)
 
 # # création des mauvaises réponses avec l'API
 
-  (0..4).each do |i|
+  (0..2).each do |i|
     new_incorrect_answer = Answer.new(
     content: quiz["results"][j]["incorrect_answers"][i],
     is_correct: false,
