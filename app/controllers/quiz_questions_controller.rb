@@ -30,7 +30,7 @@ class QuizQuestionsController < ApplicationController
     unless @quiz_question == @quiz_question.round.quiz_questions.last
       @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
     end
-    @answers = @quiz_question.question.answers
+    @answers = @quiz_question.question.answers.shuffle
     @quiz = @quiz_question.round.quiz
   end
 

@@ -1,6 +1,6 @@
 <div class="hidden-md hidden-lg">
   <div class="answer-container answer_form" id="flexanswer">
-  <% answers.shuffle.each do |answer| %>
+  <% answers.each do |answer| %>
     <%= simple_form_for([quiz_question, quiz_answer], remote: true) do |f| %>
       <input type="hidden" value="<%= answer.id %>" name="answer_id">
       <input type="hidden" value="<%= start %>" name="start">
