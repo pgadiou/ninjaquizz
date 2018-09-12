@@ -3,7 +3,7 @@
 <% end %>
 <div class="home-container">
   <div class="avatar-home">
-    <%= link_to quiz_path(current_user.quizzes.first.id) do %>
+    <%= link_to quiz_path(current_user.quizzes.last.id) do %>
       <%=  image_tag "Ninja1.png" %>
     <% end %>
   </div>

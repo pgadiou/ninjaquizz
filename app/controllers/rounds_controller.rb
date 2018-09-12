@@ -2,18 +2,22 @@ class RoundsController < ApplicationController
 
   def show
     @round = Round.find(params[:id])
+    @quiz = @round.quiz
+    @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
+    @category = @round.category.name
     @first_question = QuizQuestion.where(round_id: @round.id).first
     broadcast_round
-    # if @round.quiz.round_count < @round.quiz.no_of_rounds
-    #   @next_round = Round.find(params[:id].to_i + 1)
-    # end
   end
 
   def show_round_results
     @round = Round.find(params[:id])
     @quiz = @round.quiz
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
-    @next_round = Round.where(quiz_id: @quiz.id)
+    @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
+    @slowster = User.where(quiz_id: @quiz.id).order(total_time: :desc).last
+    @loser = User.where(quiz_id: @quiz.id).order(total_score: :desc).last
+    @next_round_index = Round.where(quiz_id: @quiz.id).index(@round) + 1
+    @next_round = Round.where(quiz_id: @quiz.id)[@next_round_index]
     broadcast_round_results
   end
 
@@ -24,7 +28,7 @@ private
     ActionCable.server.broadcast("quiz_room_#{@round.quiz_id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "rounds/round_admin",
-        locals: {round: @round, first_question: @first_question}),
+        locals: {round: @round, first_question: @first_question, round_number: @round_number, category: @category}),
       player_partial: ApplicationController.renderer.render(
         partial: "rounds/round_player",
         locals: {round: @round, first_question: @first_question}),
@@ -36,7 +40,7 @@ private
     ActionCable.server.broadcast("quiz_room_#{@round.quiz_id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "rounds/round_admin_results",
-        locals: {next_round: @next_round, users_ranked: @users_ranked}),
+        locals: {next_round: @next_round, users_ranked: @users_ranked, speedster: @speedster, slowster: @slowster, loser: @loser}),
         current_user_id: current_user.id,
     })
 
