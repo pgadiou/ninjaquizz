@@ -1,3 +1,17 @@
-<div class="hidden-md hidden-lg">
-  <h3>You ranked <%= player_ranking + 1 %> with <%= user_points %> points</h3>
+<div class="wrapper">
+  <div class="text-centered-results">
+    <div class="text-centered-results-vertical">
+      <div class="congrats">
+        That's it for this round !
+      </div>
+
+      <div class="textresults">
+        You are ranking
+        <%= player_ranking + 1 %> out of
+          <%= users_ranked.length %> with
+            <%= user_points %> points
+      </div>
+
+    </div>
+  </div>
 </div>

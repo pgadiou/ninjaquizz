@@ -14,6 +14,48 @@
   border-radius: 20px;
 }
 
+.answer-displayed-small {
+  color: black;
+  background-color: white;
+  border: solid 3px #23b360;
+  opacity: 1;
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.answer-displayed-small-correct {
+  color: white;
+  background-color: $green;
+  border: solid 3px #23b360;
+  opacity: 1;
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.wrapper-player-who-answered {
+  color: black;
+  background-color: white;
+  border: solid 3px #23b360;
+  opacity: 1;
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  min-height: 62px;
+}
+
+.player-who-answered-name {
+  color: black;
+}
+
+
 .answer-display-admin.correct-displayed {
   color: white;
   background-color: $green;
@@ -162,6 +204,7 @@
   width: 100vw;
   color: white;
 }
+
 
 
 
