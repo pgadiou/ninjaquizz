@@ -27,13 +27,26 @@
         <div class="question-displayed"><p><%= raw quiz_question.question.content %></p></div>
       </div>
       <% answers.each do |answer| %>
-        <div class="col-xs-12">
-          <div class="question-displayed">
-            <p><%=  answer.content %></p>
-            <% QuizAnswer.where(quiz_question_id: quiz_question.id, answer_id: answer.id).each do |quiz_answer|
-              %>
-              <p><%=quiz_answer.user.name %></p>
+        <div class="row">
+          <div class="col-xs-6">
+            <% if answer.is_correct %>
+              <div class="answer-displayed-small-correct">
+                <p><%=  answer.content %></p><br>
+              </div>
+            <% else %>
+              <div class="answer-displayed-small">
+                <p><%=  answer.content %></p><br>
+              </div>
             <% end %>
+          </div>
+          <div class="col-xs-6">
+            <div class="wrapper-player-who-answered">
+              <% QuizAnswer.where(quiz_question_id: quiz_question.id, answer_id: answer.id).limit(3).each do |quiz_answer| %>
+                <div class="player-who-answered-name">
+                  <p> <%=quiz_answer.user.name%></p>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
       <% end %>
