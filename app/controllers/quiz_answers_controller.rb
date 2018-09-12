@@ -6,6 +6,14 @@ class QuizAnswersController < ApplicationController
     @quiz_answer = QuizAnswer.new(quiz_question_id: params[:quiz_question_id].to_i, answer_id: params[:answer_id].to_i, user_id: current_user.id)
     @quiz_answer.save
 
+    @quiz_question = QuizQuestion.find(params[:quiz_question_id])
+    @answers = @quiz_question.question.answers
+    @quiz = @quiz_question.round.quiz
+
+    @number_of_player_answers = QuizAnswer.where(quiz_question_id: params[:quiz_question_id].to_i, answer_id: params[:answer_id].to_i).count
+
+    broadcast_number_of_player_answers
+
     #RESULT_SCORES
     #round_score
     @start = params[:start]
@@ -39,6 +47,15 @@ class QuizAnswersController < ApplicationController
     current_user.no_correct_answers += 1 if @quiz_answer.answer.is_correct?
     # save
     current_user.save
+  end
+
+  def broadcast_number_of_player_answers
+    ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
+      admin_partial: ApplicationController.renderer.render(
+        partial: "quiz_questions/quiz_question_admin_before_correct_answer",
+        locals: {quiz_question: @quiz_question, answers: @answers, number_of_player_answers: @number_of_player_answers })
+    })
+
   end
 
 end

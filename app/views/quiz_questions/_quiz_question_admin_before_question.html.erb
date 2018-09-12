@@ -10,16 +10,10 @@
           <div class="question-displayed"><p><%= raw quiz_question.question.content %></p></div>
         </div>
         <div class="col-xs-12">
-          <div class="btn btn-control" id="show question"><%= link_to "Question", show_question_quiz_question_path(quiz_question), remote: true %></div>
+          <div class="btn btn-control-next" id="show question"><%= link_to "Question", show_question_quiz_question_path(quiz_question), remote: true %></div>
         </div>
         <div class="col-xs-12">
-          <div class="btn btn-control" id="show answers"><%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true %></div>
-        </div>
-        <div class="col-xs-12">
-          <div class="btn btn-control" id="correct answer"><%= link_to "Show correct answer", show_correct_answer_quiz_question_path(quiz_question), remote: true %></div>
-        </div>
-        <div class="col-xs-12">
-          <div class="btn btn-control" id="next">
+          <div class="btn btn-control-next" id="next">
             <% if quiz_question.round.quiz_questions.last == quiz_question %>
               <% if quiz_question.round.quiz.rounds.last == quiz_question.round %>
                 <%= link_to "Finish game", show_results_quiz_path(quiz_question.round.quiz), remote: true %>
@@ -27,7 +21,7 @@
                 <%= link_to "Finish round", show_round_results_round_path(quiz_question.round), remote: true %>
               <% end %>
             <% else %>
-              <%= link_to "Next Question", quiz_question_path(next_quiz_question), remote: true %>
+              <%= link_to "Skip question", quiz_question_path(next_quiz_question), remote: true %>
             <% end %>
             </div>
           </div>

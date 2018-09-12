@@ -13,6 +13,7 @@ class RoundsController < ApplicationController
     @round = Round.find(params[:id])
     @quiz = @round.quiz
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
+    @next_round = Round.where(quiz_id: @quiz.id)
     broadcast_round_results
   end
 

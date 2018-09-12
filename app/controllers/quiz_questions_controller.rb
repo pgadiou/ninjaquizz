@@ -30,7 +30,7 @@ class QuizQuestionsController < ApplicationController
     unless @quiz_question == @quiz_question.round.quiz_questions.last
       @next_quiz_question = QuizQuestion.find(params[:id].to_i + 1)
     end
-    @answers = @quiz_question.question.answers.shuffle
+    @answers = @quiz_question.question.answers
     @quiz = @quiz_question.round.quiz
   end
 
@@ -49,7 +49,7 @@ class QuizQuestionsController < ApplicationController
       ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
         admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_before_answers",
-          locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
+          locals: {quiz_question: @quiz_question, answers: @answers}),
         player_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_player_before_answers"),
         current_user_id: current_user.id,
@@ -60,7 +60,7 @@ class QuizQuestionsController < ApplicationController
       ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
         admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_before_correct_answer",
-          locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
+          locals: {quiz_question: @quiz_question, answers: @answers, number_of_player_answers:0}),
         player_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_player_before_correct_answer",
           locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start}),
