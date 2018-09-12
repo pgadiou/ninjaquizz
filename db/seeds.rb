@@ -390,22 +390,22 @@ question_5_pims.save!
 
 answer_1_question_5_pims = Answer.new(content: "le 1 mars 2011",
   is_correct: false)
-answer_1_question_5_pims.question = question_5
+answer_1_question_5_pims.question = question_5_pims
 answer_1_question_5_pims.save!
 
 answer_2_question_5_pims = Answer.new(content: "le 12 mars 2011",
   is_correct: true)
-answer_2_question_5_pims.question = question_5
+answer_2_question_5_pims.question = question_5_pims
 answer_2_question_5_pims.save!
 
 answer_3_question_5_pims = Answer.new(content: "le 2 avril 2011",
   is_correct: false)
-answer_3_question_5_pims.question = question_5
+answer_3_question_5_pims.question = question_5_pims
 answer_3_question_5_pims.save!
 
 answer_4_question_5_pims = Answer.new(content: "le 14 mai 2017",
   is_correct: false)
-answer_4_question_5_pims.question = question_5
+answer_4_question_5_pims.question = question_5_pims
 answer_4_question_5_pims.save!
 
 question_6_pims = Question.new(content: "Depuis combien de temps Anne-Hélène est chez Accenture ?")
@@ -415,22 +415,22 @@ question_6_pims.save!
 
 answer_1_question_6_pims = Answer.new(content: "4 ans et 10 mois",
   is_correct: false)
-answer_1_question_6_pims.question = question_5
+answer_1_question_6_pims.question = question_6_pims
 answer_1_question_6_pims.save!
 
 answer_2_question_6_pims = Answer.new(content: "5 ans et 3 mois",
   is_correct: false)
-answer_2_question_6_pims.question = question_5
+answer_2_question_6_pims.question = question_6_pims
 answer_2_question_6_pims.save!
 
 answer_3_question_6_pims = Answer.new(content: "5 ans et 8 mois",
   is_correct: true)
-answer_3_question_6_pims.question = question_5
+answer_3_question_6_pims.question = question_6_pims
 answer_3_question_6_pims.save!
 
 answer_4_question_6_pims = Answer.new(content: "5 ans et 11 mois",
   is_correct: false)
-answer_4_question_6_pims.question = question_5
+answer_4_question_6_pims.question = question_6_pims
 answer_4_question_6_pims.save!
 
 
