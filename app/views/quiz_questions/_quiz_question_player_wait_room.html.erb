@@ -1,4 +1,6 @@
-<div class="hidden-md hidden-lg">
+<% if language == "english" %>
+
+  <div class="hidden-md hidden-lg">
     <div class="container text-center">
       <h3>Waiting for other players</h3>
       <% if nb_players > 1 %>
@@ -7,4 +9,21 @@
         <p>Currently <%= nb_players %> ninja connected</p>
       <% end %>
     </div>
-</div>
+  </div>
+
+<% else %>
+
+  <div class="hidden-md hidden-lg">
+    <div class="container text-center">
+      <h3>En attente d'autres joueurs</h3>
+      <% if nb_players > 1 %>
+        <p><%= nb_players %> ninjas connectés</p>
+      <% else %>
+        <p><%= nb_players %> ninja connecté</p>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>
+
+

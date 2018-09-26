@@ -1,44 +1,97 @@
-<div class="hidden-md hidden-lg">
-  <% if quiz_answer.nil? %>
-    <div class="container-text-failure">
-      <div class="svg text-center">
-        <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
-          <g class="svg-failure">
-            <circle cx="-250.5" cy="249.5" r="12"/>
-            <path d="M-253 246l6 8-7.8"/>
-            <path d="M-247 246l-6 8-7.8"/>
-          </g>
-        </svg>
-         <div class="central-text"><h4>You did not answer.. </h4></div>
-         <div class="central-text"><h4>Hurry up next time! </h4></div>
+<% if language == "english" %>
+
+  <div class="hidden-md hidden-lg">
+    <% if quiz_answer.nil? %>
+      <div class="container-text-failure">
+        <div class="svg text-center">
+          <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
+            <g class="svg-failure">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-253 246l6 8-7.8"/>
+              <path d="M-247 246l-6 8-7.8"/>
+            </g>
+          </svg>
+           <div class="central-text"><h4>You did not answer.. </h4></div>
+           <div class="central-text"><h4>Hurry up next time! </h4></div>
+        </div>
       </div>
-    </div>
-  <% else %>
-    <% if quiz_answer.answer.is_correct %>
-    <div class="container-text-success">
-      <div class="svg text-center">
-        <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
-          <g class="svg-success">
-            <circle cx="-250.5" cy="249.5" r="12"/>
-            <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
-          </g>
-        </svg>
-        <div class="central-text"><h4><%= ["Correct!", "Amazing!", "Well done!", "Good job!"].sample %> You scored <%= quiz_answer.points%> points</h4></div>
-      </div>
-    </div>
     <% else %>
-    <div class="container-text-failure">
-      <div class="svg text-center">
-        <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
-          <g class="svg-failure">
-            <circle cx="-250.5" cy="249.5" r="12"/>
-            <path d="M-253 246l6 8-7.8" />
-            <path d="M-247 246l-6 8-7.8" />
-          </g>
-        </svg>
-        <div class="central-text"><h4><%= ["Come on dude, focus!", "Not quite!", "Wrong!"].sample %></h4></div>
+      <% if quiz_answer.answer.is_correct %>
+      <div class="container-text-success">
+        <div class="svg text-center">
+          <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
+            <g class="svg-success">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+            </g>
+          </svg>
+          <div class="central-text"><h4><%= ["Correct!", "Amazing!", "Well done!", "Good job!"].sample %> You scored <%= quiz_answer.points%> points</h4></div>
+        </div>
       </div>
-      </div>
+      <% else %>
+      <div class="container-text-failure">
+        <div class="svg text-center">
+          <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
+            <g class="svg-failure">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-253 246l6 8-7.8" />
+              <path d="M-247 246l-6 8-7.8" />
+            </g>
+          </svg>
+          <div class="central-text"><h4><%= ["Come on dude, focus!", "Not quite!", "Wrong!"].sample %></h4></div>
+        </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
+  </div>
+
+<% else %>
+
+  <div class="hidden-md hidden-lg">
+    <% if quiz_answer.nil? %>
+      <div class="container-text-failure">
+        <div class="svg text-center">
+          <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
+            <g class="svg-failure">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-253 246l6 8-7.8"/>
+              <path d="M-247 246l-6 8-7.8"/>
+            </g>
+          </svg>
+           <div class="central-text"><h4>Vous n'avez pas répondu.. </h4></div>
+           <div class="central-text"><h4>Depeches-toi la prochaine fois! </h4></div>
+        </div>
+      </div>
+    <% else %>
+      <% if quiz_answer.answer.is_correct %>
+      <div class="container-text-success">
+        <div class="svg text-center">
+          <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
+            <g class="svg-success">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-256.46 249.65l3.9 3.74 8.02-7.8"/>
+            </g>
+          </svg>
+          <div class="central-text"><h4><%= ["Correct!", "Bien joué!", "Bravo!", "Tu es en feu!"].sample %> Tu marques <%= quiz_answer.points%> points</h4></div>
+        </div>
+      </div>
+      <% else %>
+      <div class="container-text-failure">
+        <div class="svg text-center">
+          <svg width="120" height="120" viewBox="-263.5 236.5 26 26">
+            <g class="svg-failure">
+              <circle cx="-250.5" cy="249.5" r="12"/>
+              <path d="M-253 246l6 8-7.8" />
+              <path d="M-247 246l-6 8-7.8" />
+            </g>
+          </svg>
+          <div class="central-text"><h4><%= ["Allez concentre toi!", "Raté!", "Eh non!"].sample %></h4></div>
+        </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+<% end %>
+
+

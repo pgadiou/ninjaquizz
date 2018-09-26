@@ -1,17 +1,43 @@
-<div class="wrapper">
-  <div class="text-centered-results">
-    <div class="text-centered-results-vertical">
-      <div class="congrats">
-        Thank you for playing !
-      </div>
+<% if @quiz.language == "english" %>
 
-      <div class="textresults">
-        You ranked
-        <%= player_ranking + 1 %> out of
-          <%= users_ranked.length %> with
-            <%= user_points %> points
-      </div>
+  <div class="wrapper">
+    <div class="text-centered-results">
+      <div class="text-centered-results-vertical">
+        <div class="congrats">
+          Thank you for playing !
+        </div>
 
+        <div class="textresults">
+          You ranked
+          <%= player_ranking + 1 %> out of
+            <%= users_ranked.length %> with
+              <%= user_points %> points
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
+
+<% else %>
+
+  <div class="wrapper">
+    <div class="text-centered-results">
+      <div class="text-centered-results-vertical">
+        <div class="congrats">
+          Merci d'avoir joué !
+        </div>
+
+        <div class="textresults">
+          Tu as fini
+          <%= player_ranking + 1 %> sur
+            <%= users_ranked.length %> avec
+              <%= user_points %> points
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<% end %>
+
+

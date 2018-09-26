@@ -1,50 +1,109 @@
-<div class="title">Top scorers!</div>
+<% if @quiz.language == "french" %>
 
-<div class="podium">
+  <div class="title">Meilleurs scores!</div>
 
-  <% unless users_ranked[2].nil? %>
-  <div class="podium-left podium-item">
-    <%= image_tag "third-place.png" %>
-    <div class="results-description">
-      <div class="results">
-        <p class="name"><%= users_ranked[2].name%></p>
-        <p class="points"><%= users_ranked[2].total_score%> pts</p>
-      </div>
-      <div class="avatar-results">
-        <%= image_tag "#{users_ranked[2].avatar}.png", class: "avatar-podium" %>
+  <div class="podium">
+
+    <% unless users_ranked[2].nil? %>
+    <div class="podium-left podium-item">
+      <%= image_tag "third-place.png" %>
+      <div class="results-description">
+        <div class="results">
+          <p class="name"><%= users_ranked[2].name%></p>
+          <p class="points"><%= users_ranked[2].total_score%> pts</p>
+        </div>
+        <div class="avatar-results">
+          <%= image_tag "#{users_ranked[2].avatar}.png", class: "avatar-podium" %>
+        </div>
       </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
 
-  <% unless users_ranked[0].nil? %>
-  <div class="podium-top podium-item">
-    <%= image_tag "first-place.png" %>
-    <div class="results-description">
-      <div class="results">
-        <p class="name"><%= users_ranked[0].name%></p>
-        <p class="points"><%= users_ranked[0].total_score%> pts</p>
-      </div>
-      <div class="avatar-results">
-        <%= image_tag "#{users_ranked[0].avatar}.png", class: "avatar-podium" %>
+    <% unless users_ranked[0].nil? %>
+    <div class="podium-top podium-item">
+      <%= image_tag "first-place.png" %>
+      <div class="results-description">
+        <div class="results">
+          <p class="name"><%= users_ranked[0].name%></p>
+          <p class="points"><%= users_ranked[0].total_score%> pts</p>
+        </div>
+        <div class="avatar-results">
+          <%= image_tag "#{users_ranked[0].avatar}.png", class: "avatar-podium" %>
+        </div>
       </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
 
-  <% unless users_ranked[1].nil? %>
-  <div class="podium-right podium-item">
-    <%= image_tag "second-place.png" %>
-    <div class="results-description">
-      <div class="results">
-        <p class="name"><%= users_ranked[1].name%></p>
-        <p class="points"><%= users_ranked[1].total_score%> pts</p>
-      </div>
-      <div class="avatar-results">
-        <%= image_tag "#{users_ranked[1].avatar}.png", class: "avatar-podium" %>
+    <% unless users_ranked[1].nil? %>
+    <div class="podium-right podium-item">
+      <%= image_tag "second-place.png" %>
+      <div class="results-description">
+        <div class="results">
+          <p class="name"><%= users_ranked[1].name%></p>
+          <p class="points"><%= users_ranked[1].total_score%> pts</p>
+        </div>
+        <div class="avatar-results">
+          <%= image_tag "#{users_ranked[1].avatar}.png", class: "avatar-podium" %>
+        </div>
       </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
 
-</div>
+  </div>
+
+<% else %>
+
+  <div class="title">Top scorers!</div>
+
+  <div class="podium">
+
+    <% unless users_ranked[2].nil? %>
+    <div class="podium-left podium-item">
+      <%= image_tag "third-place.png" %>
+      <div class="results-description">
+        <div class="results">
+          <p class="name"><%= users_ranked[2].name%></p>
+          <p class="points"><%= users_ranked[2].total_score%> pts</p>
+        </div>
+        <div class="avatar-results">
+          <%= image_tag "#{users_ranked[2].avatar}.png", class: "avatar-podium" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <% unless users_ranked[0].nil? %>
+    <div class="podium-top podium-item">
+      <%= image_tag "first-place.png" %>
+      <div class="results-description">
+        <div class="results">
+          <p class="name"><%= users_ranked[0].name%></p>
+          <p class="points"><%= users_ranked[0].total_score%> pts</p>
+        </div>
+        <div class="avatar-results">
+          <%= image_tag "#{users_ranked[0].avatar}.png", class: "avatar-podium" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+    <% unless users_ranked[1].nil? %>
+    <div class="podium-right podium-item">
+      <%= image_tag "second-place.png" %>
+      <div class="results-description">
+        <div class="results">
+          <p class="name"><%= users_ranked[1].name%></p>
+          <p class="points"><%= users_ranked[1].total_score%> pts</p>
+        </div>
+        <div class="avatar-results">
+          <%= image_tag "#{users_ranked[1].avatar}.png", class: "avatar-podium" %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+<% end %>
+
+

@@ -32,15 +32,18 @@ class QuizQuestionsController < ApplicationController
     end
     @answers = @quiz_question.question.answers
     @quiz = @quiz_question.round.quiz
+    @language = @quiz.language
+    @timer = @quiz.timer
   end
 
   def broadcast_before_question
       ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
         admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_before_question",
-          locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
+          locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question, language: @language}),
         player_partial: ApplicationController.renderer.render(
-          partial: "quiz_questions/quiz_question_player_before_question"),
+          partial: "quiz_questions/quiz_question_player_before_question",
+          locals: {language: @language}),
         current_user_id: current_user.id,
         })
   end
@@ -49,50 +52,74 @@ class QuizQuestionsController < ApplicationController
       ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
         admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_before_answers",
-          locals: {quiz_question: @quiz_question, answers: @answers}),
+          locals: {quiz_question: @quiz_question, answers: @answers, language: @language}),
         player_partial: ApplicationController.renderer.render(
-          partial: "quiz_questions/quiz_question_player_before_answers"),
-        current_user_id: current_user.id,
+          partial: "quiz_questions/quiz_question_player_before_answers",
+          locals: {language: @language}),
+        current_user_id: current_user.id, language: @language
         })
   end
 
   def broadcast_show_answers
-      ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
-        admin_partial: ApplicationController.renderer.render(
-          partial: "quiz_questions/quiz_question_admin_before_correct_answer",
-          locals: {quiz_question: @quiz_question, answers: @answers, number_of_player_answers:0}),
-        player_partial: ApplicationController.renderer.render(
-          partial: "quiz_questions/quiz_question_player_before_correct_answer",
-          locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start}),
-        current_user_id: current_user.id,
-        })
+    ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
+      admin_partial: ApplicationController.renderer.render(
+        partial: "quiz_questions/quiz_question_admin_before_correct_answer",
+        locals: {quiz_question: @quiz_question, answers: @answers, number_of_player_answers:0, language: @language}),
+      player_partial: ApplicationController.renderer.render(
+        partial: "quiz_questions/quiz_question_player_before_correct_answer",
+        locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start, language: @language}),
+      current_user_id: current_user.id,
+    })
 
-    @quiz.users.each do |user|
-      unless user == @quiz.user
-        ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
-          event: "answer_display_player",
-          player_partial: ApplicationController.renderer.render(
-            partial: "quiz_questions/quiz_question_player_before_correct_answer",
-            locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start}),
-          player_partial_time_up: ApplicationController.renderer.render(
-            partial: "quiz_questions/quiz_question_player_time_up"),
-          player_partial_avatar_countdown: ApplicationController.renderer.render(
-            partial: "quiz_questions/quiz_question_player_avatar_countdown",
-            locals: {user: user}),
-          player_partial_avatar_still: ApplicationController.renderer.render(
-            partial: "quiz_questions/quiz_question_player_avatar_still",
-            locals: {user: user}),
-          current_user_id: current_user.id,
-            })
+    if @quiz.timer == false
+
+      @quiz.users.each do |user|
+        unless user == @quiz.user
+          ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
+            event: "answer_display_player",
+            timer: false,
+            player_partial: ApplicationController.renderer.render(
+              partial: "quiz_questions/quiz_question_player_before_correct_answer",
+              locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start, language: @language}),
+            player_partial_avatar_still: ApplicationController.renderer.render(
+              partial: "quiz_questions/quiz_question_player_avatar_still",
+              locals: {user: user, language: @language}),
+            current_user_id: current_user.id,
+              })
+        end
+      end
+
+    else
+
+      @quiz.users.each do |user|
+        unless user == @quiz.user
+          ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
+            event: "answer_display_player",
+            timer: true,
+            player_partial: ApplicationController.renderer.render(
+              partial: "quiz_questions/quiz_question_player_before_correct_answer",
+              locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start, language: @language}),
+            player_partial_time_up: ApplicationController.renderer.render(
+              partial: "quiz_questions/quiz_question_player_time_up"),
+            player_partial_avatar_countdown: ApplicationController.renderer.render(
+              partial: "quiz_questions/quiz_question_player_avatar_countdown",
+              locals: {user: user, language: @language}),
+            player_partial_avatar_still: ApplicationController.renderer.render(
+              partial: "quiz_questions/quiz_question_player_avatar_still",
+              locals: {user: user, language: @language}),
+            current_user_id: current_user.id,
+              })
+        end
       end
     end
+
   end
 
   def broadcast_show_correct_answer
     ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "quiz_questions/quiz_question_admin_after_correct_answer",
-        locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question}),
+        locals: {quiz_question: @quiz_question, answers: @answers, next_quiz_question: @next_quiz_question, language: @language}),
       current_user_id: current_user.id,
         })
 
@@ -100,9 +127,10 @@ class QuizQuestionsController < ApplicationController
       unless user == @quiz.user
         ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
           event: "question_answer",
+          timer: @timer,
           player_partial: ApplicationController.renderer.render(
             partial: "quiz_questions/quiz_question_player_after_correct_answer",
-            locals: {quiz_answer: QuizAnswer.where(quiz_question_id: @quiz_question.id, user_id: user.id).last, quiz_question: @quiz_question, user: user}),
+            locals: {quiz_answer: QuizAnswer.where(quiz_question_id: @quiz_question.id, user_id: user.id).last, quiz_question: @quiz_question, user: user, language: @language}),
           current_user_id: current_user.id,
             })
       end

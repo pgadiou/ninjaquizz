@@ -439,7 +439,8 @@ answer_4_question_6_pims.save!
 quiz_pims = Quiz.new(name: "Pims",
                     no_of_rounds: 2,
                     time_per_question: 12,
-                    pin_number: 1111)
+                    pin_number: 1111,
+                    language: "french")
 quiz_pims.user = barman
 quiz_pims.save!
 
@@ -478,7 +479,7 @@ quiz_pims_question_4.save!
 quiz_pims_question_5 = QuizQuestion.new()
 quiz_pims_question_5.question = question_5_pims
 quiz_pims_question_5.round = round_2_quiz_pims
-quiz_test_question_5.save!
+quiz_pims_question_5.save!
 
 quiz_pims_question_6 = QuizQuestion.new()
 quiz_pims_question_6.question = question_6_pims

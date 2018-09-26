@@ -3,6 +3,7 @@ class RoundsController < ApplicationController
   def show
     @round = Round.find(params[:id])
     @quiz = @round.quiz
+    @language = @quiz.language
     @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
     @category = @round.category.name
     @first_question = QuizQuestion.where(round_id: @round.id).first
@@ -12,6 +13,7 @@ class RoundsController < ApplicationController
   def show_round_results
     @round = Round.find(params[:id])
     @quiz = @round.quiz
+    @language = @quiz.language
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
     @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
     @slowster = User.where(quiz_id: @quiz.id).order(total_time: :desc).last
