@@ -68,8 +68,8 @@ private
     ActionCable.server.broadcast("quiz_room_#{@quiz.id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "quizzes/admin_results",
-        locals: {users_ranked: @users_ranked}),
-        current_user_id: current_user.id, language: @language
+        locals: {users_ranked: @users_ranked, language: @language}),
+        current_user_id: current_user.id
     })
 
     @quiz.users.each do |user|
