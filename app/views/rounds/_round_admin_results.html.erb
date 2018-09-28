@@ -115,7 +115,7 @@
         <div class="question-displayed"><p>Loser: <%=  loser.name %></p></div>
       </div>
       <div class="col-xs-12">
-        <div class="btn btn-control-next" id="next"><%= link_to "Finish game", root_path %></div>
+        <div class="btn btn-control-next" id="next"><%= link_to "Next round", round_path(next_round), remote: true %></div>
       </div>
     </div>
   </div>

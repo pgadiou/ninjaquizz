@@ -42,7 +42,7 @@ private
     ActionCable.server.broadcast("quiz_room_#{@round.quiz_id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "rounds/round_admin_results",
-        locals: {next_round: @next_round, users_ranked: @users_ranked, speedster: @speedster, slowster: @slowster, loser: @loser}),
+        locals: {next_round: @next_round, users_ranked: @users_ranked, speedster: @speedster, slowster: @slowster, loser: @loser, language: @language}),
         current_user_id: current_user.id,
     })
 
