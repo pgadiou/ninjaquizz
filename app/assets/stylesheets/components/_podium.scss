@@ -8,7 +8,7 @@
 }
 
 .podium-top.podium-item {
-  height: 535px;
+  height: 70vh;
   > img {
     width: 45%;
     margin-bottom: 71px;
@@ -18,8 +18,12 @@
   }
 }
 
-.podium-right, .podium-left {
-  height: 410px;
+.podium-right {
+  height: 65vh;
+}
+
+.podium-left {
+  height: 60vh;
 }
 
 .podium-item {
@@ -30,22 +34,23 @@
   border-radius: 3px;
   text-align: center;
   margin: 0 10px;
+  width: 22vh;
+  position: relative;
   > img {
     width: 45%;
   }
 }
 
 .results-description {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-top: 20px;
-  align-items: center;
-  height: 210px;
+  position: absolute;
+  bottom: 40px;
+  right:10px;
+  left:10px;
 }
 
 .results-description img {
   width: 30%;
+  margin: auto;
 }
 
 .results {
@@ -55,7 +60,7 @@
 .name {
   margin-bottom: 10px;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 60px;
 }
 
 .points {

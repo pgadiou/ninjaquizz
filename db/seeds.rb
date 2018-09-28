@@ -485,3 +485,214 @@ quiz_pims_question_6 = QuizQuestion.new()
 quiz_pims_question_6.question = question_6_pims
 quiz_pims_question_6.round = round_2_quiz_pims
 quiz_pims_question_6.save!
+
+#mariage-test
+
+#geographie
+question_1_mariage_test = Question.new(content: "Quelle a été en pourcentage l'évolution de la population des herbiers entre 1968 et 2014?",
+  )
+question_1_mariage_test.category = customized
+question_1_mariage_test.type = choix_multiple
+question_1_mariage_test.save!
+
+answer_1_question_1_mariage_test = Answer.new(content: "+ 77%",
+  is_correct: true)
+answer_1_question_1_mariage_test.question = question_1_mariage_test
+answer_1_question_1_mariage_test.save!
+
+answer_2_question_1_mariage_test = Answer.new(content: "+ 46%",
+  is_correct: false)
+answer_2_question_1_mariage_test.question = question_1_mariage_test
+answer_2_question_1_mariage_test.save!
+
+answer_3_question_1_mariage_test = Answer.new(content: "+23%",
+  is_correct: false)
+answer_3_question_1_mariage_test.question = question_1_mariage_test
+answer_3_question_1_mariage_test.save!
+
+answer_4_question_1_mariage_test = Answer.new(content: "-14%",
+  is_correct: false)
+answer_4_question_1_mariage_test.question = question_1_mariage_test
+answer_4_question_1_mariage_test.save!
+
+question_2_mariage_test = Question.new(content: "D'après mon ami Google, combien de temps mettrais-je pour aller de Jaipur à Bombay en voiture (en passant par la NH48) ?")
+question_2_mariage_test.category = customized
+question_2_mariage_test.type = choix_multiple
+question_2_mariage_test.save!
+
+answer_1_question_2_mariage_test = Answer.new(content: "25h et 4 minutes",
+  is_correct: false)
+answer_1_question_2_mariage_test.question = question_2_mariage_test
+answer_1_question_2_mariage_test.save!
+
+answer_2_question_2_mariage_test = Answer.new(content: "23h et 15 minutes",
+  is_correct: false)
+answer_2_question_2_mariage_test.question = question_2_mariage_test
+answer_2_question_2_mariage_test.save!
+
+answer_3_question_2_mariage_test = Answer.new(content: "19h et 27 minutes",
+  is_correct: true)
+answer_3_question_2_mariage_test.question = question_2_mariage_test
+answer_3_question_2_mariage_test.save!
+
+answer_4_question_2_mariage_test = Answer.new(content: "15h et 42 minutes",
+  is_correct: false)
+answer_4_question_2_mariage_test.question = question_2_mariage_test
+answer_4_question_2_mariage_test.save!
+
+question_3_mariage_test = Question.new(content: "Laquelle de ces affirmations est fausse concernant la Mongolie ?")
+question_3_mariage_test.category = customized
+question_3_mariage_test.type = choix_multiple
+question_3_mariage_test.save!
+
+answer_1_question_3_mariage_test = Answer.new(content: "Les mongols auraient le record du 2e plus fat génocide non mécanisé",
+  is_correct: false)
+answer_1_question_3_mariage_test.question = question_3_mariage_test
+answer_1_question_3_mariage_test.save!
+
+answer_2_question_3_mariage_test = Answer.new(content: "Entre 30 et 40% de la population est nomade",
+  is_correct: false)
+answer_2_question_3_mariage_test.question = question_3_mariage_test
+answer_2_question_3_mariage_test.save!
+
+answer_3_question_3_mariage_test = Answer.new(content: "Les mongoliens ont inventé les glaces",
+  is_correct: false)
+answer_3_question_3_mariage_test.question = question_3_mariage_test
+answer_3_question_3_mariage_test.save!
+
+answer_4_question_3_mariage_test = Answer.new(content: "Oulan Bator s'est déplacée 37 fois avant de s'établir à son emplacement actuel",
+  is_correct: true)
+answer_4_question_3_mariage_test.question = question_3_mariage_test
+answer_4_question_3_mariage_test.save!
+
+
+#histoire
+
+question_4_mariage_test = Question.new(content: "En quelle année M. Charroin a-t-il été nommé directeur d'Audiencia ?")
+question_4_mariage_test.category = customized
+question_4_mariage_test.type = choix_multiple
+question_4_mariage_test.save!
+
+answer_1_question_4_mariage_test = Answer.new(content: "2O11",
+  is_correct: true)
+answer_1_question_4_mariage_test.question = question_4_mariage_test
+answer_1_question_4_mariage_test.save!
+
+answer_2_question_4_mariage_test = Answer.new(content: "2009",
+  is_correct: false)
+answer_2_question_4_mariage_test.question = question_4_mariage_test
+answer_2_question_4_mariage_test.save!
+
+answer_3_question_4_mariage_test = Answer.new(content: "2007",
+  is_correct: false)
+answer_3_question_4_mariage_test.question = question_4_mariage_test
+answer_3_question_4_mariage_test.save!
+
+answer_4_question_4_mariage_test = Answer.new(content: "1978",
+  is_correct: false)
+answer_4_question_4_mariage_test.question = question_4_mariage_test
+answer_4_question_4_mariage_test.save!
+
+
+question_5_mariage_test = Question.new(content: "A quelle date mariage_test a évoqué Anne-Hélène par mail avec nous ?")
+question_5_mariage_test.category = customized
+question_5_mariage_test.type = choix_multiple
+question_5_mariage_test.save!
+
+answer_1_question_5_mariage_test = Answer.new(content: "le 1 mars 2011",
+  is_correct: false)
+answer_1_question_5_mariage_test.question = question_5_mariage_test
+answer_1_question_5_mariage_test.save!
+
+answer_2_question_5_mariage_test = Answer.new(content: "le 12 mars 2011",
+  is_correct: true)
+answer_2_question_5_mariage_test.question = question_5_mariage_test
+answer_2_question_5_mariage_test.save!
+
+answer_3_question_5_mariage_test = Answer.new(content: "le 2 avril 2011",
+  is_correct: false)
+answer_3_question_5_mariage_test.question = question_5_mariage_test
+answer_3_question_5_mariage_test.save!
+
+answer_4_question_5_mariage_test = Answer.new(content: "le 14 mai 2017",
+  is_correct: false)
+answer_4_question_5_mariage_test.question = question_5_mariage_test
+answer_4_question_5_mariage_test.save!
+
+question_6_mariage_test = Question.new(content: "Depuis combien de temps Anne-Hélène est chez Accenture ?")
+question_6_mariage_test.category = customized
+question_6_mariage_test.type = choix_multiple
+question_6_mariage_test.save!
+
+answer_1_question_6_mariage_test = Answer.new(content: "4 ans et 10 mois",
+  is_correct: false)
+answer_1_question_6_mariage_test.question = question_6_mariage_test
+answer_1_question_6_mariage_test.save!
+
+answer_2_question_6_mariage_test = Answer.new(content: "5 ans et 3 mois",
+  is_correct: false)
+answer_2_question_6_mariage_test.question = question_6_mariage_test
+answer_2_question_6_mariage_test.save!
+
+answer_3_question_6_mariage_test = Answer.new(content: "5 ans et 8 mois",
+  is_correct: true)
+answer_3_question_6_mariage_test.question = question_6_mariage_test
+answer_3_question_6_mariage_test.save!
+
+answer_4_question_6_mariage_test = Answer.new(content: "5 ans et 11 mois",
+  is_correct: false)
+answer_4_question_6_mariage_test.question = question_6_mariage_test
+answer_4_question_6_mariage_test.save!
+
+
+
+
+quiz_mariage_test = Quiz.new(name: "mariage_test",
+                    no_of_rounds: 2,
+                    time_per_question: 12,
+                    pin_number: 1111,
+                    language: "french")
+quiz_mariage_test.user = barman
+quiz_mariage_test.save!
+
+round_1_quiz_mariage_test = Round.new(no_of_questions: 3)
+round_1_quiz_mariage_test.quiz = quiz_mariage_test
+round_1_quiz_mariage_test.category = geo
+round_1_quiz_mariage_test.save!
+
+round_2_quiz_mariage_test = Round.new(no_of_questions: 3)
+round_2_quiz_mariage_test.quiz = quiz_mariage_test
+round_2_quiz_mariage_test.category = history
+round_2_quiz_mariage_test.save!
+
+quiz_mariage_test_question_1 = QuizQuestion.new()
+quiz_mariage_test_question_1.question = question_1_mariage_test
+quiz_mariage_test_question_1.round = round_1_quiz_mariage_test
+quiz_mariage_test_question_1.save!
+
+
+quiz_mariage_test_question_2 = QuizQuestion.new()
+quiz_mariage_test_question_2.question = question_2_mariage_test
+quiz_mariage_test_question_2.round = round_1_quiz_mariage_test
+quiz_mariage_test_question_2.save!
+
+
+quiz_mariage_test_question_3 = QuizQuestion.new()
+quiz_mariage_test_question_3.question = question_3_mariage_test
+quiz_mariage_test_question_3.round = round_1_quiz_mariage_test
+quiz_mariage_test_question_3.save!
+
+quiz_mariage_test_question_4 = QuizQuestion.new()
+quiz_mariage_test_question_4.question = question_4_mariage_test
+quiz_mariage_test_question_4.round = round_2_quiz_mariage_test
+quiz_mariage_test_question_4.save!
+
+quiz_mariage_test_question_5 = QuizQuestion.new()
+quiz_mariage_test_question_5.question = question_5_mariage_test
+quiz_mariage_test_question_5.round = round_2_quiz_mariage_test
+quiz_mariage_test_question_5.save!
+
+quiz_mariage_test_question_6 = QuizQuestion.new()
+quiz_mariage_test_question_6.question = question_6_mariage_test
+quiz_mariage_test_question_6.round = round_2_quiz_mariage_test
+quiz_mariage_test_question_6.save!

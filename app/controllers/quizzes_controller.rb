@@ -24,6 +24,9 @@ class QuizzesController < ApplicationController
 
   def show_results
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc)
+    @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
+    @slowster = User.where(quiz_id: @quiz.id).order(total_time: :desc).last
+    @loser = User.where(quiz_id: @quiz.id).order(total_score: :desc).last
     @language = @quiz.language
     broadcast_total_results
     @quiz.users.each do |user|
@@ -68,7 +71,7 @@ private
     ActionCable.server.broadcast("quiz_room_#{@quiz.id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "quizzes/admin_results",
-        locals: {users_ranked: @users_ranked, language: @language}),
+        locals: {users_ranked: @users_ranked, language: @language, speedster: @speedster, slowster: @slowster, loser: @loser}),
         current_user_id: current_user.id
     })
 
