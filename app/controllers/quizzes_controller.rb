@@ -23,7 +23,7 @@ class QuizzesController < ApplicationController
   end
 
   def show_results
-    @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc)
+    @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc, total_time: :desc)
     @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
     @slowster = User.where(quiz_id: @quiz.id).order(total_time: :desc).last
     @loser = User.where(quiz_id: @quiz.id).order(total_score: :desc).last

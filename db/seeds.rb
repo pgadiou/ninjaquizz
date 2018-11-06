@@ -14,7 +14,8 @@ barman = User.create!(
         email: "example@gmail.com",
         password: "12345678",
         name: "Barman",
-        avatar: "Ninja5"
+        avatar: "Ninja5",
+        admin: true,
     )
 barman.save!
 
@@ -338,7 +339,7 @@ question_3_pims.type = choix_multiple
 question_3_pims.save!
 
 answer_1_question_3_pims = Answer.new(content: "La vodka",
-  is_correct: false)
+  is_correct: true)
 answer_1_question_3_pims.question = question_3_pims
 answer_1_question_3_pims.save!
 
@@ -353,7 +354,7 @@ answer_3_question_3_pims.question = question_3_pims
 answer_3_question_3_pims.save!
 
 answer_4_question_3_pims = Answer.new(content: "Le chant",
-  is_correct: true)
+  is_correct: false)
 answer_4_question_3_pims.question = question_3_pims
 answer_4_question_3_pims.save!
 

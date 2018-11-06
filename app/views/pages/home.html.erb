@@ -1,6 +1,11 @@
 <% if User.where(user_id: current_user.id) == nil %>
   <% redirect_to new_user_registration %>
 <% end %>
+<% if current_user.admin == false %>
+  <% current_user.destroy %>
+  <% redirect_to new_user_registration_path %>
+<% end %>
+
 <div class="home-container">
   <div class="avatar-home">
     <%= link_to quiz_path(current_user.quizzes.last.id) do %>
