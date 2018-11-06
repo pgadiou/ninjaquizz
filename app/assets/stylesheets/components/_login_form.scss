@@ -51,6 +51,58 @@
   }
 }
 
+.form-login-admin {
+  background: $ninja-purple-light;
+  padding: 20px 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  text-align: center;
+
+  .form-sign-up {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;
+    padding-bottom: 50px;
+
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .avatar-label {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+
+  .avatar-block {
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+
+  .radio label, .checkbox label {
+    padding-left: 0px;
+  }
+}
+#new_user{
+  .radio_buttons {
+    input {
+      display: none;
+    }
+  }
+}
+
 input, input[placeholder]{
     color: $gray;
     text-align:center;
