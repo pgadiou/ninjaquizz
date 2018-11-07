@@ -1,11 +1,12 @@
 .form-login {
   background: $ninja-purple-light;
   padding: 20px 50px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px auto;
   border-radius: 3px;
   text-align: center;
-  height: 95vh;
+  height: 95%;
+  width:90vw;
+  max-width: 400px;
 
   .form-sign-up {
     display: flex;
@@ -54,10 +55,12 @@
 .form-login-admin {
   background: $ninja-purple-light;
   padding: 20px 50px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px auto;
   border-radius: 3px;
   text-align: center;
+  height: 95%;
+  width:90vw;
+  max-width: 400px;
 
   .form-sign-up {
     display: flex;
@@ -107,3 +110,7 @@ input, input[placeholder]{
     color: $gray;
     text-align:center;
   }
+
+.container-login-form {
+  height: 100vh;
+}

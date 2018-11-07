@@ -9,13 +9,12 @@
 Quiz.destroy_all
 Question.destroy_all
 User.destroy_all
+Admin.destroy_all
 
-barman = User.create!(
+barman = Admin.create!(
         email: "example@gmail.com",
         password: "12345678",
         name: "Barman",
-        avatar: "Ninja5",
-        admin: true,
     )
 barman.save!
 
@@ -236,7 +235,7 @@ quiz_test = Quiz.new(name: "le Wagon",
                     no_of_rounds: 2,
                     time_per_question: 12,
                     pin_number: 123456)
-quiz_test.user = barman
+quiz_test.admin = barman
 quiz_test.save!
 
 round_1_quiz_test = Round.new(no_of_questions: 3)
@@ -543,7 +542,7 @@ quiz_pims = Quiz.new(name: "Pims",
                     pin_number: 1111,
                     time_bonus: false,
                     language: "french")
-quiz_pims.user = barman
+quiz_pims.admin = barman
 quiz_pims.save!
 
 round_1_quiz_pims = Round.new(no_of_questions: 5)

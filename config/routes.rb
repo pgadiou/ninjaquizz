@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get :show_correct_answer
     end
   end
+  resources :admins
 
   resources :rounds, only: :show do
     member do

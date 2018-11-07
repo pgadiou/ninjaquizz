@@ -1,0 +1,4 @@
+<div class="container">
+  <%= options_from_collection_for_select(@admin_quizzes, :id, :name, :selected => @admin_quizzes.last.name)%>
+  <%= select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+</div>
