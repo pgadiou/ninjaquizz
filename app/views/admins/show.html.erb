@@ -1,4 +1,65 @@
-<div class="container">
-  <%= options_from_collection_for_select(@admin_quizzes, :id, :name, :selected => @admin_quizzes.last.name)%>
-  <%= select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+<div class="wrapper-launch">
+  <div class="container-launch">
+    <%= link_to quiz_path(@admin_quizzes.last) %>
+  </div>
 </div>
+<div class="wrapper-quiz-choice-actions"></div>
+  <div class="wrapper-quiz-choice">
+    <div class="container-quizzes-choice-header">
+      <div class="quiz-choice-name-header">
+        <h3>Quiz name</h3>
+      </div>
+      <div class="quiz-choice-created-at-header">
+        <h3>Created on</h3>
+      </div>
+    </div>
+    <div class="container-quizzes-choice">
+      <% @admin_quizzes.each do |quiz| %>
+        <div class="quiz-choice">
+          <div class="quiz-choice-name">
+            <%= quiz.name %>
+          </div>
+          <div class="quiz-choice-created-at">
+            <%= quiz.created_at %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="wrapper-quiz-choice-actions">
+    <div class="launch-quiz-button">
+      <%= link_to quiz_path(@admin_quizzes.last)%>
+    </div>
+    <div class="edit-quiz-button">
+      <%= link_to edit_quiz_path(@admin_quizzes.last)%>
+    </div>
+
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+
+    const onQuizselect = () => {
+      const quizzes = document.getElementsByClassName("quiz-choice");
+    }
+    const  selectButtons = () => {
+      const launchButton = document.getElementById("launch-quiz-button");
+      const editButton = document.getElementById("edit-quiz-button");
+    }
+
+    const Quizselect = () => {
+      for (var i=0; i < quizzes.length; i++) {
+        quizzes[i].classList.remove("selected_quiz");
+      }
+      event.currentTarget.classList.add("selected_quiz");
+      const selectedQuizId = event.currentTarget.id;
+      launchButton.innerHTML = ("<a href="/quizzes/${selectedQuizId}" a>");
+      editButton.innerHTML = ("<a href="/quizzes/edit/${selectedQuizId}" a>");
+    }
+    for (var i = 0; i< quizzes.length; i++) {
+      quizzes[i].addEventListener("click", Quizselect);
+    }
+
+  </script>
+<% end %>
