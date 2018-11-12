@@ -76,7 +76,6 @@ private
     })
 
     @quiz.users.each do |user|
-      unless user == @quiz.user
         ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
           event: "player_results",
           player_partial: ApplicationController.renderer.render(
@@ -84,7 +83,6 @@ private
             locals: {users_ranked: @users_ranked, player_ranking: @users_ranked.index(user), user_points: user.total_score, language: @language}),
           current_user_id: current_user.id,
         })
-      end
     end
   end
 

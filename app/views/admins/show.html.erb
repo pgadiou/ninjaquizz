@@ -1,17 +1,20 @@
 <div class="wrapper-launch">
   <div class="container-launch">
-    <%= link_to quiz_path(@admin_quizzes.last) %>
+    <%= link_to quiz_path(@admin_quizzes.last) do %>
+      <div class="admin-home-actions-quick-play">Quick launch quiz "<%=@admin_quizzes.last.name%>"</div>
+    <% end %>
   </div>
 </div>
-<div class="wrapper-quiz-choice-actions"></div>
+<div class="wrapper-quiz-choice-actions">
   <div class="wrapper-quiz-choice">
     <div class="container-quizzes-choice-header">
-      <div class="quiz-choice-name-header">
+      <h3>My quizzes</h3>
+<!--       <div class="quiz-choice-name-header">
         <h3>Quiz name</h3>
       </div>
       <div class="quiz-choice-created-at-header">
         <h3>Created on</h3>
-      </div>
+      </div> -->
     </div>
     <div class="container-quizzes-choice">
       <% @admin_quizzes.each do |quiz| %>
@@ -20,19 +23,20 @@
             <%= quiz.name %>
           </div>
           <div class="quiz-choice-created-at">
-            <%= quiz.created_at %>
+            created <%= quiz.created_at.strftime("%d-%m-%Y") %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="wrapper-quiz-choice-actions">
-    <div class="launch-quiz-button">
-      <%= link_to quiz_path(@admin_quizzes.last)%>
-    </div>
-    <div class="edit-quiz-button">
-      <%= link_to edit_quiz_path(@admin_quizzes.last)%>
-    </div>
+  <div class="wrapper-quizzes-actions">
+    <%= link_to quiz_path(@admin_quizzes.last) do%>
+      <div class="launch-quiz-button">Launch quiz</div>
+    <% end %>
+
+    <%= link_to edit_quiz_path(@admin_quizzes.last) do%>
+      <div class="edit-quiz-button">Edit quiz</div>
+    <% end %>
 
   </div>
 </div>
@@ -40,7 +44,7 @@
 <% content_for :after_js do %>
   <script>
 
-    const onQuizselect = () => {
+    const onQuizSelect = () => {
       const quizzes = document.getElementsByClassName("quiz-choice");
     }
     const  selectButtons = () => {
@@ -48,14 +52,14 @@
       const editButton = document.getElementById("edit-quiz-button");
     }
 
-    const Quizselect = () => {
+    const quizSelect = () => {
       for (var i=0; i < quizzes.length; i++) {
-        quizzes[i].classList.remove("selected_quiz");
+        quizzes[i].classList.remove("selected-quiz");
       }
-      event.currentTarget.classList.add("selected_quiz");
+      event.currentTarget.classList.add("selected-quiz");
       const selectedQuizId = event.currentTarget.id;
-      launchButton.innerHTML = ("<a href="/quizzes/${selectedQuizId}" a>");
-      editButton.innerHTML = ("<a href="/quizzes/edit/${selectedQuizId}" a>");
+      launchButton.innerHTML = ("<a href='/quizzes/${selectedQuizId}' a>");
+      editButton.innerHTML = ("<a href='/quizzes/edit/${selectedQuizId}'' a>");
     }
     for (var i = 0; i< quizzes.length; i++) {
       quizzes[i].addEventListener("click", Quizselect);

@@ -7,6 +7,7 @@ class RoundsController < ApplicationController
     @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
     @category = @round.category.name
     @first_question = QuizQuestion.where(round_id: @round.id).first
+    current_user == nil ? nil : @current_user_id = current_user.id
     broadcast_round
   end
 
@@ -34,7 +35,7 @@ private
       player_partial: ApplicationController.renderer.render(
         partial: "rounds/round_player",
         locals: {round: @round, first_question: @first_question}),
-      current_user_id: current_user.id,
+      current_user_id: @current_user_id,
     })
   end
 
@@ -43,19 +44,17 @@ private
       admin_partial: ApplicationController.renderer.render(
         partial: "rounds/round_admin_results",
         locals: {next_round: @next_round, users_ranked: @users_ranked, speedster: @speedster, slowster: @slowster, loser: @loser, language: @language}),
-        current_user_id: current_user.id,
+        current_user_id: @current_user_id,
     })
 
     @quiz.users.each do |user|
-      unless user == @quiz.user
         ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
           event: "player_results",
           player_partial: ApplicationController.renderer.render(
             partial: "rounds/round_player_results",
             locals: {player_ranking: @users_ranked.index(user), user_points: user.total_score}),
-          current_user_id: current_user.id,
+          current_user_id: @current_user_id,
         })
-      end
     end
   end
 
