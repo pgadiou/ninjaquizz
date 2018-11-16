@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get :show_results
     end
   end
+
+put 'admins/:id', to: 'admins#select_quiz', as: :select_quiz
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :quiz_questions, only: :show do
     resources :quiz_answers, only: :create
