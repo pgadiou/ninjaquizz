@@ -16,23 +16,12 @@
         <h3>Created on</h3>
       </div> -->
     </div>
-    <div class="container-quizzes-choice">
-      <% @admin_quizzes.each do |quiz| %>
-        <%= link_to select_quiz_path(current_admin.id, selected_quiz_id: quiz.id), method: :put do %>
-          <div class="quiz-choice" value="<%=quiz.id%>"">
-            <div class="quiz-choice-name">
-              <%= quiz.name %>
-            </div>
-            <div class="quiz-choice-created-at">
-              created <%= quiz.created_at.strftime("%d-%m-%Y") %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+    <div class="container-quizzes-choice" id="quiz-selection-container">
+      <%= render 'admins/quizzes_selection', admin_quizzes: @admin_quizzes, selected_quiz_id: @selected_quiz.id %>
     </div>
   </div>
-  <div class="wrapper-quizzes-actions">
-    <%= render 'quizzes/selected_quiz_buttons', selected_quiz_id: @selected_quiz.id %>
+  <div class="container-quizzes-actions" id="quiz-action-buttons">
+    <%= render 'admins/selected_quiz_buttons', selected_quiz_id: @selected_quiz.id %>
   </div>
 </div>
 

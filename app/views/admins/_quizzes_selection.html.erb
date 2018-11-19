@@ -1,0 +1,23 @@
+<% admin_quizzes.each do |quiz| %>
+  <%= link_to select_quiz_path(current_admin.id, selected_quiz_id: quiz.id), method: :put, remote: true do %>
+    <% if selected_quiz_id == quiz.id %>
+      <div class="quiz-choice selected-quiz" value="<%=quiz.id%>"">
+        <div class="quiz-choice-name">
+          <%= quiz.name %>
+        </div>
+        <div class="quiz-choice-created-at">
+          created <%= quiz.created_at.strftime("%d-%m-%Y") %>
+        </div>
+      </div>
+    <% else %>
+      <div class="quiz-choice" value="<%=quiz.id%>"">
+        <div class="quiz-choice-name">
+          <%= quiz.name %>
+        </div>
+        <div class="quiz-choice-created-at">
+          created <%= quiz.created_at.strftime("%d-%m-%Y") %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

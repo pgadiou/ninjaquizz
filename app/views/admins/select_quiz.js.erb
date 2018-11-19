@@ -1,0 +1,12 @@
+function refreshButtons(buttonsHTML) {
+  const actionButtons = document.getElementById('quiz-action-buttons');
+  actionButtons.innerHTML = buttonsHTML;
+}
+
+function refreshQuizzes(quizListHTML) {
+  const quizzesContainer = document.getElementById('quiz-selection-container');
+  quizzesContainer.innerHTML = quizListHTML;
+}
+
+refreshButtons('<%= j render "admins/selected_quiz_buttons", selected_quiz_id: @selected_quiz.id %>');
+refreshQuizzes('<%= j render "admins/quizzes_selection", selected_quiz_id: @selected_quiz.id, admin_quizzes: current_admin.quizzes %>');

@@ -18,8 +18,7 @@ class QuizzesController < ApplicationController
  #  end
 
   def show
-    @quiz = Quiz.find(params[:id])
-    @first_round = Round.where(quiz_id: @quiz.id).first
+    @first_round = @rounds.first
   end
 
   def show_results
@@ -36,6 +35,9 @@ class QuizzesController < ApplicationController
     @quiz.users.destroy_all
   end
 
+  def edit
+
+  end
 
   # def edit
   #     authorize @service
