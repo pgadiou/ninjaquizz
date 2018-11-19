@@ -43,14 +43,14 @@ class QuizzesController < ApplicationController
   #     authorize @service
   # end
 
-  # def update
-  #   authorize @service
-  #   if @service.update(service_params)
-  #     redirect_to service_path(@service)
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+  #   authorize @quiz
+    if @quiz.update(quiz_params)
+      redirect_to edit_quiz_path(@quiz)
+    else
+    render :edit
+    end
+  end
 
   # def destroy
   #   authorize @service
@@ -59,6 +59,10 @@ class QuizzesController < ApplicationController
   # end
 
 private
+
+  def quiz_params
+    params.require(:quiz).permit(:name, :language, :timer, :time_bonus)
+  end
 
   def set_quiz
     @quiz = Quiz.find(params[:id])

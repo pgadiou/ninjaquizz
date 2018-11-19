@@ -1,44 +1,78 @@
 <div class="wrapper-quiz-details">
   <div class="quiz-details-container">
-    <div class="quiz-detail-container">
-      <div class="quiz-detail-title">
-        Name
+    <%= simple_form_for @quiz do |f| %>
+     <div class="container">
+        <div class="row"></div>
+          <div class="col-md-6 col-sm-3">
+            <div class="quiz-detail-container">
+              <div class="quiz-detail-title">
+                Quiz name
+              </div>
+              <div class="quiz-detail">
+                <%= f.input :name, placeholder: @quiz.name, label: false %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-3">
+            <div class="quiz-detail-container">
+              <div class="quiz-detail-title">
+                Pin number
+              </div>
+              <div class="quiz-detail">
+                <%= f.input :pin_number, placeholder: @quiz.pin_number, disabled: true, label: false %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-3">
+            <div class="quiz-detail-container">
+              <div class="quiz-detail-title">
+                Language
+              </div>
+              <div class="quiz-detail">
+                <%= f.input :language, as: :radio_buttons, collection: [['french', 'French'], ['english', 'English']], label_method: :second, value_method: :first, label: false %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-3">
+            <div class="quiz-detail-container">
+              <div class="quiz-detail-title">
+                Timer
+              </div>
+              <div class="quiz-detail">
+                <%= f.input :timer, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-3">
+            <div class="quiz-detail-container">
+              <div class="quiz-detail-title">
+                Time bonus
+              </div>
+              <div class="quiz-detail">
+                <%= f.input :time_bonus, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-3">
+            <div class="quiz-detail-container">
+              <%= f.submit class: 'quiz-detail-save' %>
+<!--                 <div class="quiz-detail-title">
+                </div> -->
+              <div class="quiz-detail">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="quiz-detail">
-        <%= @quiz.name %>
-      </div>
-    </div>
-    <div class="quiz-detail-container">
-      <div class="quiz-detail-title">
-        Pin number
-      </div>
-      <div class="quiz-detail">
-        <%= @quiz.pin_number %>
-      </div>
-    </div>
-    <div class="quiz-detail-container">
-      <div class="quiz-detail-title">
-        Language
-      </div>
-      <div class="quiz-detail">
-        <%= @quiz.language %>
-      </div>
-    </div>
-    <div class="quiz-detail-container">
-      <div class="quiz-detail-title">
-        Timer
-      </div>
-      <div class="quiz-detail">
-        <%= @quiz.timer %>
-      </div>
-    </div>
-    <div class="quiz-detail-container">
-      <div class="quiz-detail-title">
-        Time bonus
-      </div>
-      <div class="quiz-detail">
-        <%= @quiz.time_bonus %>
-      </div>
+    <% end %>
+  </div>
+</div>
+<div class="wrapper-rounds-edit">
+  <div class="container-rounds-edit">
+    <div class="container-round-edit-details">
+      <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <%= @quiz.rounds.first.category_id %>
+      </button>
     </div>
   </div>
 </div>
