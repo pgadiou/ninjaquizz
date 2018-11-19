@@ -40,3 +40,40 @@
  //  margin-left: 220px;
 
  // }
+
+.wrapper-home-actions {
+  background-color: #4f3d7b;
+  color: white;
+  font-family: "Ubuntu", sans-serif;
+  text-align:center;
+}
+
+.home-actions-play {
+  color: white;
+  background-color: $ninja-green;
+  opacity: 1;
+  min-width: 250px;
+  width:30vw;
+  height: 100px;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px;
+  margin: 50px;
+  border-radius: 20px;
+}
+
+.home-actions-log {
+  color: white;
+  background-color: #6e57a7;
+  opacity: 1;
+  min-width: 190px;
+  width:20vw;
+  height: 100px;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  padding: 10px;
+  margin: 50px auto;
+  border-radius: 20px;
+}

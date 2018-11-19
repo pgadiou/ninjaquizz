@@ -1,138 +1,164 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-      <div class="form-login">
-        <h2>Welcome to NinjaQuiz!</h2>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
-          <div class="form-inputs form-sign-up">
-             <!--  <%= f.input :name %> -->
-            <input class="form-control string optional" type="text" name="user[name]" id="user_name" placeholder="Enter your name">
-        <!-- <div>
-          <label for="code">Game #</label>
-        </div> -->
-            <input type="text" name="pin_number" class="form-control" placeholder="Game PIN">
-        <%#= f.input :email, required: true, autofocus: true %>
-        <%#= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-        <%#= f.input :password_confirmation, required: true %>
-            <div class="form-group radio_buttons optional user_avatar">
-              <label class="control-label radio_buttons optional avatar-label">Pick your ninja!</label>
-              <input type="hidden" name="user[avatar]" value="">
-              <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
+<% if resource.is_a?(User) %>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                  <div class="item active">
-                    <span class="radio">
-                      <label for="user_avatar_ninja1" class="avatar-block">
-                        <input class="radio_buttons optional hidden" type="radio" value="Ninja1" name="user[avatar]" id="user_avatar_ninja1">
-                        <%= image_tag 'Ninja1.png', class: "d-block w-100 avatar", alt: "Ninja1" %>
-                      </label>
-                    </span>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <div class="form-login">
+          <h2>Welcome to NinjaQuiz!</h2>
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs form-sign-up">
+               <!--  <%= f.input :name %> -->
+              <input class="form-control string optional" type="text" name="user[name]" id="user_name" placeholder="Enter your name">
+          <!-- <div>
+            <label for="code">Game #</label>
+          </div> -->
+              <input type="text" name="pin_number" class="form-control" placeholder="Game PIN">
+          <%#= f.input :email, required: true, autofocus: true %>
+          <%#= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+          <%#= f.input :password_confirmation, required: true %>
+              <div class="form-group radio_buttons optional user_avatar">
+                <label class="control-label radio_buttons optional avatar-label">Pick your ninja!</label>
+                <input type="hidden" name="user[avatar]" value="">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators -->
+
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <span class="radio">
+                        <label for="user_avatar_ninja1" class="avatar-block">
+                          <input class="radio_buttons optional hidden" type="radio" value="Ninja1" name="user[avatar]" id="user_avatar_ninja1">
+                          <%= image_tag 'Ninja1.png', class: "d-block w-100 avatar", alt: "Ninja1" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja2" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja2" name="user[avatar]" id="user_avatar_ninja2">
+                          <%= image_tag 'Ninja2.png', class: "d-block w-100 avatar", alt: "Ninja2" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja3" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja3" name="user[avatar]" id="user_avatar_ninja3">
+                          <%= image_tag 'Ninja3.png', class: "d-block w-100 avatar", alt: "Ninja3" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja4" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja4" name="user[avatar]" id="user_avatar_ninja4">
+                          <%= image_tag 'Ninja4.png', class: "d-block w-100 avatar", alt: "Ninja4" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja5" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja5" name="user[avatar]" id="user_avatar_ninja5">
+                          <%= image_tag 'Ninja5.png', class: "d-block w-100 avatar", alt: "Ninja5" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja6" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja6" name="user[avatar]" id="user_avatar_ninja6">
+                          <%= image_tag 'Ninja6.png', class: "d-block w-100 avatar", alt: "Ninja6" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja7" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja7" name="user[avatar]" id="user_avatar_ninja7">
+                          <%= image_tag 'Ninja7.png', class: "d-block w-100 avatar", alt: "Ninja7" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja8" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja8" name="user[avatar]" id="user_avatar_ninja8">
+                          <%= image_tag 'Ninja8.png', class: "d-block w-100 avatar", alt: "Ninja8" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja9" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja9" name="user[avatar]" id="user_avatar_ninja9">
+                          <%= image_tag 'Ninja9.png', class: "d-block w-100 avatar", alt: "Ninja9" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja10" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja10" name="user[avatar]" id="user_avatar_ninja10">
+                          <%= image_tag 'Ninja10.png', class: "d-block w-100 avatar", alt: "Ninja10" %>
+                        </label>
+                      </span>
+                    </div>
+                    <div class="item">
+                      <span class="radio">
+                        <label for="user_avatar_ninja11" class="avatar-block">
+                          <input class="radio_buttons optional" type="radio" value="Ninja11" name="user[avatar]" id="user_avatar_ninja11">
+                          <%= image_tag 'Ninja11.png', class: "d-block w-100 avatar", alt: "Ninja11" %>
+                        </label>
+                      </span>
+                    </div>
                   </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja2" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja2" name="user[avatar]" id="user_avatar_ninja2">
-                        <%= image_tag 'Ninja2.png', class: "d-block w-100 avatar", alt: "Ninja2" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja3" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja3" name="user[avatar]" id="user_avatar_ninja3">
-                        <%= image_tag 'Ninja3.png', class: "d-block w-100 avatar", alt: "Ninja3" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja4" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja4" name="user[avatar]" id="user_avatar_ninja4">
-                        <%= image_tag 'Ninja4.png', class: "d-block w-100 avatar", alt: "Ninja4" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja5" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja5" name="user[avatar]" id="user_avatar_ninja5">
-                        <%= image_tag 'Ninja5.png', class: "d-block w-100 avatar", alt: "Ninja5" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja6" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja6" name="user[avatar]" id="user_avatar_ninja6">
-                        <%= image_tag 'Ninja6.png', class: "d-block w-100 avatar", alt: "Ninja6" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja7" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja7" name="user[avatar]" id="user_avatar_ninja7">
-                        <%= image_tag 'Ninja7.png', class: "d-block w-100 avatar", alt: "Ninja7" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja8" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja8" name="user[avatar]" id="user_avatar_ninja8">
-                        <%= image_tag 'Ninja8.png', class: "d-block w-100 avatar", alt: "Ninja8" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja9" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja9" name="user[avatar]" id="user_avatar_ninja9">
-                        <%= image_tag 'Ninja9.png', class: "d-block w-100 avatar", alt: "Ninja9" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja10" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja10" name="user[avatar]" id="user_avatar_ninja10">
-                        <%= image_tag 'Ninja10.png', class: "d-block w-100 avatar", alt: "Ninja10" %>
-                      </label>
-                    </span>
-                  </div>
-                  <div class="item">
-                    <span class="radio">
-                      <label for="user_avatar_ninja11" class="avatar-block">
-                        <input class="radio_buttons optional" type="radio" value="Ninja11" name="user[avatar]" id="user_avatar_ninja11">
-                        <%= image_tag 'Ninja11.png', class: "d-block w-100 avatar", alt: "Ninja11" %>
-                      </label>
-                    </span>
-                  </div>
+            <!--  <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                  </ol> -->
+            <!-- Controls -->
+                  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                  </a>
+                  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                  </a>
                 </div>
-          <!--  <ol class="carousel-indicators">
-                  <li data-target="#carousel-example-generic" data-slide-to="0" class="></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol> -->
-          <!-- Controls -->
-                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                  <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                  <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
+              </div>
+              <div class="form-actions">
+                <%= f.button :submit, "Join game!", class: "btn btn-primary" %>
               </div>
             </div>
-            <div class="form-actions">
-              <%= f.button :submit, "Join game!", class: "btn btn-primary" %>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+  <!--   <%= render "devise/shared/links" %> -->
       </div>
-<!--   <%= render "devise/shared/links" %> -->
     </div>
   </div>
-</div>
+
+<% else %>
+
+  <div class="container-login-form">
+    <div class="form-login-admin">
+      <h2>Welcome to NinjaQuiz!</h2>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+          <div class="form-inputs form-sign-up">
+            <%= f.input :name , required: true%>
+            <%= f.input :email, required: true, autofocus: true %>
+            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+            <%= f.input :password_confirmation, required: true %>
+                      <div class="form-actions">
+            <%= f.button :submit, "Register", class: "btn btn-primary" %>
+          </div>
+        </div>
+
+        <% end %>
+    </div>
+  <!--   <%= render "devise/shared/links" %> -->
+  </div>
+
+<% end %>

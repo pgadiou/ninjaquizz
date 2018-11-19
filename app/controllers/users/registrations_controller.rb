@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @quiz = Quiz.find_by(pin_number: params[:pin_number])
     build_resource(sign_up_params)
     if @quiz
+      @language = @quiz.language
       resource.email = SecureRandom.hex(10) + "@gmail.com"
       resource.password = SecureRandom.hex(10)
       resource.quiz = @quiz
@@ -100,10 +101,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
       event: "new_team",
       admin_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_admin_wait_room",
-          locals: {player: @player, quiz: @quiz, nb_players: @quiz.users.length}),
+          locals: {player: @player, quiz: @quiz, nb_players: @quiz.users.length, language: @language}),
       player_partial: ApplicationController.renderer.render(
           partial: "quiz_questions/quiz_question_player_wait_room",
-          locals: {nb_players: @quiz.users.length}),
+          locals: {nb_players: @quiz.users.length, language: @language}),
       current_user_id: @player.id,
       })
   end

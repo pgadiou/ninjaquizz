@@ -1,19 +1,16 @@
 Rails.application.routes.draw do
+  devise_for :admins
   devise_for :users, :controllers => { registrations: 'users/registrations' }
-  devise_scope :user do
-    authenticated :user do
-      root :to => 'pages#home'
-    end
-    unauthenticated :user do
-      root :to => 'users/registrations#new', as: :unauthenticated_root
-    end
-  end
 
+  root :to => "pages#home"
   resources :quizzes do
     member do
       get :show_results
     end
   end
+
+put 'admins/:id', to: 'admins#select_quiz', as: :select_quiz
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :quiz_questions, only: :show do
     resources :quiz_answers, only: :create
@@ -23,6 +20,7 @@ Rails.application.routes.draw do
       get :show_correct_answer
     end
   end
+  resources :admins
 
   resources :rounds, only: :show do
     member do

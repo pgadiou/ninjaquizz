@@ -1,19 +1,18 @@
-<% if User.where(user_id: current_user.id) == nil %>
-  <% redirect_to new_user_registration %>
+<% if current_user %>
+  <% current_user.destroy %>
 <% end %>
+
+
+
 <div class="home-container">
-  <div class="avatar-home">
-    <%= link_to quiz_path(current_user.quizzes.last.id) do %>
-      <%=  image_tag "Ninja1.png" %>
+  <div class="wrapper-home-actions">
+    <h2>Welcome to NinjaQuiz!</h2>
+    <%= link_to new_user_registration_path do%>
+      <div class="home-actions-play">Play</div>
     <% end %>
-  </div>
-  <div class="home-title">
-    <h1>NinjaQuiz</h1>
-    <h4>Show who's the boss. Become a ninja!</h4>
-    <!-- <i class="fa fa-mobile" aria-hidden="true"></i> -->
-  </div>
-  <div class="avatar-home">
-    <%= image_tag "Ninja5.png" %>
+    <%= link_to new_admin_session_path do%>
+      <div class="home-actions-log">Admin</div>
+    <% end %>
   </div>
 </div>
 
