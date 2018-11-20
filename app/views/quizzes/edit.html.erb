@@ -69,10 +69,21 @@
 </div>
 <div class="wrapper-rounds-edit">
   <div class="container-rounds-edit">
+    <% @quiz.rounds.each do |round| %>
     <div class="container-round-edit-details">
-      <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        <%= @quiz.rounds.first.category_id %>
+      <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
+        Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
       </button>
     </div>
+    <div class="container-round-edit-questions" id="round<%=round.id%>">
+      <% round.quiz_questions.each do |quiz_question| %>
+        <div class="container-round-edit-question">
+          <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#question<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
+            <%=Question.find(quiz_question.question_id).content%>
+          </button>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
   </div>
 </div>
