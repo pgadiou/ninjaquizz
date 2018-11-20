@@ -70,20 +70,39 @@
 <div class="wrapper-rounds-edit">
   <div class="container-rounds-edit">
     <% @quiz.rounds.each do |round| %>
-    <div class="container-round-edit-details">
-      <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
-        Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
-      </button>
-    </div>
-    <div class="container-round-edit-questions" id="round<%=round.id%>">
-      <% round.quiz_questions.each do |quiz_question| %>
-        <div class="container-round-edit-question">
-          <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#question<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
-            <%=Question.find(quiz_question.question_id).content%>
-          </button>
-        </div>
-      <% end %>
-    </div>
+      <div class="container-round-edit-details">
+        <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
+          Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
+        </button>
+        <button class="btn round-edit-details-edit-button" type="button" id="edit-round<%=round.id%>">
+          Edit round category
+        </button>
+      </div>
+      <div class="container-round-edit-questions collapse" id="round<%=round.id%>">
+        <% round.quiz_questions.each do |quiz_question| %>
+          <div class="container-round-edit-question">
+            <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#quiz_question<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
+              <%question = Question.find(quiz_question.question_id)%>
+              <%=question.content%>
+            </button>
+            <button class="btn round-edit-question-details-edit-button" type="button" id="edit-question<%=quiz_question.id%>">
+              Edit question
+            </button>
+          </div>
+          <div class="container-round-edit-question-answers collapse" id="quiz_question<%=quiz_question.id%>">
+            <% question.answers.each do |answer| %>
+              <div class="container-round-edit-question-answer">
+                <button class="btn round-edit-question-answer-details" type="button" data-toggle="collapse" data-target="#answer<%=answer.id%>" aria-expanded="false" aria-controls="collapseExample">
+                  <%=answer.content%>
+                </button>
+                <button class="btn round-edit-question-answer-details-edit-button" type="button" id="edit-answer<%=answer.id%>">
+                  Edit answer
+                </button>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -90,10 +90,11 @@
 
 .container-round-edit-details {
   margin: 10px 5px;
+  display:flex;
 }
 
 .round-edit-details {
-  width:100%;
+  width:80%;
   background-color: #6e57a7;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -103,17 +104,36 @@
   margin: 0px 5px;
 }
 
+.round-edit-details-edit-button {
+  color: white;
+  background-color: #19e2213d;
+  opacity: 1;
+  /* min-width: 190px; */
+  width: 20%;
+  max-width: 40vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  // margin:0px 70px;
+  border-radius: 20px;
+  font-size:14px;
+  border: 0px none;
+}
+
 .container-round-edit-questions {
-  width: 70%;
+  width: 80%;
   margin-left: 10px;
 }
 
 .container-round-edit-question {
   margin: 10px 5px;
+  display: flex;
 }
 
 .round-edit-question-details {
-  width:100%;
+  width:80%;
   background-color: #917aca;
   border: 1px solid #ccc;
   border-radius: 20px;
@@ -122,3 +142,63 @@
   font-size:14px;
   margin: 0px 5px;
 }
+
+.round-edit-question-details-edit-button {
+  color: white;
+  background-color: #19e2213d;
+  opacity: 1;
+  /* min-width: 190px; */
+  width: 20%;
+  max-width: 40vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  // margin:0px 70px;
+  border-radius: 20px;
+  font-size:14px;
+  border: 0px none;
+  margin-right:5px;
+}
+
+.container-round-edit-question-answers {
+  width: 80%;
+  margin-left: 10px;
+}
+
+.container-round-edit-question-answer {
+  margin: 10px 5px;
+  display: flex;
+}
+
+.round-edit-question-answer-details {
+  width:80%;
+  background-color: #917aca;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  height: 80px;
+  border: 0px none;
+  font-size:14px;
+  margin: 0px 5px;
+}
+
+.round-edit-question-answer-details-edit-button {
+  color: white;
+  background-color: #19e2213d;
+  opacity: 1;
+  /* min-width: 190px; */
+  width: 20%;
+  max-width: 40vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  // margin:0px 70px;
+  border-radius: 20px;
+  font-size:14px;
+  border: 0px none;
+  margin-right:5px;
+}
+
