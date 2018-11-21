@@ -22,6 +22,10 @@ put 'admins/:id', to: 'admins#select_quiz', as: :select_quiz
   end
   resources :admins
 
+  resources :questions
+
+  resources :answers
+
   resources :rounds, only: :show do
     member do
       get :show_round_results

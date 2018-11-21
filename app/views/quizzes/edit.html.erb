@@ -70,34 +70,64 @@
 <div class="wrapper-rounds-edit">
   <div class="container-rounds-edit">
     <% @quiz.rounds.each do |round| %>
-      <div class="container-round-edit-details">
-        <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
+      <div class="container-round-edit-details round-selector" id="round#{round.id}">
+        <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round-questions<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
           Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
         </button>
-        <button class="btn round-edit-details-edit-button" type="button" id="edit-round<%=round.id%>">
+        <button class="btn round-edit-details-edit-button" type="button" id="edit-button-round<%=round.id%>">
           Edit round category
         </button>
       </div>
-      <div class="container-round-edit-questions collapse" id="round<%=round.id%>">
+
+      <%=simple_form_for(round) do |f|%>
+      <div class="container-round-edit-details-form hidden" id="edit-round#{round.id}">
+        <div class="round-edit-details-form-category">
+          <%= f.association :category, label: false %>
+        </div>
+        <%= f.submit class: 'round-edit-details-form-save'%>
+      </div>
+      <% end %>
+
+      <div class="container-round-edit-questions collapse" id="round-questions<%=round.id%>">
         <% round.quiz_questions.each do |quiz_question| %>
-          <div class="container-round-edit-question">
-            <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#quiz_question<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
+          <div class="container-round-edit-question" id="quiz_question#{quiz_question.id}">
+            <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#quiz_question-answers<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
               <%question = Question.find(quiz_question.question_id)%>
               <%=question.content%>
             </button>
-            <button class="btn round-edit-question-details-edit-button" type="button" id="edit-question<%=quiz_question.id%>">
+            <button class="btn round-edit-question-details-edit-button" type="button" id="edit-button-question<%=quiz_question.id%>">
               Edit question
             </button>
+            <div class="container-round-edit-details" id="edit-round#{round.id}">
+              <%=simple_form_for(question) do |f|%>
+                <div class="btn round-edit-details">
+                  <%= f.input :content, placeholder: question.content, label: false %>
+                </div>
+                <button class="btn round-edit-details-edit-button" type="button" id="save-edit-button-question<%=quiz_question.id%>">
+                  <%= f.submit %>
+                </button>
+              <% end %>
+            </div>
           </div>
-          <div class="container-round-edit-question-answers collapse" id="quiz_question<%=quiz_question.id%>">
+          <div class="container-round-edit-question-answers collapse" id="quiz_question-answers<%=quiz_question.id%>">
             <% question.answers.each do |answer| %>
-              <div class="container-round-edit-question-answer">
+              <div class="container-round-edit-question-answer" id="answer#{answer.id}">
                 <button class="btn round-edit-question-answer-details" type="button" data-toggle="collapse" data-target="#answer<%=answer.id%>" aria-expanded="false" aria-controls="collapseExample">
                   <%=answer.content%>
                 </button>
-                <button class="btn round-edit-question-answer-details-edit-button" type="button" id="edit-answer<%=answer.id%>">
+                <button class="btn round-edit-question-answer-details-edit-button" type="button" id="edit-button-answer<%=answer.id%>">
                   Edit answer
                 </button>
+              </div>
+              <div class="container-round-edit-details" id="edit-round#{round.id}">
+<!--                 <%=simple_form_for(answer) do |f|%>
+                  <div class="btn round-edit-details">
+                    <%= f.input :content, placeholder: question.content, label: false %>
+                  </div>
+                  <button class="btn round-edit-details-edit-button" type="button" id="edit-button-round<%=round.id%>">
+                    <%= f.input :is_correct, as: :boolean, label: 'True' %>
+                  </button>
+                <% end %> -->
               </div>
             <% end %>
           </div>
@@ -106,3 +136,25 @@
     <% end %>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+
+    const showRoundEditForm = () => {
+      const rounds = document.getElementsByClassName('round-selector');
+      const showRoundForm = () => {
+        console.log(event.currentTarget);
+        var roundEditForm = event.currentTarget.nextAll('.container-round-edit-details-form').first;
+        roundEditForm.classList.remove("hidden");
+        event.currentTarget.add("hidden");
+      }
+      for (var i = 0; i< rounds.length; i++) {
+        rounds[i].addEventListener("click", showRoundForm);
+      }
+    }
+
+    showRoundEditForm();
+
+  </script>
+<% end %>
+
