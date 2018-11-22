@@ -1,0 +1,19 @@
+      <div class="container-round-edit-details round-selector">
+        <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round-questions<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
+          Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
+        </button>
+        <button class="btn round-edit-details-edit-button" type="button" id="edit-button-round<%=round.id%>">
+          Edit round category
+        </button>
+      </div>
+      <div class="wrapper-round-edit-details-form hidden">
+        <%=simple_form_for(round) do |f| %>
+        <div class="container-round-edit-details-form" id="edit-round#{round.id}">
+          <div class="round-edit-details-form-category">
+            <%= f.association :category, label: false %>
+          </div>
+          <%= f.submit 'Save', class: 'round-edit-details-form-save'%>
+          <div class="btn round-edit-details-form-cancel">Cancel</div>
+        </div>
+        <% end %>
+      </div>

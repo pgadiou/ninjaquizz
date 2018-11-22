@@ -1,0 +1,19 @@
+          <div class="container-round-edit-question question-selector">
+            <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#quiz_question-answers<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
+              <%=question.content%>
+            </button>
+            <button class="btn round-edit-question-details-edit-button" type="button" id="edit-button-question<%=quiz_question.id%>">
+              Edit question
+            </button>
+          </div>
+          <div class="wrapper-round-edit-question-details-form hidden">
+            <%=simple_form_for(question) do |f|%>
+              <div class="container-round-edit-question-details-form" id="edit-question#{round.id}">
+                  <div class="round-edit-question-details-form-content">
+                    <%= f.input :content, placeholder: question.content, label: false %>
+                  </div>
+                  <%= f.submit 'save', class: 'round-edit-question-details-form-save'%>
+                  <div class="btn round-edit-question-details-form-cancel">Cancel</div>
+              </div>
+            <% end %>
+          </div>

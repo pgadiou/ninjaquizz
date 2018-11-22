@@ -55,7 +55,7 @@
           </div>
           <div class="col-md-6 col-sm-3">
             <div class="quiz-detail-container">
-              <%= f.submit class: 'quiz-detail-save' %>
+              <%= f.submit' Save quiz parameters', class: 'quiz-detail-save' %>
 <!--                 <div class="quiz-detail-title">
                 </div> -->
               <div class="quiz-detail">
@@ -70,45 +70,13 @@
 <div class="wrapper-rounds-edit">
   <div class="container-rounds-edit">
     <% @quiz.rounds.each do |round| %>
-      <div class="container-round-edit-details round-selector" id="round#{round.id}">
-        <button class="btn round-edit-details" type="button" data-toggle="collapse" data-target="#round-questions<%=round.id%>" aria-expanded="false" aria-controls="collapseExample">
-          Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
-        </button>
-        <button class="btn round-edit-details-edit-button" type="button" id="edit-button-round<%=round.id%>">
-          Edit round category
-        </button>
+      <div id="round#{round.id}">
+        <%= render 'quizzes/edit_partials/round_details_edit', round: round %>
       </div>
-
-      <%=simple_form_for(round) do |f|%>
-      <div class="container-round-edit-details-form hidden" id="edit-round#{round.id}">
-        <div class="round-edit-details-form-category">
-          <%= f.association :category, label: false %>
-        </div>
-        <%= f.submit class: 'round-edit-details-form-save'%>
-      </div>
-      <% end %>
-
       <div class="container-round-edit-questions collapse" id="round-questions<%=round.id%>">
         <% round.quiz_questions.each do |quiz_question| %>
-          <div class="container-round-edit-question" id="quiz_question#{quiz_question.id}">
-            <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#quiz_question-answers<%=quiz_question.id%>" aria-expanded="false" aria-controls="collapseExample">
-              <%question = Question.find(quiz_question.question_id)%>
-              <%=question.content%>
-            </button>
-            <button class="btn round-edit-question-details-edit-button" type="button" id="edit-button-question<%=quiz_question.id%>">
-              Edit question
-            </button>
-            <div class="container-round-edit-details" id="edit-round#{round.id}">
-              <%=simple_form_for(question) do |f|%>
-                <div class="btn round-edit-details">
-                  <%= f.input :content, placeholder: question.content, label: false %>
-                </div>
-                <button class="btn round-edit-details-edit-button" type="button" id="save-edit-button-question<%=quiz_question.id%>">
-                  <%= f.submit %>
-                </button>
-              <% end %>
-            </div>
-          </div>
+          <%question = Question.find(quiz_question.question_id)%>
+          <%= render 'quizzes/edit_partials/question_details_edit', question: question, quiz_question: quiz_question %>
           <div class="container-round-edit-question-answers collapse" id="quiz_question-answers<%=quiz_question.id%>">
             <% question.answers.each do |answer| %>
               <div class="container-round-edit-question-answer" id="answer#{answer.id}">
@@ -142,18 +110,75 @@
 
     const showRoundEditForm = () => {
       const rounds = document.getElementsByClassName('round-selector');
+      const roundEditButtons = document.getElementsByClassName('round-edit-details-edit-button')
       const showRoundForm = () => {
-        console.log(event.currentTarget);
-        var roundEditForm = event.currentTarget.nextAll('.container-round-edit-details-form').first;
+        console.log(event.currentTarget.parentElement);
+        console.log(event.currentTarget.parentElement.nextElementSibling);
+        var roundEditForm = event.currentTarget.parentElement.nextElementSibling;
+        var roundPresentationDiv = event.currentTarget.parentElement;
         roundEditForm.classList.remove("hidden");
-        event.currentTarget.add("hidden");
+        roundPresentationDiv.classList.add("hidden");
       }
-      for (var i = 0; i< rounds.length; i++) {
-        rounds[i].addEventListener("click", showRoundForm);
+      for (var i = 0; i< roundEditButtons.length; i++) {
+        roundEditButtons[i].addEventListener("click", showRoundForm);
+      }
+    }
+
+    const cancelRoundEdit = () => {
+      const cancelRoundEditButtons = document.getElementsByClassName('round-edit-details-form-cancel');
+      const hideRoundForm = () => {
+        console.log(event.currentTarget.parentElement.parentElement.parentElement);
+        console.log(event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling);
+        var roundEditForm = event.currentTarget.parentElement.parentElement.parentElement;
+        var roundPresentationDiv = event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling;
+        roundEditForm.classList.add("hidden");
+        roundPresentationDiv.classList.remove("hidden");
+      }
+
+      for (var i = 0; i< cancelRoundEditButtons.length; i++) {
+        cancelRoundEditButtons[i].addEventListener("click", hideRoundForm);
+      }
+    }
+
+    const showQuestionEditForm = () => {
+      const questions = document.getElementsByClassName('question-selector');
+      const questionEditButtons = document.getElementsByClassName('round-edit-question-details-edit-button')
+      const showQuestionForm = () => {
+        console.log(event.currentTarget.parentElement);
+        console.log(event.currentTarget.parentElement.nextElementSibling);
+        var questionEditForm = event.currentTarget.parentElement.nextElementSibling;
+        var questionPresentationDiv = event.currentTarget.parentElement;
+        questionEditForm.classList.remove("hidden");
+        questionPresentationDiv.classList.add("hidden");
+      }
+      for (var i = 0; i< questionEditButtons.length; i++) {
+        questionEditButtons[i].addEventListener("click", showQuestionForm);
+      }
+    }
+
+    const cancelQuestionEdit = () => {
+      const cancelQuestionEditButtons = document.getElementsByClassName('round-edit-question-details-form-cancel');
+      const hideQuestionForm = () => {
+        console.log(event.currentTarget.parentElement.parentElement.parentElement);
+        console.log(event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling);
+        var questionEditForm = event.currentTarget.parentElement.parentElement.parentElement;
+        var questionPresentationDiv = event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling;
+        questionEditForm.classList.add("hidden");
+        questionPresentationDiv.classList.remove("hidden");
+      }
+
+      for (var i = 0; i< cancelQuestionEditButtons.length; i++) {
+        cancelQuestionEditButtons[i].addEventListener("click", hideQuestionForm);
       }
     }
 
     showRoundEditForm();
+
+    cancelRoundEdit();
+
+    showQuestionEditForm();
+
+    cancelQuestionEdit();
 
   </script>
 <% end %>
