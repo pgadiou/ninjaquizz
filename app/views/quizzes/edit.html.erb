@@ -79,24 +79,7 @@
           <%= render 'quizzes/edit_partials/question_details_edit', question: question, quiz_question: quiz_question %>
           <div class="container-round-edit-question-answers collapse" id="quiz_question-answers<%=quiz_question.id%>">
             <% question.answers.each do |answer| %>
-              <div class="container-round-edit-question-answer" id="answer#{answer.id}">
-                <button class="btn round-edit-question-answer-details" type="button" data-toggle="collapse" data-target="#answer<%=answer.id%>" aria-expanded="false" aria-controls="collapseExample">
-                  <%=answer.content%>
-                </button>
-                <button class="btn round-edit-question-answer-details-edit-button" type="button" id="edit-button-answer<%=answer.id%>">
-                  Edit answer
-                </button>
-              </div>
-              <div class="container-round-edit-details" id="edit-round#{round.id}">
-<!--                 <%=simple_form_for(answer) do |f|%>
-                  <div class="btn round-edit-details">
-                    <%= f.input :content, placeholder: question.content, label: false %>
-                  </div>
-                  <button class="btn round-edit-details-edit-button" type="button" id="edit-button-round<%=round.id%>">
-                    <%= f.input :is_correct, as: :boolean, label: 'True' %>
-                  </button>
-                <% end %> -->
-              </div>
+              <%= render 'quizzes/edit_partials/answer_details_edit', answer: answer %>
             <% end %>
           </div>
         <% end %>
@@ -172,6 +155,38 @@
       }
     }
 
+    const showAnswerEditForm = () => {
+      const answers = document.getElementsByClassName('answer-selector');
+      const answerEditButtons = document.getElementsByClassName('round-edit-question-answer-details-edit-button')
+      const showAnswerForm = () => {
+        console.log(event.currentTarget.parentElement);
+        console.log(event.currentTarget.parentElement.nextElementSibling);
+        var answerEditForm = event.currentTarget.parentElement.nextElementSibling;
+        var answerPresentationDiv = event.currentTarget.parentElement;
+        answerEditForm.classList.remove("hidden");
+        answerPresentationDiv.classList.add("hidden");
+      }
+      for (var i = 0; i< answerEditButtons.length; i++) {
+        answerEditButtons[i].addEventListener("click", showAnswerForm);
+      }
+    }
+
+    const cancelAnswerEdit = () => {
+      const cancelAnswerEditButtons = document.getElementsByClassName('round-edit-question-answer-details-form-cancel');
+      const hideAnswerForm = () => {
+        console.log(event.currentTarget.parentElement.parentElement.parentElement);
+        console.log(event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling);
+        var questionEditForm = event.currentTarget.parentElement.parentElement.parentElement;
+        var questionPresentationDiv = event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling;
+        questionEditForm.classList.add("hidden");
+        questionPresentationDiv.classList.remove("hidden");
+      }
+
+      for (var i = 0; i< cancelAnswerEditButtons.length; i++) {
+        cancelAnswerEditButtons[i].addEventListener("click", hideAnswerForm);
+      }
+    }
+
     showRoundEditForm();
 
     cancelRoundEdit();
@@ -179,6 +194,10 @@
     showQuestionEditForm();
 
     cancelQuestionEdit();
+
+    showAnswerEditForm();
+
+    cancelAnswerEdit();
 
   </script>
 <% end %>

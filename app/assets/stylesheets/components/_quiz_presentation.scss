@@ -303,7 +303,7 @@
   margin-left: 10px;
 }
 
-.container-round-edit-question-answer {
+.container-round-edit-question-answer-details {
   margin: 10px 5px;
   display: flex;
 }
@@ -317,6 +317,9 @@
   border: 0px none;
   font-size:14px;
   margin: 0px 5px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 80px;
 }
 
 .round-edit-question-answer-details-edit-button {
@@ -338,3 +341,97 @@
   margin-right:5px;
 }
 
+.container-round-edit-question-answer-details-form{
+  margin: 10px 5px;
+  display:flex;
+  height:80px;
+}
+
+.round-edit-question-answer-details-form-content{
+  width:80%;
+  margin: 0px 5px;
+  .form-group {
+    width:100%;
+    background-color: #ffffffc4;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    height: 80px;
+    border: 0px none;
+    font-size:14px;
+    text-align: center;
+  }
+  .form-control {
+    width:100%;
+    height:100%;
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 0px none;
+    box-shadow: none;
+    font-size:14px;
+    text-align: center;
+  }
+}
+
+.round-edit-question-answer-details-form-content-is-correct {
+  .form-group {
+    max-width: 40vw;
+    height: 80px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #000000;
+    background-color: #ffffffc4;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin: 0px 5px;
+    overflow:hidden;
+    padding: 6px 12px;
+    text-align: center;
+  }
+  .form-control {
+    width:100%;
+    height:100%;
+    padding: 6px 12px;
+    background-color: transparent;
+    border: 0px none;
+    box-shadow: none;
+    font-size:14px;
+  }
+}
+
+.round-edit-question-answer-details-form-save{
+  color: white;
+  background-color: $ninja-green;
+  opacity: 1;
+  /* min-width: 190px; */
+  width: 120px;
+  max-width: 40vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  // margin:0px 70px;
+  border-radius: 20px;
+  font-size:14px;
+  border: 0px none;
+}
+
+.round-edit-question-answer-details-form-cancel{
+  color: white;
+  background-color: $red;
+  opacity: 1;
+  /* min-width: 190px; */
+  width: 120px;
+  max-width: 40vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  // margin:0px 70px;
+  border-radius: 20px;
+  font-size:14px;
+  border: 0px none;
+  margin: 0px 5px;
+}
