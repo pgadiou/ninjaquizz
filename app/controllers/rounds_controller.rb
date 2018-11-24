@@ -1,8 +1,22 @@
 class RoundsController < ApplicationController
+  before_action :set_round, only: [:show, :edit, :update, :destroy, :show_round_results]
+
+ # def new
+ #    @round = Round.new
+ #    authorize @round
+ #  end
+
+ #  def create
+ #    @round = Round.new(quiz_params)
+ #    authorize @round
+ #    if @round.save
+ #      redirect_to quiz_path(@round)
+ #    else
+ #      render :new
+ #    end
+ #  end
 
   def show
-    @round = Round.find(params[:id])
-    @quiz = @round.quiz
     @language = @quiz.language
     @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
     @category = @round.category.name
@@ -12,8 +26,6 @@ class RoundsController < ApplicationController
   end
 
   def show_round_results
-    @round = Round.find(params[:id])
-    @quiz = @round.quiz
     @language = @quiz.language
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
     @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
@@ -24,8 +36,35 @@ class RoundsController < ApplicationController
     broadcast_round_results
   end
 
+  def update
+  #   authorize @quiz
+    if @round.update(round_params)
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.js
+      end
+    else
+    render :edit
+    end
+  end
+
+  # def destroy
+  #   authorize @quiz
+  #   @quiz.destroy
+  #   redirect_to new_quiz_path
+  # end
+
 
 private
+
+  def round_params
+    params.require(:round).permit(:category_id)
+  end
+
+  def set_round
+    @round = Round.find(params[:id])
+    @quiz = @round.quiz
+  end
 
   def broadcast_round
     ActionCable.server.broadcast("quiz_room_#{@round.quiz_id}", {

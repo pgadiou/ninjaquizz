@@ -1,0 +1,11 @@
+function refreshQuestionDiv(questionHTML) {
+  const questionDiv = document.getElementById('question<%=@question.id%>');
+  console.log(questionDiv)
+  questionDiv.innerHTML = questionHTML;
+}
+
+refreshQuestionDiv('<%= j render "quizzes/edit_partials/question_details_edit", question: @question %>');
+
+showQuestionEditForm();
+
+cancelQuestionEdit();

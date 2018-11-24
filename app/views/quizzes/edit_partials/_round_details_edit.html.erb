@@ -7,8 +7,8 @@
   </button>
 </div>
 <div class="wrapper-round-edit-details-form hidden">
-  <%=simple_form_for(round) do |f| %>
-    <div class="container-round-edit-details-form" id="edit-round#{round.id}">
+  <%=simple_form_for(round, remote: true) do |f| %>
+    <div class="container-round-edit-details-form" id="edit-round<%=round.id%>">
       <div class="round-edit-details-form-category">
         <%= f.association :category, label: false %>
       </div>

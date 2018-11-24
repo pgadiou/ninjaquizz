@@ -1,0 +1,11 @@
+function refreshRoundDiv(roundHTML) {
+  const roundDiv = document.getElementById('round<%=@round.id%>');
+  console.log(roundDiv)
+  roundDiv.innerHTML = roundHTML;
+}
+
+refreshRoundDiv('<%= j render "quizzes/edit_partials/round_details_edit", round: @round %>');
+
+showRoundEditForm();
+
+cancelRoundEdit();

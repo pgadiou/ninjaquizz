@@ -1,0 +1,45 @@
+class AnswersController < ApplicationController
+  before_action :set_answer, only: [:show, :edit, :update, :destroy]
+
+ # def new
+ #    @answer = Answer.new
+ #    authorize @answer
+ #  end
+
+ #  def create
+ #    @answer = Answer.new(answer_params)
+ #    authorize @answer
+ #    if @answer.save
+ #      redirect_to request.referer
+ #    else
+ #      render :new
+ #    end
+ #  end
+
+
+  def update
+  #   authorize @answer
+    if @answer.update(answer_params)
+      redirect_to request.referer
+    else
+    render :edit
+    end
+  end
+
+  # def destroy
+  #   authorize @answer
+  #   @answer.destroy
+  #   redirect_to new_answer_path
+  # end
+
+
+private
+
+  def answer_params
+    params.require(:answer).permit(:content, :is_correct)
+  end
+
+  def set_answer
+    @answer = Answer.find(params[:id])
+  end
+end

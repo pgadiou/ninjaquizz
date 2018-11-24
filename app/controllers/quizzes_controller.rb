@@ -2,16 +2,16 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :show_results]
 
  # def new
- #    @service = Service.new
- #    authorize @service
+ #    @quiz = Quiz.new
+ #    authorize @quiz
  #  end
 
  #  def create
- #    @service = Service.new(service_params)
- #    @service.user_id = current_user.id
- #    authorize @service
- #    if @service.save
- #      redirect_to service_path(@service)
+ #    @quiz = Quiz.new(quiz_params)
+ #    @quiz.admin_id = current_admin.id
+ #    authorize @quiz
+ #    if @quiz.save
+ #      redirect_to quiz_path(@quiz)
  #    else
  #      render :new
  #    end
@@ -40,7 +40,7 @@ class QuizzesController < ApplicationController
   end
 
   # def edit
-  #     authorize @service
+  #     authorize @quiz
   # end
 
   def update
@@ -53,9 +53,9 @@ class QuizzesController < ApplicationController
   end
 
   # def destroy
-  #   authorize @service
-  #   @service.destroy
-  #   redirect_to new_service_path
+  #   authorize @quiz
+  #   @quiz.destroy
+  #   redirect_to new_quiz_path
   # end
 
 private

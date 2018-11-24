@@ -11,7 +11,7 @@
   </button>
 </div>
 <div class="wrapper-round-edit-question-answer-details-form hidden">
-  <%=simple_form_for(answer) do |f| %>
+  <%=simple_form_for(answer, remote: true) do |f| %>
     <div class="container-round-edit-question-answer-details-form" id="edit-answer#{answer.id}">
       <div class="round-edit-question-answer-details-form-content">
         <%= f.input :content, placeholder: answer.content, label: false %>

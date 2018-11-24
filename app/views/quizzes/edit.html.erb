@@ -70,16 +70,20 @@
 <div class="wrapper-rounds-edit">
   <div class="container-rounds-edit">
     <% @quiz.rounds.each do |round| %>
-      <div id="round#{round.id}">
+      <div id="round<%=round.id%>">
         <%= render 'quizzes/edit_partials/round_details_edit', round: round %>
       </div>
       <div class="container-round-edit-questions collapse" id="round-questions<%=round.id%>">
         <% round.quiz_questions.each do |quiz_question| %>
           <%question = Question.find(quiz_question.question_id)%>
-          <%= render 'quizzes/edit_partials/question_details_edit', question: question, quiz_question: quiz_question %>
-          <div class="container-round-edit-question-answers collapse" id="quiz_question-answers<%=quiz_question.id%>">
+          <div id="question<%=question.id%>">
+            <%= render 'quizzes/edit_partials/question_details_edit', question: question %>
+          </div>
+          <div class="container-round-edit-question-answers collapse" id="question-answers<%=question.id%>">
             <% question.answers.each do |answer| %>
-              <%= render 'quizzes/edit_partials/answer_details_edit', answer: answer %>
+              <div id="answer<%=answer.id%>">
+                <%= render 'quizzes/edit_partials/answer_details_edit', answer: answer %>
+              </div>
             <% end %>
           </div>
         <% end %>
