@@ -20,7 +20,10 @@ class AnswersController < ApplicationController
   def update
   #   authorize @answer
     if @answer.update(answer_params)
-      redirect_to request.referer
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.js
+      end
     else
     render :edit
     end
