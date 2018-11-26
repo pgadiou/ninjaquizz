@@ -87,10 +87,45 @@
             <% end %>
           </div>
         <% end %>
+        <div class="container-new-question">
+          <div class="btn new-round">
+            <i class="fas fa-plus-circle"></i>Add new round
+          </div>
+        </div>
       </div>
     <% end %>
+    <div class="container-new-round">
+      <div class="btn new-round" data-toggle="modal" data-target="#newRoundModal">
+        <i class="fas fa-plus-circle"></i>Add new round
+      </div>
+    </div>
   </div>
 </div>
+
+<div class="modal fade" id="newRoundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-new-round" role="document">
+    <div class="modal-new-round-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= simple_form_for(@new_round, remote: true) do |f| %>
+        <div class="modal-body">
+          <%= f.association :category %>
+          <%= f.input :no_of_questions %>
+          <%= f.input :quiz_id, as: :hidden, input_html: {value: f.object.quiz_id || params[:id]} %>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit class: 'quiz-detail-save' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
 
 <% content_for :after_js do %>
   <script>

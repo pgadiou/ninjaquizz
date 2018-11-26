@@ -1,0 +1,7 @@
+function refreshNewRoundModal(newAnswersHTML) {
+  const newRoundModal = document.getElementById('newRoundModal');
+  console.log(newRoundModal)
+  newRoundModal.innerHTML = newAnswersHTML;
+}
+
+refreshNewRoundModal('<%= j render "quizzes/edit_partials/new_questions_modal", round: @round %>');

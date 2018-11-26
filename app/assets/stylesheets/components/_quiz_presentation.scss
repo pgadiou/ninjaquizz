@@ -435,3 +435,109 @@
   border: 0px none;
   margin: 0px 5px;
 }
+
+.container-new-round {
+  margin: 10px 5px;
+  display:flex;
+}
+
+.new-round {
+  width:80%;
+  background-color: #19e2213d;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  border: 0px none;
+  font-size:14px;
+  margin: 0px 5px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 80px;
+  .fas{
+    margin-right: 10px;
+  }
+}
+
+.modal-new-round-content {
+  position: relative;
+  border: 1px solid #999;
+  background-color: #b8a7d2;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+  .form-group {
+    font-size: 14px;
+    font-weight: none;
+  }
+  .form-control {
+    font-size: 14px;
+    font-weight: none;
+  }
+}
+
+.modal-new-questions-content {
+  position: relative;
+  border: 1px solid #999;
+  background-color: #b8a7d2;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+  .form-group {
+    font-size: 14px;
+    font-weight: none;
+  }
+  .form-control {
+    font-size: 14px;
+    font-weight: none;
+  }
+}
+
+.container-new-question{
+display: flex;
+height:100%;
+}
+
+.new-question-title {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+    width: 35%;
+    margin-top: 25px;
+    position: relative;
+    background-color: #02020257;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+  // vertical-align: middle;
+  // text-align: center;
+
+}
+
+.new-question-category {
+  margin-right:10px;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-question-save {
+    color: white;
+    background-color: $ninja-green;
+    opacity: 1;
+  /* min-width: 190px; */
+    height: 40px;
+    line-height: 40px;
+    margin-top: 25px;
+    margin-left:10px;
+    margin-right:10px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+}

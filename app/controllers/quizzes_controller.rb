@@ -36,7 +36,8 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-
+    @new_round = Round.new
+    @new_question = Question.new
   end
 
   # def edit

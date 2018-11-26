@@ -6,15 +6,18 @@ class RoundsController < ApplicationController
  #    authorize @round
  #  end
 
- #  def create
- #    @round = Round.new(quiz_params)
+ def create
+  @round = Round.new(round_params)
  #    authorize @round
- #    if @round.save
- #      redirect_to quiz_path(@round)
- #    else
- #      render :new
- #    end
- #  end
+  if @round.save
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
+  else
+    render :new
+  end
+ end
 
   def show
     @language = @quiz.language
@@ -58,7 +61,7 @@ class RoundsController < ApplicationController
 private
 
   def round_params
-    params.require(:round).permit(:category_id)
+    params.require(:round).permit(:category_id, :no_of_questions, :quiz_id)
   end
 
   def set_round

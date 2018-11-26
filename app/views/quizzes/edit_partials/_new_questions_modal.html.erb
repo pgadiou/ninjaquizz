@@ -1,0 +1,31 @@
+  <div class="modal-dialog modal-dialog-centered modal-new-questions" role="document">
+    <div class="modal-new-questions-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% (1..round.no_of_questions).each do |i| %>
+          <%= simple_form_for(Question.new, remote: true) do |f| %>
+            <div class="container-new-question">
+              <div class="new-question-title">
+                New Question <%= i%>
+              </div>
+              <div class="new-question-category">
+                <%= f.association :category %>
+              </div>
+              <div class="new-question-type">
+                <%= f.input :question_type, collection: ["Random", "Manual"] %>
+              </div>
+              <div class="new-question-type">
+                <%= f.submit class: 'new-question-save' %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+  </div>
