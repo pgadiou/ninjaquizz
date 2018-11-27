@@ -11,7 +11,12 @@ class QuestionsController < ApplicationController
   def create
     # authorize @round
     if question_params[:question_type] == "Random"
-      url = 'https://opentdb.com/api.php?amount=1&type=multiple'
+      @category = Category.find(question_params[:category_id])
+      if @category.api_id == nil
+        url = 'https://opentdb.com/api.php?amount=1&type=multiple'
+      else
+        url = 'https://opentdb.com/api.php?amount=1&category='+@category.api_id.to_s+'&type=multiple'
+      end
       question_serialized = open(url).read
       question = JSON.parse(question_serialized)
       @question = Question.new(

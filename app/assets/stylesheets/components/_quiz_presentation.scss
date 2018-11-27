@@ -445,7 +445,7 @@
 
 .new-round {
   width:80%;
-  background-color: #19e2213d;
+  background-color: #00f17978;
   border: 1px solid #ccc;
   border-radius: 20px;
   border: 0px none;
@@ -522,6 +522,14 @@ height:100%;
 
 .new-question-category {
   margin-right:10px;
+  width:30%
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-question-type {
+  margin-right:10px;
+  width:20%
   // vertical-align: middle;
   // text-align: center;
 }
@@ -576,7 +584,7 @@ height:100%;
     height: 40px;
     line-height: 40px;
     margin-right: 10px;
-    width: 20%;
+    width: 40%;
     margin-top: 25px;
     position: relative;
     background-color: #02020257;

@@ -10,6 +10,9 @@ Quiz.destroy_all
 Question.destroy_all
 User.destroy_all
 Admin.destroy_all
+Category.destroy_all
+
+
 
 barman = Admin.create!(
         email: "example@gmail.com",
@@ -39,6 +42,17 @@ culture.save!
 api_category = Category.new(name: "API")
 api_category.save!
 
+require 'open-uri'
+require 'json'
+
+url = 'https://opentdb.com/api_category.php'
+categories_serialized = open(url).read
+categories = JSON.parse(categories_serialized)
+
+categories["trivia_categories"].each do |category|
+  Category.create(name: category["name"],
+    api_id: category["id"])
+end
 # new_quiz = Quiz.new(name: "random question from api",
               # no_of_rounds: 1,
               # time_per_question: 10,
