@@ -1,0 +1,9 @@
+function refreshNewQuestionForm(questionHTML) {
+  const newQuestionForm = document.getElementById('wrapper_new_question<%=@question_position%>');
+  console.log(newQuestionForm)
+  newQuestionForm.innerHTML = questionHTML;
+}
+
+<% if @display_form == false %>
+  refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question", question_position: @question_position, question: @question, round_id: @question_round_id %>');
+<% end%>

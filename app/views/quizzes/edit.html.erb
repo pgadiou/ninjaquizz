@@ -226,6 +226,17 @@
       }
     }
 
+    const closeNewRoundModal = () => {
+      const newRoundModal = document.getElementById('newRoundModal');
+      const newRoundModalForms = newRoundModal.getElementsByClassName('simple_form');
+      if (newRoundModalForms.length == 0) {
+        location.reload()
+      } else {
+        if (window.confirm("You haven't properly saved all of the new questions. Are you sure you want to exit?")) {
+          location.reload()}
+      }
+    }
+
     showRoundEditForm();
 
     cancelRoundEdit();

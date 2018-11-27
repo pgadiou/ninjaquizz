@@ -5,6 +5,19 @@ class QuizQuestionsController < ApplicationController
     broadcast_before_question
   end
 
+  def create
+    @quiz_question = QuizQuestion.new(quiz_question_params)
+    @quiz_question_position = quiz_question_params[:position]
+    if @quiz_question.save
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.js
+      end
+    else
+      render :edit
+    end
+  end
+
   def show_question
     broadcast_show_question
   end
@@ -24,6 +37,10 @@ class QuizQuestionsController < ApplicationController
   end
 
   private
+
+  def quiz_question_params
+    params.require(:quiz_question).permit(:round_id, :question_id, :position)
+  end
 
   def set_quiz_question
     @quiz_question = QuizQuestion.find(params[:id])

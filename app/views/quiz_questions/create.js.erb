@@ -1,0 +1,7 @@
+function refreshsavedQuestionForm(questionHTML) {
+  const savedQuestionForm = document.getElementById('wrapper_new_question<%=@quiz_question_position%>');
+  console.log(savedQuestionForm)
+  savedQuestionForm.innerHTML = questionHTML;
+}
+
+refreshsavedQuestionForm('<%= j render "quizzes/edit_partials/newly_saved_question", question_position: @quiz_question_position, question: @quiz_question.question %>');

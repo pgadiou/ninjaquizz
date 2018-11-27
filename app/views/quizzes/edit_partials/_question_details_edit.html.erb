@@ -1,6 +1,6 @@
           <div class="container-round-edit-question question-selector">
             <button class="btn round-edit-question-details" type="button" data-toggle="collapse" data-target="#question-answers<%=question.id%>" aria-expanded="false" aria-controls="collapseExample">
-              <%=question.content%>
+              <%=sanitize question.content%>
             </button>
             <button class="btn round-edit-question-details-edit-button" type="button" id="edit-button-question<%=question.id%>">
               Edit question

@@ -209,6 +209,7 @@
   border: 0px none;
   font-size:14px;
   margin: 0px 5px;
+  overflow:scroll;
 }
 
 .round-edit-question-details-edit-button {
@@ -320,6 +321,7 @@
   vertical-align: middle;
   text-align: center;
   line-height: 80px;
+  overflow:scroll;
 }
 
 .round-edit-question-answer-details-edit-button {
@@ -540,4 +542,110 @@ height:100%;
     border: 0px none;
     font-size: 14px;
     text-align: center;
+}
+
+.container-new-quiz-question{
+  display: flex;
+  height:100%;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+
+}
+
+.new-random-quiz-question-content {
+    /* height: 40px; */
+    /* line-height: 40px; */
+    margin-right: 10px;
+    width: 70%;
+    margin-top: 25px;
+    position: relative;
+    background-color: #7171714f;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+  // vertical-align: middle;
+  // text-align: center;
+
+}
+
+.new-random-quiz-question-category {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+    width: 20%;
+    margin-top: 25px;
+    position: relative;
+    background-color: #02020257;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-random-quiz-question-validation {
+  display:flex;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-random-quiz-question-save {
+    color: white;
+    background-color: $ninja-green;
+    opacity: 1;
+  /* min-width: 190px; */
+    height: 40px;
+    line-height: 40px;
+    margin-top: 25px;
+    margin-left:10px;
+    margin-right:10px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.new-random-question-reload {
+    color: white;
+    background-color: $ninja-green;
+    opacity: 1;
+  /* min-width: 190px; */
+    height: 40px;
+    line-height: 40px;
+    margin-top: 25px;
+    margin-left:10px;
+    margin-right:10px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.new-random-quiz-question-content-saved {
+    /* height: 40px; */
+    /* line-height: 40px; */
+    margin-right: 10px;
+    width: 100%;
+    margin-top: 25px;
+    position: relative;
+    background-color: #7171714f;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+  // vertical-align: middle;
+  // text-align: center;
+
 }

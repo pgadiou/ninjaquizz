@@ -1,9 +1,9 @@
 <div class="container-round-edit-question-answer-details answer-selector">
   <div class="round-edit-question-answer-details">
     <% if answer.is_correct? %>
-      <%=answer.content%> (correct answer)
+      <%=sanitize answer.content%> (correct answer)
     <% else %>
-      <%=answer.content%>
+      <%=sanitize answer.content%>
     <% end %>
   </div>
   <button class="btn round-edit-question-answer-details-edit-button" type="button" id="edit-button-answer<%=answer.id%>">
