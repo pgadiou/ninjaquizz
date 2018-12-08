@@ -1,9 +1,14 @@
-function refreshNewQuestionForm(questionHTML) {
-  const newQuestionForm = document.getElementById('wrapper_new_question<%=@question_position%>');
-  console.log(newQuestionForm)
+function refreshNewQuestionForm(questionHTML, wrapperHTML) {
+  const newQuestionForm = document.getElementById(wrapperHTML);
+  console.log(wrapperHTML);
+  console.log('<%=@question_round_id%>');
+  console.log(newQuestionForm);
   newQuestionForm.innerHTML = questionHTML;
 }
 
-<% if @display_form == false %>
-  refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question", question_position: @question_position, question: @question, round_id: @question_round_id %>');
-<% end%>
+<% if @question_position == "" %>
+  refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_round_id%>');
+<% else %>
+  refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_position%>');
+<% end %>
+

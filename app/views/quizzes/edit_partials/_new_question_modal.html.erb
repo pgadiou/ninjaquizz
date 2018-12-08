@@ -1,0 +1,36 @@
+<div class="modal fade" id="newQuestionModal<%=round.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-new-questions" role="document">
+    <div class="modal-new-questions-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div id= "wrapper_new_question<%=round.id%>">
+            <%= simple_form_for(Question.new, remote: true) do |f| %>
+              <div class="container-new-question">
+                <div class="new-question-title">
+                  New Question
+                </div>
+                <div class="new-question-category">
+                  <%= f.association :category %>
+                </div>
+                <div class="new-question-type">
+                  <%= f.input :question_type, collection: ["Random", "Manual"], selected: 1 %>
+                </div>
+                <div class="new-question-type">
+                  <%= f.input :round_id, as: :hidden, input_html: {value: f.object.round_id || round.id} %>
+                  <%= f.input :position, as: :hidden, input_html: {value: f.object.position || nil} %>
+                  <%= f.submit class: 'new-question-save' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+        <div class="modal-footer">
+          <button onclick="closeNewQuestionModal()">Back to quiz</button>
+        </div>
+    </div>
+  </div>
+</div>

@@ -459,6 +459,22 @@
   }
 }
 
+.new-question-modal-button {
+  width:80%;
+  background-color: #00f17978;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  border: 0px none;
+  font-size:14px;
+  margin: 0px 5px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 80px;
+  .fas{
+    margin-right: 10px;
+  }
+}
+
 .modal-new-round-content {
   position: relative;
   border: 1px solid #999;

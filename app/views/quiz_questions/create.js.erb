@@ -1,7 +1,11 @@
-function refreshsavedQuestionForm(questionHTML) {
-  const savedQuestionForm = document.getElementById('wrapper_new_question<%=@quiz_question_position%>');
+function refreshsavedQuestionForm(questionHTML, wrapperHTML) {
+  const savedQuestionForm = document.getElementById(wrapperHTML);
   console.log(savedQuestionForm)
   savedQuestionForm.innerHTML = questionHTML;
 }
 
-refreshsavedQuestionForm('<%= j render "quizzes/edit_partials/newly_saved_question", question_position: @quiz_question_position, question: @quiz_question.question %>');
+<% if @quiz_question.position == nil %>
+  refreshsavedQuestionForm('<%= j render "quizzes/edit_partials/newly_saved_question", question_position: @quiz_question.position, question: @quiz_question.question %>', 'wrapper_new_question<%=@quiz_question.round.id');
+<% else %>
+  refreshsavedQuestionForm('<%= j render "quizzes/edit_partials/newly_saved_question", question_position: @quiz_question.position, question: @quiz_question.question %>', 'wrapper_new_question<%=@quiz_question.position%>');
+<% end %>

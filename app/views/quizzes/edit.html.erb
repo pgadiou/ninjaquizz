@@ -88,9 +88,10 @@
           </div>
         <% end %>
         <div class="container-new-question">
-          <div class="btn new-round">
-            <i class="fas fa-plus-circle"></i>Add new round
+          <div class="btn new-question-modal-button" data-toggle="modal" data-target="#newQuestionModal<%=round.id%>" data-id="<%=round.id%>">
+            <i class="fas fa-plus-circle"></i>Add new question
           </div>
+          <%= render 'quizzes/edit_partials/new_question_modal', round: round %>
         </div>
       </div>
     <% end %>
@@ -124,6 +125,8 @@
     </div>
   </div>
 </div>
+
+
 
 
 
@@ -237,6 +240,36 @@
       }
     }
 
+    const closeNewQuestionModal = () => {
+      const newQuestionModal = document.getElementsByClassName('OpenedModal').first;
+      const newQuestionForm = newQuestionModal.getElementsByClassName('simple_form');
+      if (newQuestionForm.length == 0) {
+        location.reload()
+      } else {
+        if (window.confirm("You haven't saved the new question. Are you sure you want to exit?")) {
+          location.reload()}
+      }
+    }
+
+    const openNewQuestionModal = () => {
+      const newQuestionButtons = document.getElementsByClassName('new-question-modal-button');
+      const passOpenedIdToQuestionModal = () => {
+        console.log(event.currentTarget);
+        var newQuestionModalPressedButton = event.currentTarget;
+        console.log(newQuestionModalPressedButton);
+        var newQuestionModalId = String(newQuestionModalPressedButton.getAttribute("data-target"));
+        var newQuestionModalIdTrimmed = newQuestionModalId.substring(1)
+        console.log(newQuestionModalIdTrimmed);
+        var newQuestionModal = document.getElementById(newQuestionModalIdTrimmed);
+        console.log(newQuestionModal);
+        newQuestionModal.classList.add('openedNewQuestionModal');
+
+      }
+      for (var i = 0; i< newQuestionButtons.length; i++) {
+        newQuestionButtons[i].addEventListener("click", passOpenedIdToQuestionModal);
+      }
+    }
+
     showRoundEditForm();
 
     cancelRoundEdit();
@@ -248,6 +281,8 @@
     showAnswerEditForm();
 
     cancelAnswerEdit();
+
+    openNewQuestionModal();
 
   </script>
 <% end %>

@@ -8,6 +8,7 @@ class RoundsController < ApplicationController
 
  def create
   @round = Round.new(round_params)
+  set_new_round_position(@round)
  #    authorize @round
   if @round.save
     respond_to do |format|
@@ -20,7 +21,6 @@ class RoundsController < ApplicationController
  end
 
   def show
-    @language = @quiz.language
     @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
     @category = @round.category.name
     @first_question = QuizQuestion.where(round_id: @round.id).first
@@ -29,7 +29,6 @@ class RoundsController < ApplicationController
   end
 
   def show_round_results
-    @language = @quiz.language
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
     @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
     @slowster = User.where(quiz_id: @quiz.id).order(total_time: :desc).last
@@ -67,6 +66,12 @@ private
   def set_round
     @round = Round.find(params[:id])
     @quiz = @round.quiz
+    @language = @quiz.language
+  end
+
+  def set_new_round_position(round)
+    quiz_rounds = round.quiz.rounds
+    round.position = quiz_rounds.length + 1
   end
 
   def broadcast_round

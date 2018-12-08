@@ -7,7 +7,7 @@ class QuizQuestionsController < ApplicationController
 
   def create
     @quiz_question = QuizQuestion.new(quiz_question_params)
-    @quiz_question_position = quiz_question_params[:position]
+    @quiz_question.position = quiz_question_params[:position]
     if @quiz_question.save
       respond_to do |format|
         format.html { redirect_to request.referer }
@@ -52,7 +52,6 @@ class QuizQuestionsController < ApplicationController
     @language = @quiz.language
     @timer = @quiz.timer
   end
-
 
   def set_user
     current_user == nil ? @current_user_id = nil : @current_user_id = current_user.id
