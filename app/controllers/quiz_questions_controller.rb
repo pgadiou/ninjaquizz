@@ -8,6 +8,8 @@ class QuizQuestionsController < ApplicationController
   def create
     @quiz_question = QuizQuestion.new(quiz_question_params)
     @quiz_question.position = quiz_question_params[:position]
+    @round = @quiz_question.round
+    @question = @quiz_question.question
     if @quiz_question.save
       respond_to do |format|
         format.html { redirect_to request.referer }
@@ -82,10 +84,13 @@ class QuizQuestionsController < ApplicationController
   end
 
   def broadcast_show_answers
+
+    # broadcast view to admin allowing it to know how many players have answered
     ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "quiz_questions/quiz_question_admin_before_correct_answer",
         locals: {quiz_question: @quiz_question, answers: @answers, number_of_player_answers:0, language: @language}),
+      # check if this partial is necessary
       player_partial: ApplicationController.renderer.render(
         partial: "quiz_questions/quiz_question_player_before_correct_answer",
         locals: {quiz_answer: @quiz_answer, quiz_question: @quiz_question, answers: @answers, start: @start, language: @language}),
@@ -133,6 +138,8 @@ class QuizQuestionsController < ApplicationController
   end
 
   def broadcast_show_correct_answer
+
+    # broadcast view with correct answer to admin
     ActionCable.server.broadcast("quiz_room_#{@quiz_question.round.quiz_id}", {
       admin_partial: ApplicationController.renderer.render(
         partial: "quiz_questions/quiz_question_admin_after_correct_answer",
@@ -140,6 +147,7 @@ class QuizQuestionsController < ApplicationController
       current_admin_id: current_admin.id,
         })
 
+    # broacast to each user the view allowing them to know if they answered correctly or not
     @quiz.users.each do |user|
         ActionCable.server.broadcast("player_quiz_room_#{user.id}", {
           event: "question_answer",

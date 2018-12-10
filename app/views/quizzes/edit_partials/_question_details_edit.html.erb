@@ -10,7 +10,7 @@
             <%=simple_form_for(question, remote: true) do |f|%>
               <div class="container-round-edit-question-details-form" id="edit-question<%=question.id%>">
                   <div class="round-edit-question-details-form-content">
-                    <%= f.input :content, placeholder: question.content, label: false %>
+                    <%= f.input :content, placeholder: sanitize(question.content), label: false %>
                   </div>
                   <%= f.submit 'save', class: 'round-edit-question-details-form-save'%>
                   <div class="btn round-edit-question-details-form-cancel">Cancel</div>

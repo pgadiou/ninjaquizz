@@ -76,7 +76,7 @@
       <div class="container-round-edit-questions collapse" id="round-questions<%=round.id%>">
         <% round.quiz_questions.each do |quiz_question| %>
           <%question = Question.find(quiz_question.question_id)%>
-          <div id="question<%=question.id%>">
+          <div id="question<%=question.id%>" class="question-selector">
             <%= render 'quizzes/edit_partials/question_details_edit', question: question %>
           </div>
           <div class="container-round-edit-question-answers collapse" id="question-answers<%=question.id%>">
@@ -108,7 +108,7 @@
     <div class="modal-new-round-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -139,8 +139,8 @@
       const showRoundForm = () => {
         console.log(event.currentTarget.parentElement);
         console.log(event.currentTarget.parentElement.nextElementSibling);
-        var roundEditForm = event.currentTarget.parentElement.nextElementSibling;
         var roundPresentationDiv = event.currentTarget.parentElement;
+        var roundEditForm = roundPresentationDiv.nextElementSibling;
         roundEditForm.classList.remove("hidden");
         roundPresentationDiv.classList.add("hidden");
       }
@@ -155,7 +155,7 @@
         console.log(event.currentTarget.parentElement.parentElement.parentElement);
         console.log(event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling);
         var roundEditForm = event.currentTarget.parentElement.parentElement.parentElement;
-        var roundPresentationDiv = event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling;
+        var roundPresentationDiv = roundEditForm.previousElementSibling;
         roundEditForm.classList.add("hidden");
         roundPresentationDiv.classList.remove("hidden");
       }
@@ -171,8 +171,8 @@
       const showQuestionForm = () => {
         console.log(event.currentTarget.parentElement);
         console.log(event.currentTarget.parentElement.nextElementSibling);
-        var questionEditForm = event.currentTarget.parentElement.nextElementSibling;
         var questionPresentationDiv = event.currentTarget.parentElement;
+        var questionEditForm = questionPresentationDiv.nextElementSibling;
         questionEditForm.classList.remove("hidden");
         questionPresentationDiv.classList.add("hidden");
       }
@@ -187,7 +187,7 @@
         console.log(event.currentTarget.parentElement.parentElement.parentElement);
         console.log(event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling);
         var questionEditForm = event.currentTarget.parentElement.parentElement.parentElement;
-        var questionPresentationDiv = event.currentTarget.parentElement.parentElement.parentElement.previousElementSibling;
+        var questionPresentationDiv = questionEditForm.previousElementSibling;
         questionEditForm.classList.add("hidden");
         questionPresentationDiv.classList.remove("hidden");
       }

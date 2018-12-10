@@ -1,0 +1,15 @@
+<div class="container-new-question">
+  <div class="new-question-title">
+    New Question <%= question_position %>
+  </div>
+  <div class="new-random-quiz-question-category">
+    <%= question.category.name %>
+  </div>
+</div>
+<div class="container-new-quiz-question">
+  <div class="new-random-quiz-question-content-saved">
+    <div class="new-random-quiz-question-title-body">
+      <%= sanitize question.content %>
+    </div>
+  </div>
+</div>
