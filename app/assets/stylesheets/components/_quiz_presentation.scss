@@ -577,6 +577,14 @@ height:100%;
 
 }
 
+.container-new-quiz-question-saved{
+  height:100%;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+
+}
+
 .new-random-quiz-question-content {
     /* height: 40px; */
     /* line-height: 40px; */
@@ -672,4 +680,183 @@ height:100%;
   // vertical-align: middle;
   // text-align: center;
 
+}
+
+.new-manual-quiz-question-content {
+    /* height: 40px; */
+    /* line-height: 40px; */
+    // margin-right: 10px;
+    // width: 90%;
+    // margin-top: 25px;
+    // position: relative;
+    // background-color: #7171714f;
+    // border: 1px solid #ccc;
+    // border-radius: 20px;
+    // border: 0px none;
+    // font-size: 14px;
+    // text-align: center;
+    // padding: 5px;
+  // vertical-align: middle;
+  // text-align: center;
+  .edit_question {
+    display: flex;
+  }
+  .form-group {
+    margin-bottom: 0px;
+  }
+}
+
+.new-manual-quiz-question-title-body {
+    /* height: 40px; */
+    /* line-height: 40px; */
+    margin-right: 10px;
+    margin-top: 25px;
+    position: relative;
+    background-color: #7171714f;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px;
+    width: 400px;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-manual-quiz-question-category {
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+    width: 40%;
+    margin-top: 25px;
+    position: relative;
+    background-color: #02020257;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-manual-quiz-question-validation {
+  display:flex;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-manual-quiz-question-save {
+    color: white;
+    background-color: $ninja-green;
+    opacity: 1;
+    min-width: 100px;
+    // height: 40px;
+    line-height: 40px;
+    margin-top: 25px;
+    margin-left:10px;
+    margin-right:10px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.new-manual-question-save {
+    color: white;
+    background-color: $ninja-green;
+    opacity: 1;
+    min-width: 60px;
+    // height: 40px;
+    line-height: 40px;
+    margin-top: 25px;
+    margin-left:10px;
+    margin-right:10px;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.new-manual-quiz-question-content-saved {
+    /* height: 40px; */
+    /* line-height: 40px; */
+    margin-right: 10px;
+    width: 100%;
+    margin-top: 25px;
+    position: relative;
+    background-color: #7171714f;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+  // vertical-align: middle;
+  // text-align: center;
+
+}
+
+.container-manual-new-question-answer {
+  display: flex;
+  height:100%;
+}
+
+.new-manual-question-answer-content {
+  .new_answer {
+    display: flex;
+  }
+  .form-group {
+    margin-bottom: 0px;
+  }
+}
+
+.new-manual-question-answer-title-body {
+      /* height: 40px; */
+    /* line-height: 40px; */
+    margin-right: 10px;
+    margin-top: 25px;
+    position: relative;
+    background-color: #7171714f;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+    width: 400px;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-manual-question-answer-saved-title-body {
+      /* height: 40px; */
+    /* line-height: 40px; */
+    height:30px;
+    margin-right: 10px;
+    margin-top: 10px;
+    position: relative;
+    background-color: #7171714f;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    border: 0px none;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    width: 400px;
+  // vertical-align: middle;
+  // text-align: center;
+}
+
+.new-manual-question-answer-correct-box {
+  .form-group {
+    margin-top: 25px;
+    font-size: 12px;
+    padding: 3px;
+  }
 }

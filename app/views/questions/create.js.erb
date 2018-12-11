@@ -6,9 +6,19 @@ function refreshNewQuestionForm(questionHTML, wrapperHTML) {
   newQuestionForm.innerHTML = questionHTML;
 }
 
-<% if @question_position == "" %>
-  refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_round_id%>');
+<% if @manual_question == true %>
+  // check if question_position is empty or not --> allows to differentiate questions created directly or through round creation (could be several questions then)
+  <% if @question_position == "" %>
+    refreshNewQuestionForm('<%= j render "quizzes/edit_partials/custom_question_form_new_round_modal", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_round_id%>');
+  <% else %>
+    refreshNewQuestionForm('<%= j render "quizzes/edit_partials/custom_question_form_new_round_modal", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_position%>');
+  <% end %>
 <% else %>
-  refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question_new_round_modal", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_position%>');
+  <% if @question_position == "" %>
+    refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_round_id%>');
+  <% else %>
+    refreshNewQuestionForm('<%= j render "quizzes/edit_partials/newly_created_question_new_round_modal", question_position: @question_position, question: @question, round_id: @question_round_id %>', 'wrapper_new_question<%=@question_position%>');
+  <% end %>
 <% end %>
+
 

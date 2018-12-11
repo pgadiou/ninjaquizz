@@ -6,15 +6,19 @@ class AnswersController < ApplicationController
  #    authorize @answer
  #  end
 
- #  def create
- #    @answer = Answer.new(answer_params)
- #    authorize @answer
- #    if @answer.save
- #      redirect_to request.referer
- #    else
- #      render :new
- #    end
- #  end
+  def create
+    @answer = Answer.new(answer_params)
+    @question = @answer.question
+    # authorize @answer
+    if @answer.save
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.js
+      end
+    else
+      render :edit
+    end
+  end
 
 
   def update
@@ -39,7 +43,7 @@ class AnswersController < ApplicationController
 private
 
   def answer_params
-    params.require(:answer).permit(:content, :is_correct)
+    params.require(:answer).permit(:question_id, :content, :is_correct)
   end
 
   def set_answer

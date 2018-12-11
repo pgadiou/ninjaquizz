@@ -1,0 +1,12 @@
+function refreshNewAnswerForm(newAnswerFormHTML, savedAnswerHTML, wrapperHTML) {
+  const newAnswerForm = document.getElementById(wrapperHTML);
+  // console.log(wrapperHTML);
+  // console.log('<%=@question_round_id%>');
+  // console.log(newQuestionForm);
+  console.log(newAnswerForm)
+  newAnswerForm.insertAdjacentHTML('beforebegin', savedAnswerHTML);
+  newAnswerForm.outerHTML = newAnswerFormHTML;
+  console.log(newAnswerForm)
+}
+
+refreshNewAnswerForm('<%= j render "quizzes/edit_partials/new_answer", question: @question %>','<%= j render "quizzes/edit_partials/newly_created_answer", question: @question, answer: @answer %>','new-answer-form-question<%=@question.id%>')

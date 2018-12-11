@@ -1,0 +1,11 @@
+<div class="container-manual-new-question-answer">
+  <div class="new-manual-question-answer-content">
+    <div class="new-manual-question-answer-saved-title-body">
+      <% if answer.is_correct %>
+        <%= answer.content %> (correct)
+      <% else %>
+        <%= answer.content %>
+      <% end %>
+    </div>
+  </div>
+</div>

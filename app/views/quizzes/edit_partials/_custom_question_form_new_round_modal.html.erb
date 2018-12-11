@@ -1,0 +1,23 @@
+<div class="container-new-question">
+  <div class="new-question-title">
+    New Question <%= question_position %>
+  </div>
+  <div class="new-manual-quiz-question-category">
+    <%= question.category.name %>
+  </div>
+</div>
+<div class="container-new-quiz-question">
+  <div class="new-manual-quiz-question-content">
+    <%= simple_form_for(question, remote: true) do |e| %>
+      <div class="new-manual-quiz-question-title-body">
+        <%= e.input :content, placeholder: 'enter question', label: false %>
+        <%= e.input :category_id, as: :hidden, input_html: {value: e.object.category_id || question.category_id} %>
+        <%= e.input :round_id, as: :hidden, input_html: {value: e.object.round_id || round_id} %>
+        <%= e.input :question_type, as: :hidden, input_html: {value: e.object.question_type || "Manual"} %>
+        <%= e.input :position, as: :hidden, input_html: {value: e.object.position || question_position} %>
+      </div>
+      <%= e.submit 'save', class: 'new-manual-question-save'%>
+      <% end %>
+
+  </div>
+</div>

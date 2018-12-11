@@ -13,12 +13,30 @@ class QuestionsController < ApplicationController
     if question_params[:question_type] == "Random"
       obtain_api_question(question_params)
       set_api_question(question_params, @question_json)
+    else
+      @question = Question.new(category_id: question_params[:category_id],
+        type_id: Type.all.last.id,
+        )
+      @question_position = question_params[:position]
+      @question_round_id = question_params[:round_id]
+      @manual_question = true
+      if @question.save
+        respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.js
+      end
+    else
+      render :edit
+    end
     end
   end
 
 
   def update
   #   authorize @question
+    question_params[:question_type] == "Manual"? @modal_active = true : @modal_active = false
+    @question_position = params[:position]
+    @question_round_id = question_params[:round_id]
     if @question.update(question_params)
       respond_to do |format|
         format.html { redirect_to request.referer }
@@ -74,7 +92,7 @@ private
     end
     @question_position = params[:position]
     @question_round_id = params[:round_id]
-    @display_form = false
+    @manual_question = false
     if @answers.shuffle.each(&:save)
       respond_to do |format|
         format.html { redirect_to request.referer }

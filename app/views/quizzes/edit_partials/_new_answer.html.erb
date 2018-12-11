@@ -1,0 +1,14 @@
+<div class="container-manual-new-question-answer" id="new-answer-form-question<%=question.id%>">
+  <div class="new-manual-question-answer-content">
+    <%= simple_form_for(Answer.new, remote: true) do |e| %>
+      <div class="new-manual-question-answer-title-body">
+        <%= e.input :content, placeholder: 'enter answer', label: false %>
+      </div>
+      <div class="new-manual-question-answer-correct-box">
+        <%= e.input :is_correct, as: :radio_buttons, collection: [[true, 'Correct'], [false, 'Wrong']], label_method: :second, value_method: :first, label: false %>
+      </div>
+      <%= e.input :question_id, as: :hidden, input_html: {value: e.object.question_id || question.id}  %>
+      <%= e.submit 'save', class: 'new-manual-question-save'%>
+      <% end %>
+  </div>
+</div>
