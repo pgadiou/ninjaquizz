@@ -20,9 +20,6 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  von_worker_boot do
-  # Valid on Rails 4.1+ using the `config/database.yml` method of setting `pool` size
-  ActiveRecord::Base.establish_connection
 
 development:
   <<: *default
