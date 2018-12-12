@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV['REDISCLOUD_URL'] %>
+  url: redis://10.10.3.153:6381
   channel_prefix: ninjaquizz_production
