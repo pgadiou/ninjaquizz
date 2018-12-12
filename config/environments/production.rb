@@ -8,6 +8,7 @@ Rails.application.configure do
   # config/environments/production.rb
   config.action_cable.url = "ws://www.ninjaquiz.ninja/cable"
   config.action_cable.allowed_request_origins = [ "http://www.ninjaquiz.ninja", "https://www.ninjaquiz.ninja" ]
+  config.action_cable.mount_path = '/websocket'
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
