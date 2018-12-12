@@ -35,7 +35,7 @@ class QuestionsController < ApplicationController
   def update
   #   authorize @question
     question_params[:question_type] == "Manual"? @modal_active = true : @modal_active = false
-    @question_position = params[:position]
+    @question_position = question_params[:position]
     @question_round_id = question_params[:round_id]
     if @question.update(question_params)
       respond_to do |format|

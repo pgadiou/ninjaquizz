@@ -1,14 +1,25 @@
 <div class="container-manual-new-question-answer" id="new-answer-form-question<%=question.id%>">
   <div class="new-manual-question-answer-content">
-    <%= simple_form_for(Answer.new, remote: true) do |e| %>
-      <div class="new-manual-question-answer-title-body">
-        <%= e.input :content, placeholder: 'enter answer', label: false %>
-      </div>
-      <div class="new-manual-question-answer-correct-box">
-        <%= e.input :is_correct, as: :radio_buttons, collection: [[true, 'Correct'], [false, 'Wrong']], label_method: :second, value_method: :first, label: false %>
-      </div>
-      <%= e.input :question_id, as: :hidden, input_html: {value: e.object.question_id || question.id}  %>
-      <%= e.submit 'save', class: 'new-manual-question-save'%>
+    <% if question.answers.length < 4 %>
+      <%= simple_form_for(Answer.new, remote: true) do |e| %>
+        <div class="new-manual-question-answer-title-body">
+          <%= e.input :content, placeholder: 'enter answer', label: false %>
+        </div>
+        <div class="new-manual-question-answer-correct-box">
+          <%= e.input :is_correct, as: :radio_buttons, collection: [[true, 'Correct'], [false, 'Wrong']], label_method: :second, value_method: :first, label: false %>
+        </div>
+        <%= e.input :question_id, as: :hidden, input_html: {value: e.object.question_id || question.id}  %>
+        <%= e.input :question_position, as: :hidden, input_html: {value: e.object.question_position || question_position} %>
+        <%= e.input :question_round_id, as: :hidden, input_html: {value: e.object.question_round_id || question_round_id} %>
+        <%= e.submit 'save', class: 'new-manual-question-save'%>
+        <% end %>
+    <% else %>
+      <%= simple_form_for(QuizQuestion.new, remote: true) do |f| %>
+        <%= f.input :question_id, as: :hidden, input_html: {value: f.object.question_id || question.id} %>
+        <%= f.input :round_id, as: :hidden, input_html: {value: f.object.round_id || question_round_id} %>
+        <%= f.input :position, as: :hidden, input_html: {value: f.object.position || question_position} %>
+        <%= f.submit 'Add question to round', class: 'new-random-quiz-question-save'%>
       <% end %>
+    <% end %>
   </div>
 </div>

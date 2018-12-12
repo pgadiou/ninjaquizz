@@ -9,4 +9,4 @@ function refreshNewAnswerForm(newAnswerFormHTML, savedAnswerHTML, wrapperHTML) {
   console.log(newAnswerForm)
 }
 
-refreshNewAnswerForm('<%= j render "quizzes/edit_partials/new_answer", question: @question %>','<%= j render "quizzes/edit_partials/newly_created_answer", question: @question, answer: @answer %>','new-answer-form-question<%=@question.id%>')
+refreshNewAnswerForm('<%= j render "quizzes/edit_partials/new_answer", question: @question, question_position: @question_position, question_round_id: @question_round_id %>','<%= j render "quizzes/edit_partials/newly_created_answer", question: @question, answer: @answer %>','new-answer-form-question<%=@question.id%>')

@@ -21,7 +21,7 @@
       <%= e.submit 'reload', class: 'new-random-question-reload'%>
     <% end %>
     <%= simple_form_for(QuizQuestion.new, remote: true) do |f| %>
-      <%= f.input :question_id, as: :hidden, input_html: {value: f.object.round_id || question.id} %>
+      <%= f.input :question_id, as: :hidden, input_html: {value: f.object.question_id || question.id} %>
       <%= f.input :round_id, as: :hidden, input_html: {value: f.object.round_id || round_id} %>
       <%= f.input :position, as: :hidden, input_html: {value: f.object.position || question_position} %>
       <%= f.submit 'save', class: 'new-random-quiz-question-save'%>

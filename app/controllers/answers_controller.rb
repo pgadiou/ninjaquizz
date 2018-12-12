@@ -8,6 +8,8 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
+    @question_position = answer_params[:question_position]
+    @question_round_id = answer_params[:question_round_id]
     @question = @answer.question
     # authorize @answer
     if @answer.save
@@ -22,7 +24,7 @@ class AnswersController < ApplicationController
 
 
   def update
-  #   authorize @answer
+  #   authorize @answers
     if @answer.update(answer_params)
       respond_to do |format|
         format.html { redirect_to request.referer }
@@ -43,7 +45,7 @@ class AnswersController < ApplicationController
 private
 
   def answer_params
-    params.require(:answer).permit(:question_id, :content, :is_correct)
+    params.require(:answer).permit(:question_id, :content, :is_correct, :question_position, :question_round_id)
   end
 
   def set_answer

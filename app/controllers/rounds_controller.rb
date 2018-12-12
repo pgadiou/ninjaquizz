@@ -39,7 +39,7 @@ class RoundsController < ApplicationController
   end
 
   def update
-  #   authorize @quiz
+  #   authorize @round
     if @round.update(round_params)
       respond_to do |format|
         format.html { redirect_to request.referer }
@@ -50,11 +50,11 @@ class RoundsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   authorize @quiz
-  #   @quiz.destroy
-  #   redirect_to new_quiz_path
-  # end
+  def destroy
+    # authorize @round
+    @round.destroy
+    redirect_to request.referer
+  end
 
 
 private

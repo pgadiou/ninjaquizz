@@ -3,8 +3,9 @@
     Round <%=@quiz.rounds.index(round) + 1%> - <%= Category.find(round.category_id).name %>
   </button>
   <button class="btn round-edit-details-edit-button" type="button" id="edit-button-round<%=round.id%>">
-    Edit round category
+    Edit
   </button>
+  <%= link_to 'Delete', round_path(round), class: "btn round-edit-details-delete-button", method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <div class="wrapper-round-edit-details-form hidden">
   <%=simple_form_for(round, remote: true) do |f| %>

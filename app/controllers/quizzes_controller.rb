@@ -79,7 +79,7 @@ private
       admin_partial: ApplicationController.renderer.render(
         partial: "quizzes/admin_results",
         locals: {users_ranked: @users_ranked, language: @language, speedster: @speedster, slowster: @slowster, loser: @loser}),
-        current_user_id: current_user.id
+        # current_admin: current_admin
     })
 
     @quiz.users.each do |user|

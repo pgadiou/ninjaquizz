@@ -7,6 +7,7 @@ function refreshQuestionDiv(questionHTML) {
 function refreshNewQuestionFormWithAnswer(questionHTML, answerHTML, wrapperHTML) {
   const newQuestionForm = document.getElementById(wrapperHTML);
   // console.log(wrapperHTML);
+  // console.log('wrapper_new_question<%=@question_position%>');
   // console.log('<%=@question_round_id%>');
   // console.log(newQuestionForm);
   newQuestionForm.innerHTML = questionHTML;
@@ -16,7 +17,13 @@ function refreshNewQuestionFormWithAnswer(questionHTML, answerHTML, wrapperHTML)
 }
 
 <% if @modal_active == true %>
-  refreshNewQuestionFormWithAnswer('<%= j render "quizzes/edit_partials/newly_saved_question_new_round_modal", question_position: @question_position, question: @question %>','<%= j render "quizzes/edit_partials/new_answer", question: @question %>','wrapper_new_question<%=@question_round_id%>')
+  <% if @question_position == "" %>
+  console.log('question');
+    refreshNewQuestionFormWithAnswer('<%= j render "quizzes/edit_partials/newly_saved_question_new_round_modal", question_position: @question_position, question: @question %>','<%= j render "quizzes/edit_partials/new_answer", question: @question, question_position: @question_position, question_round_id: @question_round_id %>','wrapper_new_question<%=@question_round_id%>')
+  <% else %>
+    console.log('round');
+    refreshNewQuestionFormWithAnswer('<%= j render "quizzes/edit_partials/newly_saved_question_new_round_modal", question_position: @question_position, question: @question %>','<%= j render "quizzes/edit_partials/new_answer", question: @question, question_position: @question_position, question_round_id: @question_round_id %>','wrapper_new_question<%=@question_position%>')
+  <% end %>
 <% else %>
   refreshQuestionDiv('<%= j render "quizzes/edit_partials/question_details_edit", question: @question %>');
   showQuestionEditForm();
