@@ -20,6 +20,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  von_worker_boot do
+  # Valid on Rails 4.1+ using the `config/database.yml` method of setting `pool` size
+  ActiveRecord::Base.establish_connection
 
 development:
   <<: *default
@@ -79,7 +82,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: ninjaquizz_production
-  username: ninjaquizz
-  password: <%= ENV['NINJAQUIZZ_DATABASE_PASSWORD'] %>
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['RAILS_MAX_THREADS'] || 5 %>
+
+# production:
+#   <<: *default
+#   database: ninjaquizz_production
+#   username: ninjaquizz
+#   password: <%= ENV['NINJAQUIZZ_DATABASE_PASSWORD'] %>
