@@ -1,0 +1,54 @@
+//APPLICABLE WHEN CREATING QUESTIONS WHILE CREATING A NEW ROUND - refresh the modal in order to replace the form and show the question as definitely validated
+
+function refreshSavedQuestionForm(questionHTML, wrapperId) {
+  const savedQuestionForm = document.getElementById(wrapperId);
+  console.log(savedQuestionForm)
+  savedQuestionForm.innerHTML = questionHTML;
+}
+
+// APPLICABLE WHEN CREATING NEW QUESTION - refresh the new question modal in order to keep adding new questions
+
+function refreshNewQuestionModal(modalHTML, modalId) {
+  const selectedModal = document.getElementById(modalId);
+  console.log(selectedModal);
+  selectedModal.getElementsByClassName('close')[0].click();
+  selectedModal.outerHTML = modalHTML;
+}
+
+// APPLICABLE WHEN CREATING NEW QUESTION - add the new question to the list of questions for the round concerned
+
+function appendQuestionToRound(questionHTML, answersContainerHTML, questionDiv, roundId, questionId) {
+  const roundSelector = document.getElementById(roundId);
+  console.log(roundSelector);
+  const roundAnswers = roundSelector.getElementsByClassName('container-round-edit-question-answers');
+  const roundLastAnswer = roundAnswers[roundAnswers.length - 1];
+  console.log(roundLastAnswer);
+  roundLastAnswer.insertAdjacentHTML('afterend', questionDiv);
+  const questionSelector = document.getElementById(questionId);
+  questionSelector.innerHTML = questionHTML;
+  questionSelector.insertAdjacentHTML('afterend', answersContainerHTML);
+}
+
+// APPLICABLE WHEN CREATING NEW QUESTION - add the new question to the list of questions for the round concerned
+
+function appendAnswerToQuestion(answerHTML, questionId) {
+  const questionSelector = document.getElementById(questionId);
+  console.log(questionSelector);
+  questionSelector.insertAdjacentHTML('afterbegin', answerHTML);
+}
+
+// The difference position nil vs position defined allows to determine whether we are creating questions directly (one at a time) or while creating a round (could be several questions i.e. need a position to order them)
+
+<% if @quiz_question.position == nil %>
+  appendQuestionToRound('<%= j render "quizzes/edit_partials/question_details_edit", question: @question %>', '<div class="container-round-edit-question-answers collapse" id="question-answers<%=@question.id%>"></div>', '<div id="question<%=@question.id%>" class="question-selector"></div>', 'round-questions<%=@round.id%>', 'question<%=@question.id%>');
+  refreshNewQuestionModal('<%= j render "quizzes/edit_partials/new_question_modal", round: @round %>', "newQuestionModal<%=@round.id%>");
+  <% @quiz_question.question.answers.reverse.each do |answer| %>
+    appendAnswerToQuestion('<%= j render "quizzes/edit_partials/answer_details_edit", answer: answer %>', "question-answers<%=@question.id%>");
+  <% end %>
+  showQuestionEditForm();
+  cancelQuestionEdit();
+  showAnswerEditForm();
+  cancelAnswerEdit();
+<% else %>
+  refreshSavedQuestionForm('<%= j render "quizzes/edit_partials/newly_saved_question_new_round_modal", question_position: @quiz_question.position, question: @question %>', 'wrapper_new_question<%=@quiz_question.position%>');
+<% end %>

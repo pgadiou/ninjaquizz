@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 put 'admins/:id', to: 'admins#select_quiz', as: :select_quiz
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :quiz_questions, only: :show do
+  resources :quiz_questions do
     resources :quiz_answers, only: :create
     member do
       get :show_question
@@ -22,7 +22,11 @@ put 'admins/:id', to: 'admins#select_quiz', as: :select_quiz
   end
   resources :admins
 
-  resources :rounds, only: :show do
+  resources :questions
+
+  resources :answers
+
+  resources :rounds do
     member do
       get :show_round_results
     end

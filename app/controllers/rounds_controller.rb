@@ -1,9 +1,26 @@
 class RoundsController < ApplicationController
+  before_action :set_round, only: [:show, :edit, :update, :destroy, :show_round_results]
+
+ # def new
+ #    @round = Round.new
+ #    authorize @round
+ #  end
+
+ def create
+  @round = Round.new(round_params)
+  set_new_round_position(@round)
+ #    authorize @round
+  if @round.save
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.js
+    end
+  else
+    render :new
+  end
+ end
 
   def show
-    @round = Round.find(params[:id])
-    @quiz = @round.quiz
-    @language = @quiz.language
     @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
     @category = @round.category.name
     @first_question = QuizQuestion.where(round_id: @round.id).first
@@ -12,9 +29,6 @@ class RoundsController < ApplicationController
   end
 
   def show_round_results
-    @round = Round.find(params[:id])
-    @quiz = @round.quiz
-    @language = @quiz.language
     @users_ranked = User.where(quiz_id: @quiz.id).order(total_score: :desc).limit(3)
     @speedster = User.where(quiz_id: @quiz.id).order(total_time: :desc).first
     @slowster = User.where(quiz_id: @quiz.id).order(total_time: :desc).last
@@ -24,8 +38,41 @@ class RoundsController < ApplicationController
     broadcast_round_results
   end
 
+  def update
+  #   authorize @round
+    if @round.update(round_params)
+      respond_to do |format|
+        format.html { redirect_to request.referer }
+        format.js
+      end
+    else
+    render :edit
+    end
+  end
+
+  def destroy
+    # authorize @round
+    @round.destroy
+    redirect_to request.referer
+  end
+
 
 private
+
+  def round_params
+    params.require(:round).permit(:category_id, :no_of_questions, :quiz_id)
+  end
+
+  def set_round
+    @round = Round.find(params[:id])
+    @quiz = @round.quiz
+    @language = @quiz.language
+  end
+
+  def set_new_round_position(round)
+    quiz_rounds = round.quiz.rounds
+    round.position = quiz_rounds.length + 1
+  end
 
   def broadcast_round
     ActionCable.server.broadcast("quiz_room_#{@round.quiz_id}", {

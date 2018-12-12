@@ -1,0 +1,11 @@
+function refreshAnswerDiv(answerHTML) {
+  const answerDiv = document.getElementById('answer<%=@answer.id%>');
+  console.log(answerDiv)
+  answerDiv.innerHTML = answerHTML;
+}
+
+refreshAnswerDiv('<%= j render "quizzes/edit_partials/answer_details_edit", answer: @answer %>');
+
+showAnswerEditForm();
+
+cancelAnswerEdit();

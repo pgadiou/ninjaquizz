@@ -2,16 +2,16 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :edit, :update, :destroy, :show_results]
 
  # def new
- #    @service = Service.new
- #    authorize @service
+ #    @quiz = Quiz.new
+ #    authorize @quiz
  #  end
 
  #  def create
- #    @service = Service.new(service_params)
- #    @service.user_id = current_user.id
- #    authorize @service
- #    if @service.save
- #      redirect_to service_path(@service)
+ #    @quiz = Quiz.new(quiz_params)
+ #    @quiz.admin_id = current_admin.id
+ #    authorize @quiz
+ #    if @quiz.save
+ #      redirect_to quiz_path(@quiz)
  #    else
  #      render :new
  #    end
@@ -36,29 +36,34 @@ class QuizzesController < ApplicationController
   end
 
   def edit
-
+    @new_round = Round.new
+    @new_question = Question.new
   end
 
   # def edit
-  #     authorize @service
+  #     authorize @quiz
   # end
 
-  # def update
-  #   authorize @service
-  #   if @service.update(service_params)
-  #     redirect_to service_path(@service)
-  #   else
-  #     render :edit
-  #   end
-  # end
+  def update
+  #   authorize @quiz
+    if @quiz.update(quiz_params)
+      redirect_to edit_quiz_path(@quiz)
+    else
+    render :edit
+    end
+  end
 
   # def destroy
-  #   authorize @service
-  #   @service.destroy
-  #   redirect_to new_service_path
+  #   authorize @quiz
+  #   @quiz.destroy
+  #   redirect_to new_quiz_path
   # end
 
 private
+
+  def quiz_params
+    params.require(:quiz).permit(:name, :language, :timer, :time_bonus)
+  end
 
   def set_quiz
     @quiz = Quiz.find(params[:id])
@@ -74,7 +79,7 @@ private
       admin_partial: ApplicationController.renderer.render(
         partial: "quizzes/admin_results",
         locals: {users_ranked: @users_ranked, language: @language, speedster: @speedster, slowster: @slowster, loser: @loser}),
-        current_user_id: current_user.id
+        # current_admin: current_admin
     })
 
     @quiz.users.each do |user|

@@ -1,0 +1,32 @@
+<div class="container-new-question">
+  <div class="new-question-title">
+    New Question <%= question_position %>
+  </div>
+  <div class="new-random-quiz-question-category">
+    <%= question.category.name %>
+  </div>
+</div>
+<div class="container-new-quiz-question">
+  <div class="new-random-quiz-question-content">
+    <div class="new-random-quiz-question-title-body">
+      <%= sanitize question.content %>
+    </div>
+  </div>
+  <div class="new-random-quiz-question-validation">
+    <%= simple_form_for(Question.new, remote: true) do |e| %>
+      <%= e.input :category_id, as: :hidden, input_html: {value: e.object.category_id || question.category_id} %>
+      <%= e.input :round_id, as: :hidden, input_html: {value: e.object.round_id || round_id} %>
+      <%= e.input :question_type, as: :hidden, input_html: {value: e.object.question_type || "Random"} %>
+      <%= e.input :position, as: :hidden, input_html: {value: e.object.position || question_position} %>
+      <%= e.submit 'reload', class: 'new-random-question-reload'%>
+    <% end %>
+    <%= simple_form_for(QuizQuestion.new, remote: true) do |f| %>
+      <%= f.input :question_id, as: :hidden, input_html: {value: f.object.round_id || question.id} %>
+      <%= f.input :round_id, as: :hidden, input_html: {value: f.object.round_id || round_id} %>
+      <%= f.input :position, as: :hidden, input_html: {value: f.object.position || question_position} %>
+      <%= f.submit 'save', class: 'new-random-quiz-question-save'%>
+    <% end %>
+  </div>
+</div>
+
+
