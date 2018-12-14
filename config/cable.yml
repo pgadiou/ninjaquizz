@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV['REDISCLOUD_URL'] %>
+  url: <%= ENV['redis://rediscloud:BiwpLqWkbE8TSPgk@redis-17704.c6.eu-west-1-1.ec2.cloud.redislabs.com:17704'] %>
   # channel_prefix: ninjaquizz_production
