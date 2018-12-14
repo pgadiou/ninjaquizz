@@ -12,7 +12,7 @@
 
 <% if @language == "english" %>
 
-  <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
+  <div id="quiz" data-admin="<%= current_admin == @quiz.admin %>">
     <% if current_admin == @quiz.admin %>
       <div class="hidden-xs hidden-sm">
         <div class="container text-center welcome">
@@ -192,28 +192,10 @@
   <% content_for :after_js do %>
     <script>
 
-      const onAnswerSelect = () => {
-        const answers = document.getElementsByClassName("ninja-input");
-
-        const answerSelect = () => {
-          for (var i = 0; i< answers.length; i++) {
-            answers[i].classList.add("unselected_answer", "disabled_item");
-            event.currentTarget.classList.remove("unselected_answer");
-            event.currentTarget.classList.add("selected_answer");
-          }
-
-          event.currentTarget.classList.add("selected_answer");
-        };
-
-        for (var i = 0; i< answers.length; i++) {
-          answers[i].addEventListener("click", answerSelect);
-        }
-      }
-
       App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
         { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
         { received: (data) => {
-          console.log("event");
+          console.log("event admin");
           quiz = document.getElementById("quiz");
           if (quiz.dataset.admin == "true") {
             if (data.event == "new_team") {
