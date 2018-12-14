@@ -88,7 +88,7 @@ private
           player_partial: ApplicationController.renderer.render(
             partial: "quizzes/player_results",
             locals: {users_ranked: @users_ranked, player_ranking: @users_ranked.index(user), user_points: user.total_score, language: @language}),
-          current_user_id: current_user.id,
+          # current_user_id: current_user.id,
         })
     end
   end
