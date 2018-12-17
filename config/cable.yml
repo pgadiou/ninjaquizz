@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: Redis.new(:url => ENV["REDISCLOUD_URL"])
+  url: <%= ENV['REDISCLOUD_URL'] %>
   channel_prefix: ninjaquizz_production
