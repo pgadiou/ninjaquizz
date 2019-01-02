@@ -1,6 +1,6 @@
 <div class="hidden-xs hidden-sm">
   <div class="wrapper-display-admin">
-    <div class="question-display-admin">
+    <div class="question-full-display">
       <%=  raw quiz_question.question.content %>
     </div>
   </div>
@@ -17,10 +17,10 @@
         </div>
       <% end %>
       <div class="col-xs-12">
-        <div class="btn btn-control-back" id="show question"><%= link_to "Back to question", show_question_quiz_question_path(quiz_question), remote: true %></div>
+        <%= link_to "Back to question", show_question_quiz_question_path(quiz_question), remote: true, class: 'btn btn-control-back', id: 'show question' %>
       </div>
       <div class="col-xs-12">
-        <div class="btn btn-control-next" id="show answers"><%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true %></div>
+        <%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true, class: 'btn btn-control-next', id: 'show answers' %>
       </div>
     </div>
   </div>
