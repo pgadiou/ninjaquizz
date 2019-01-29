@@ -1,8 +1,15 @@
 <div class="navbar-wagon hidden-xs hidden-sm">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.svg", height: 45 %>
-  <% end %>
+  <div class="navbar-left">
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+      <%= image_tag "logo.svg", height: 45 %>
+    <% end %>
+
+    <%= link_to root_path, class: "navbar-wagon-item btn btn-navbar" do %>
+      <%= "home"%>
+    <% end %>
+  </div>
+
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -12,25 +19,26 @@
       <!-- Links when logged in -->
 
       <!-- Avatar with dropdown menu -->
+
+      <%= link_to admin_path(current_admin), class: "navbar-wagon-item btn btn-navbar" do %>
+        <%= "my quizzes"%>
+      <% end %>
       <div class="navbar-wagon-item">
         <div class="dropdown">
-          <div class="navbar-wagon-item btn admin" data-toggle="dropdown">
-            <%= "admin"%>
+          <div class="navbar-wagon-item btn btn-navbar" data-toggle="dropdown">
+            <i class="fas fa-user"></i><%="logged in"%>
           </div>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-cog"></i>  <%= t(".settings", default: "Settings") %>
+              <%= link_to edit_admin_registration_path(current_admin) do %>
+                <i class="fas fa-users-cog"></i>  <%= t(".settings", default: "Settings") %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                <i class="fas fa-sign-out-alt"></i>  <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
           </ul>
@@ -38,20 +46,29 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "admin"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to t(".sign_in", default: "log in"), new_user_session_path, class: "navbar-wagon-item btn btn-navbar" %>
     <% end %>
   </div>
-
-  <!-- Dropdown list appearing on mobile only -->
-<!--   <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
-  </div> -->
 </div>
+  <!-- Dropdown list appearing on mobile only -->
+<div class="navbar-wagon hidden-md hidden-lg">
+  <% if admin_signed_in? %>
+    <div class="navbar-left">
+      <%= link_to root_path, class: "navbar-wagon-brand" do %>
+        <%= image_tag "logo.svg", height: 30 %>
+      <% end %>
+    </div>
+    <div class="navbar-wagon-right"></div>
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><%= link_to "my quizzes", admin_path(current_admin)%></li>
+          <li><%= link_to "Edit my profile", edit_admin_registration_path(current_admin)%></li>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete%></li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 
