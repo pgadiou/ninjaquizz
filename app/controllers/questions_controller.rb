@@ -4,12 +4,12 @@ class QuestionsController < ApplicationController
   require 'json'
 
  # def new
- #    @round = Round.new
- #    authorize @round
+ #    @question = Question.new
+ #    authorize @question
  #  end
 
   def create
-    # authorize @round
+    # authorize @question
     if question_params[:question_type] == "Random"
       obtain_api_question(question_params)
       set_api_question(question_params, @question_json)
@@ -48,16 +48,17 @@ class QuestionsController < ApplicationController
   end
 
   # def destroy
-  #   authorize @quiz
-  #   @quiz.destroy
-  #   redirect_to new_quiz_path
+  #   authorize @question
+  #   @question.destroy
   # end
 
 
 private
 
+  #call api to obtain hash with question
   def obtain_api_question(params)
     @category = Category.find(params[:category_id])
+    #obtain random category if no category provided by admin
     if @category.api_id == nil
       url = 'https://opentdb.com/api.php?amount=1&type=multiple'
     else
@@ -67,6 +68,7 @@ private
     @question_json = JSON.parse(question_serialized)
   end
 
+  #create question based on the hash obtained through the api
   def set_api_question(params, question)
     @question = Question.new(
       category_id: params[:category_id],

@@ -7,9 +7,10 @@ class RoundsController < ApplicationController
  #  end
 
  def create
+  # authorize @round
   @round = Round.new(round_params)
   set_new_round_position(@round)
- #    authorize @round
+
   if @round.save
     respond_to do |format|
       format.html { redirect_to request.referer }
@@ -24,7 +25,7 @@ class RoundsController < ApplicationController
     @round_number = Round.where(quiz_id: @quiz.id).index(@round) + 1
     @category = @round.category.name
     @first_question = QuizQuestion.where(round_id: @round.id).first
-    current_user == nil ? nil : @current_user_id = current_user.id
+    current_user === nil ? nil : @current_user_id = current_user.id
     broadcast_round
   end
 
