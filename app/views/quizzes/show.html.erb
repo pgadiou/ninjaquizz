@@ -35,9 +35,9 @@
           <div class="row">
             <div class="col-xs-12">
               <% if @quiz.rounds.length == 1 %>
-                <div class="btn btn-control" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
+                <div class="btn btn-control-next" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
               <% else %>
-                <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+                <div class="btn btn-control-next" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
               <% end %>
             </div>
           </div>
@@ -75,9 +75,9 @@
           <div class="row">
             <div class="col-xs-12">
               <% if @quiz.rounds.length == 1 %>
-                <div class="btn btn-control" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
+                <div class="btn btn-control-next" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
               <% else %>
-                <div class="btn btn-control" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+                <div class="btn btn-control-next" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
               <% end %>
             </div>
           </div>

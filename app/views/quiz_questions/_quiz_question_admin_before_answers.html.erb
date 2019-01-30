@@ -9,18 +9,18 @@
   <div class="container text-center">
     <div class="row">
       <div class="col-xs-12">
-        <div class="question-displayed"><p><%=  raw quiz_question.question.content %></p></div>
+        <div class="question-display-admin-mobile"><p><%=  raw quiz_question.question.content %></p></div>
       </div>
       <% answers.each do |answer| %>
         <div class="col-xs-12">
-          <div class="question-displayed"><p><%=  answer.content %></p></div>
+          <div class="info-display-admin-mobile"><p><%=  answer.content %></p></div>
         </div>
       <% end %>
       <div class="col-xs-12">
-        <%= link_to "Back to question", show_question_quiz_question_path(quiz_question), remote: true, class: 'btn btn-control-back', id: 'show question' %>
+        <%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true, class: 'btn btn-control-next', id: 'show answers' %>
       </div>
       <div class="col-xs-12">
-        <%= link_to "Show answers", show_answers_quiz_question_path(quiz_question), remote: true, class: 'btn btn-control-next', id: 'show answers' %>
+        <%= link_to "Back to question", show_question_quiz_question_path(quiz_question), remote: true, class: 'btn btn-control-back', id: 'show question' %>
       </div>
     </div>
   </div>

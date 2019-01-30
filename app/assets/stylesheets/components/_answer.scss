@@ -16,8 +16,8 @@
 
 .answer-displayed-small {
   color: black;
-  background-color: white;
-  border: solid 3px #23b360;
+  background-color: $ninja-purple-light;
+  border: none;
   opacity: 1;
   width: 100%;
   display: flex;
@@ -25,12 +25,14 @@
   align-items:center;
   padding: 10px;
   border-radius: 20px;
+  min-height: 62px;
+  margin: 2px;
 }
 
 .answer-displayed-small-correct {
   color: white;
   background-color: $green;
-  border: solid 3px #23b360;
+  border: none;
   opacity: 1;
   width: 100%;
   display: flex;
@@ -38,21 +40,24 @@
   align-items:center;
   padding: 10px;
   border-radius: 20px;
+  min-height: 62px;
+  margin: 2px;
 }
 
 .wrapper-player-who-answered {
-  color: black;
-  background-color: white;
-  border: solid 3px #23b360;
+  color: white;
+  background-color: $ninja-purple-light;
+    /* border: solid 3px #23b360; */
   opacity: 1;
   width: 100%;
   padding: 10px;
   border-radius: 20px;
   min-height: 62px;
+  margin: 2px;
 }
 
 .player-who-answered-name {
-  color: black;
+  color: white;
 }
 
 
