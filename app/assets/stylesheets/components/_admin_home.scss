@@ -87,6 +87,7 @@
   padding: 10px;
   height: 400px;
   flex: auto;
+  overflow:scroll;
 }
 
 .container-quizzes-actions {
@@ -118,3 +119,15 @@
   background-color: #00000054;
 }
 
+.modal-new-quiz {
+    padding: 10px;
+    background-color: $ninja-purple;
+    max-width: 80vw;
+    width: 800px;
+    margin-top: 20vh;
+}
+
+.container-new-quiz {
+  margin: 30px 0px;
+  width:100%;
+}

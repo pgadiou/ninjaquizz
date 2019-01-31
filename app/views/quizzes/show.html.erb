@@ -1,242 +1,253 @@
-<div id="avatar">
-  <% unless current_admin == @quiz.admin %>
-  <div class="hidden-md hidden-lg">
-    <div class="avatar-container">
-      <div class="avatar-badge">
-        <%= image_tag "#{current_user.avatar}.png" %>
+<% if @quiz.rounds.empty? %>
+  <div class="container-central-information">
+    <p>This quiz is empty</p>
+    <% if current_admin == @quiz.admin %>
+      <%= link_to "Edit quiz", edit_quiz_path(@quiz), class: 'button-central-information' %>
+    <% end %>
+  </div>
+<% else %>
+  <div id="avatar">
+    <% unless current_admin == @quiz.admin %>
+    <div class="hidden-md hidden-lg">
+      <div class="avatar-container">
+        <div class="avatar-badge">
+          <%= image_tag "#{current_user.avatar}.png" %>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
+
+  <% if @language == "english" %>
+
+    <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
+      <% if current_admin == @quiz.admin %>
+        <div class="hidden-xs hidden-sm">
+          <div class="container text-center welcome">
+            <div class="main" id="access-info">
+              <div class="secondary-child">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <h1>www.ninjaquiz.ninja</h1>
+              </div>
+              <div class="secondary-child">
+                <i class="fa fa-th" aria-hidden="true"></i>
+                <h1>Game PIN: <%= @quiz.pin_number %></h1>
+              </div>
+            </div>
+            <div class="row" id="new_team">
+            </div>
+          </div>
+        </div>
+        <div class="hidden-md hidden-lg">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col-xs-12">
+                <% if @quiz.rounds.length == 1 %>
+                  <div class="btn btn-control-next" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
+                <% else %>
+                  <div class="btn btn-control-next" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="container text-center">
+          <h1>Get ready ninjas!</h1>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <div id="quiz" data-admin="<%= current_admin == @quiz.admin %>">
+      <% if current_admin == @quiz.admin %>
+        <div class="hidden-xs hidden-sm">
+          <div class="container text-center welcome">
+            <div class="main" id="access-info">
+              <div class="secondary-child">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <h1>www.ninjaquiz.ninja</h1>
+              </div>
+              <div class="secondary-child">
+                <i class="fa fa-th" aria-hidden="true"></i>
+                <h1>Code de la partie: <%= @quiz.pin_number %></h1>
+              </div>
+            </div>
+            <div class="row" id="new_team">
+            </div>
+          </div>
+        </div>
+        <div class="hidden-md hidden-lg">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col-xs-12">
+                <% if @quiz.rounds.length == 1 %>
+                  <div class="btn btn-control-next" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
+                <% else %>
+                  <div class="btn btn-control-next" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="container text-center">
+          <h1>Preparez-vous les ninjas!</h1>
+        </div>
+      <% end %>
+    </div>
+
   <% end %>
-</div>
-
-<% if @language == "english" %>
-
-  <div id="quiz" data-admin="<%= current_user == @quiz.user %>">
-    <% if current_admin == @quiz.admin %>
-      <div class="hidden-xs hidden-sm">
-        <div class="container text-center welcome">
-          <div class="main" id="access-info">
-            <div class="secondary-child">
-              <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-              <h1>www.ninjaquiz.ninja</h1>
-            </div>
-            <div class="secondary-child">
-              <i class="fa fa-th" aria-hidden="true"></i>
-              <h1>Game PIN: <%= @quiz.pin_number %></h1>
-            </div>
-          </div>
-          <div class="row" id="new_team">
-          </div>
-        </div>
-      </div>
-      <div class="hidden-md hidden-lg">
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-xs-12">
-              <% if @quiz.rounds.length == 1 %>
-                <div class="btn btn-control-next" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
-              <% else %>
-                <div class="btn btn-control-next" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% else %>
-      <div class="container text-center">
-        <h1>Get ready ninjas!</h1>
-      </div>
-    <% end %>
-  </div>
-
-<% else %>
-
-  <div id="quiz" data-admin="<%= current_admin == @quiz.admin %>">
-    <% if current_admin == @quiz.admin %>
-      <div class="hidden-xs hidden-sm">
-        <div class="container text-center welcome">
-          <div class="main" id="access-info">
-            <div class="secondary-child">
-              <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-              <h1>www.ninjaquiz.ninja</h1>
-            </div>
-            <div class="secondary-child">
-              <i class="fa fa-th" aria-hidden="true"></i>
-              <h1>Code de la partie: <%= @quiz.pin_number %></h1>
-            </div>
-          </div>
-          <div class="row" id="new_team">
-          </div>
-        </div>
-      </div>
-      <div class="hidden-md hidden-lg">
-        <div class="container text-center">
-          <div class="row">
-            <div class="col-xs-12">
-              <% if @quiz.rounds.length == 1 %>
-                <div class="btn btn-control-next" id="next"><%= link_to "First question", quiz_question_path(@first_round.quiz_questions.first), remote: true %></div>
-              <% else %>
-                <div class="btn btn-control-next" id="next"><%= link_to "First round", round_path(@first_round), remote: true %></div>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% else %>
-      <div class="container text-center">
-        <h1>Preparez-vous les ninjas!</h1>
-      </div>
-    <% end %>
-  </div>
-
-<% end %>
 
 
-<% if current_user %>
+  <% if current_user %>
 
-  <% content_for :after_js do %>
-    <script>
+    <% content_for :after_js do %>
+      <script>
 
-      const onAnswerSelect = () => {
-        const answers = document.getElementsByClassName("ninja-input");
+        const onAnswerSelect = () => {
+          const answers = document.getElementsByClassName("ninja-input");
 
-        const answerSelect = () => {
-          for (var i = 0; i< answers.length; i++) {
-            answers[i].classList.add("unselected_answer", "disabled_item");
-            event.currentTarget.classList.remove("unselected_answer");
+          const answerSelect = () => {
+            for (var i = 0; i< answers.length; i++) {
+              answers[i].classList.add("unselected_answer", "disabled_item");
+              event.currentTarget.classList.remove("unselected_answer");
+              event.currentTarget.classList.add("selected_answer");
+            }
+
             event.currentTarget.classList.add("selected_answer");
+          };
+
+          for (var i = 0; i< answers.length; i++) {
+            answers[i].addEventListener("click", answerSelect);
           }
-
-          event.currentTarget.classList.add("selected_answer");
-        };
-
-        for (var i = 0; i< answers.length; i++) {
-          answers[i].addEventListener("click", answerSelect);
         }
-      }
 
-      App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
-        { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
-        { received: (data) => {
-          console.log("event");
-          quiz = document.getElementById("quiz");
-          if (quiz.dataset.admin == "true") {
-            if (data.event == "new_team") {
-              const access = document.getElementById("access-info");
-              if (access.classList.contains("main")) {
-                access.classList.remove("main");
-                access.classList.add("secondary");
-              }
-              new_team = document.getElementById("new_team");
-              new_team.innerHTML = data.admin_partial;
-            }
-            else {
-              quiz.innerHTML = data.admin_partial;
-            }
-          }
-          else if (data.player_partial){
-            quiz.innerHTML = data.player_partial;
-            document.getElementById("avatar").innerHTML = "";
-          }
-          }
-        });
-
-      App['player_quiz_room_<%= current_user.id %>'] = App.cable.subscriptions.create(
-        { channel: 'PlayerQuizRoomChannel', player_id: <%= current_user.id %> },
-        { received: (data) => {
-          console.log("event player");
-          quiz = document.getElementById("quiz");
-          if (quiz.dataset.admin == "false") {
-            if (data.event == "question_answer") {
-              quiz.innerHTML = data.player_partial;
-              if (data.timer === true) {
-                var avatarCountdown = document.getElementById("avatar-countdown");
-                if (avatarCountdown) {
-                  var countdownId = avatarCountdown.dataset.countdownId;
-                  clearTimeout(countdownId);
+        App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
+          { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
+          { received: (data) => {
+            console.log("event");
+            quiz = document.getElementById("quiz");
+            if (quiz.dataset.admin == "true") {
+              if (data.event == "new_team") {
+                const access = document.getElementById("access-info");
+                if (access.classList.contains("main")) {
+                  access.classList.remove("main");
+                  access.classList.add("secondary");
                 }
-                document.getElementById("avatar").innerHTML = "";
+                new_team = document.getElementById("new_team");
+                new_team.innerHTML = data.admin_partial;
               }
-              if (data.timer === false) {
-                document.getElementById("avatar").innerHTML = "";
+              else {
+                quiz.innerHTML = data.admin_partial;
               }
             }
-            else if (data.event == "player_results") {
+            else if (data.player_partial){
               quiz.innerHTML = data.player_partial;
+              document.getElementById("avatar").innerHTML = "";
             }
-            else if (data.event == "answer_display_player") {
-              if (data.timer === true) {
-                document.getElementById("avatar").innerHTML = data.player_partial_avatar_countdown;
+            }
+          });
+
+        App['player_quiz_room_<%= current_user.id %>'] = App.cable.subscriptions.create(
+          { channel: 'PlayerQuizRoomChannel', player_id: <%= current_user.id %> },
+          { received: (data) => {
+            console.log("event player");
+            quiz = document.getElementById("quiz");
+            if (quiz.dataset.admin == "false") {
+              if (data.event == "question_answer") {
                 quiz.innerHTML = data.player_partial;
-                var avatarCountdown = document.getElementById("avatar-countdown");
-                var countdownId = setTimeout(function() {
-                if (avatarCountdown) {
-                  avatarCountdown.innerHTML = data.player_partial_avatar_still;
-                  quiz.innerHTML = data.player_partial_time_up;
+                if (data.timer === true) {
+                  var avatarCountdown = document.getElementById("avatar-countdown");
+                  if (avatarCountdown) {
+                    var countdownId = avatarCountdown.dataset.countdownId;
+                    clearTimeout(countdownId);
+                  }
+                  document.getElementById("avatar").innerHTML = "";
                 }
-                }, 12000);
-                avatarCountdown.dataset.countdownId = countdownId;
+                if (data.timer === false) {
+                  document.getElementById("avatar").innerHTML = "";
+                }
               }
-              if (data.timer === false) {
-                document.getElementById("avatar").innerHTML = data.player_partial_avatar_still;
+              else if (data.event == "player_results") {
+                quiz.innerHTML = data.player_partial;
               }
-              onAnswerSelect();
+              else if (data.event == "answer_display_player") {
+                if (data.timer === true) {
+                  document.getElementById("avatar").innerHTML = data.player_partial_avatar_countdown;
+                  quiz.innerHTML = data.player_partial;
+                  var avatarCountdown = document.getElementById("avatar-countdown");
+                  var countdownId = setTimeout(function() {
+                  if (avatarCountdown) {
+                    avatarCountdown.innerHTML = data.player_partial_avatar_still;
+                    quiz.innerHTML = data.player_partial_time_up;
+                  }
+                  }, 12000);
+                  avatarCountdown.dataset.countdownId = countdownId;
+                }
+                if (data.timer === false) {
+                  document.getElementById("avatar").innerHTML = data.player_partial_avatar_still;
+                }
+                onAnswerSelect();
+              }
             }
-          }
-        }});
-    </script>
-  <% end %>
-<% else %>
+          }});
+      </script>
+    <% end %>
+  <% else %>
 
-  <% content_for :after_js do %>
-    <script>
+    <% content_for :after_js do %>
+      <script>
 
-      const onAnswerSelect = () => {
-        const answers = document.getElementsByClassName("ninja-input");
+        const onAnswerSelect = () => {
+          const answers = document.getElementsByClassName("ninja-input");
 
-        const answerSelect = () => {
-          for (var i = 0; i< answers.length; i++) {
-            answers[i].classList.add("unselected_answer", "disabled_item");
-            event.currentTarget.classList.remove("unselected_answer");
+          const answerSelect = () => {
+            for (var i = 0; i< answers.length; i++) {
+              answers[i].classList.add("unselected_answer", "disabled_item");
+              event.currentTarget.classList.remove("unselected_answer");
+              event.currentTarget.classList.add("selected_answer");
+            }
+
             event.currentTarget.classList.add("selected_answer");
+          };
+
+          for (var i = 0; i< answers.length; i++) {
+            answers[i].addEventListener("click", answerSelect);
           }
-
-          event.currentTarget.classList.add("selected_answer");
-        };
-
-        for (var i = 0; i< answers.length; i++) {
-          answers[i].addEventListener("click", answerSelect);
         }
-      }
 
-      App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
-        { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
-        { received: (data) => {
-          console.log("event");
-          quiz = document.getElementById("quiz");
-          if (quiz.dataset.admin == "true") {
-            if (data.event == "new_team") {
-              const access = document.getElementById("access-info");
-              if (access.classList.contains("main")) {
-                access.classList.remove("main");
-                access.classList.add("secondary");
+        App['quiz_room_<%= @quiz.id %>'] = App.cable.subscriptions.create(
+          { channel: 'QuizRoomChannel', quiz_room_id: <%= @quiz.id %> },
+          { received: (data) => {
+            console.log("event");
+            quiz = document.getElementById("quiz");
+            if (quiz.dataset.admin == "true") {
+              if (data.event == "new_team") {
+                const access = document.getElementById("access-info");
+                if (access.classList.contains("main")) {
+                  access.classList.remove("main");
+                  access.classList.add("secondary");
+                }
+                new_team = document.getElementById("new_team");
+                new_team.innerHTML = data.admin_partial;
               }
-              new_team = document.getElementById("new_team");
-              new_team.innerHTML = data.admin_partial;
+              else {
+                quiz.innerHTML = data.admin_partial;
+              }
             }
-            else {
-              quiz.innerHTML = data.admin_partial;
+            else if (data.player_partial){
+              quiz.innerHTML = data.player_partial;
+              document.getElementById("avatar").innerHTML = "";
             }
-          }
-          else if (data.player_partial){
-            quiz.innerHTML = data.player_partial;
-            document.getElementById("avatar").innerHTML = "";
-          }
-          }
-        });
+            }
+          });
 
-    </script>
+      </script>
+    <% end %>
+
   <% end %>
-
 <% end %>
+
+

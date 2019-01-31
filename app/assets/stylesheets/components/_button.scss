@@ -75,3 +75,23 @@
     color: white;
   }
 }
+
+.btn-green {
+  color: white;
+  background-color: $ninja-green !important;
+}
+
+.button-central-information {
+  color: white;
+  background-color: #6e57a7;
+  opacity: 1;
+  min-width: 190px;
+  width: 20vw;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  margin: 50px auto;
+  border-radius: 20px;
+}

@@ -8,6 +8,7 @@ class AdminsController < ApplicationController
     else
       @selected_quiz = Quiz.find(@admin.selected_quiz_id)
     end
+    set_new_quiz
   end
 
   def select_quiz
@@ -31,6 +32,10 @@ class AdminsController < ApplicationController
 
   def set_admin
     @admin = Admin.find(params[:id])
+  end
+
+  def set_new_quiz
+    @new_quiz = Quiz.new()
   end
 
 
