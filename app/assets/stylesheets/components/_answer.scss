@@ -15,18 +15,20 @@
 }
 
 .answer-displayed-small {
-  color: black;
+  color: white;
   background-color: $ninja-purple-light;
   border: none;
   opacity: 1;
   width: 100%;
-  display: flex;
   justify-content:center;
   align-items:center;
   padding: 10px;
   border-radius: 20px;
   min-height: 62px;
   margin: 2px;
+  p {
+    margin: 0px;
+  }
 }
 
 .answer-displayed-small-correct {
@@ -35,29 +37,33 @@
   border: none;
   opacity: 1;
   width: 100%;
-  display: flex;
   justify-content:center;
   align-items:center;
   padding: 10px;
   border-radius: 20px;
   min-height: 62px;
   margin: 2px;
+  p {
+    margin: 0px;
+  }
 }
 
-.wrapper-player-who-answered {
-  color: white;
-  background-color: $ninja-purple-light;
-    /* border: solid 3px #23b360; */
-  opacity: 1;
-  width: 100%;
-  padding: 10px;
-  border-radius: 20px;
-  min-height: 62px;
-  margin: 2px;
+.players-who-answered-container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
 .player-who-answered-name {
   color: white;
+  color: white;
+  border: solid 2px white;
+  border-radius: 25px;
+  margin: 0px 2px;
+  p {
+    margin: 0px;
+  }
+  padding: 4px;
 }
 
 
