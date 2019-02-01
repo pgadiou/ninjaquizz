@@ -1,15 +1,17 @@
-<% unless @admin_quizzes %>
+<% if @admin_quizzes.empty? %>
 
   <div class="container-central-information">
     <p>You have no quizzes yet</p>
-    <div class="btn-green" data-toggle="modal" data-target="#newQuizModal">New Quiz</div>
+    <div class="btn btn-green button-central-information" data-toggle="modal" data-target="#newQuizModal">New Quiz</div>
   </div>
 
 <% else %>
 
   <div class="wrapper-launch">
     <div class="container-launch">
-      <div class="admin-home-actions-quick-play">Quick launch quiz "<%=@selected_quiz.name%>"</div>
+      <%= link_to quiz_path(@admin_quizzes.last) do %>
+        <div class="admin-home-actions-quick-play">Quick launch quiz "<%=@selected_quiz.name%>"</div>
+      <% end %>
     </div>
   </div>
   <div class="wrapper-quiz-choice-actions">
@@ -91,8 +93,6 @@
                   <%= f.submit' Save quiz', class: 'quiz-detail-save' %>
     <!--                 <div class="quiz-detail-title">
                     </div> -->
-                  <div class="quiz-detail">
-                  </div>
                 </div>
               </div>
             </div>

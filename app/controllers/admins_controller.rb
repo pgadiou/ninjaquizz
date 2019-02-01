@@ -3,10 +3,12 @@ class AdminsController < ApplicationController
 
   def show
     @admin_quizzes = Quiz.where(admin: @admin)
-    if @admin.selected_quiz_id == nil
-      @selected_quiz = Quiz.find(@admin_quizzes.last.id)
-    else
-      @selected_quiz = Quiz.find(@admin.selected_quiz_id)
+    unless @admin_quizzes.empty?
+      if @admin.selected_quiz_id == nil
+        @selected_quiz = Quiz.find(@admin_quizzes.last.id)
+      else
+        @selected_quiz = Quiz.find(@admin.selected_quiz_id)
+      end
     end
     set_new_quiz
   end

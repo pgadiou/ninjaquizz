@@ -94,4 +94,8 @@
   padding: 10px;
   margin: 50px auto;
   border-radius: 20px;
+   &:hover {
+    text-decoration: none;
+    color: white;
+  }
 }
