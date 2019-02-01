@@ -1,29 +1,106 @@
-<div class="wrapper-launch">
-  <div class="container-launch">
-    <%= link_to quiz_path(@admin_quizzes.last) do %>
-      <div class="admin-home-actions-quick-play">Quick launch quiz "<%=@selected_quiz.name%>"</div>
-    <% end %>
+<% if @admin_quizzes.empty? %>
+
+  <div class="container-central-information">
+    <p>You have no quizzes yet</p>
+    <div class="btn btn-green button-central-information" data-toggle="modal" data-target="#newQuizModal">New Quiz</div>
   </div>
-</div>
-<div class="wrapper-quiz-choice-actions">
-  <div class="wrapper-quiz-choice">
-    <div class="container-quizzes-choice-header">
-      <h3>My quizzes</h3>
-<!--       <div class="quiz-choice-name-header">
-        <h3>Quiz name</h3>
+
+<% else %>
+
+  <div class="wrapper-launch">
+    <div class="container-launch">
+      <%= link_to quiz_path(@admin_quizzes.last) do %>
+        <div class="admin-home-actions-quick-play">Quick launch quiz "<%=@selected_quiz.name%>"</div>
+      <% end %>
+    </div>
+  </div>
+  <div class="wrapper-quiz-choice-actions">
+    <div class="wrapper-quiz-choice">
+      <div class="container-quizzes-choice-header">
+        <h3>My quizzes</h3>
+  <!--       <div class="quiz-choice-name-header">
+          <h3>Quiz name</h3>
+        </div>
+        <div class="quiz-choice-created-at-header">
+          <h3>Created on</h3>
+        </div> -->
       </div>
-      <div class="quiz-choice-created-at-header">
-        <h3>Created on</h3>
-      </div> -->
+      <div class="container-quizzes-choice" id="quiz-selection-container">
+        <%= render 'admins/quizzes_selection', admin_quizzes: @admin_quizzes, selected_quiz_id: @selected_quiz.id %>
+      </div>
     </div>
-    <div class="container-quizzes-choice" id="quiz-selection-container">
-      <%= render 'admins/quizzes_selection', admin_quizzes: @admin_quizzes, selected_quiz_id: @selected_quiz.id %>
+    <div class="container-quizzes-actions" id="quiz-action-buttons">
+      <%= render 'admins/selected_quiz_buttons', selected_quiz_id: @selected_quiz.id %>
     </div>
   </div>
-  <div class="container-quizzes-actions" id="quiz-action-buttons">
-    <%= render 'admins/selected_quiz_buttons', selected_quiz_id: @selected_quiz.id %>
+
+<% end %>
+
+<div class="modal fade" id="newQuizModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-new-quiz" role="document">
+      <div class="modal-new-quiz-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= simple_form_for(@new_quiz) do |f| %>
+          <div class="container container-new-quiz">
+            <div class="row">
+              <div class="col-md-6 col-sm-3">
+                <div class="quiz-detail-container">
+                  <div class="quiz-detail-title">
+                    Quiz name
+                  </div>
+                  <div class="quiz-detail">
+                    <%= f.input :name, placeholder: "enter name", label: false %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-3">
+                <div class="quiz-detail-container">
+                  <div class="quiz-detail-title">
+                    Language
+                  </div>
+                  <div class="quiz-detail">
+                    <%= f.input :language, as: :radio_buttons, collection: [['french', 'French'], ['english', 'English']], label_method: :second, value_method: :first, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-3">
+                <div class="quiz-detail-container">
+                  <div class="quiz-detail-title">
+                    Timer
+                  </div>
+                  <div class="quiz-detail">
+                    <%= f.input :timer, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-3">
+                <div class="quiz-detail-container">
+                  <div class="quiz-detail-title">
+                    Time bonus
+                  </div>
+                  <div class="quiz-detail">
+                    <%= f.input :time_bonus, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-3">
+                <div class="quiz-detail-container">
+                  <%= f.submit' Save quiz', class: 'quiz-detail-save' %>
+    <!--                 <div class="quiz-detail-title">
+                    </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
 
 <% content_for :after_js do %>
   <script>

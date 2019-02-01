@@ -6,16 +6,19 @@ class QuizzesController < ApplicationController
  #    authorize @quiz
  #  end
 
- #  def create
- #    @quiz = Quiz.new(quiz_params)
- #    @quiz.admin_id = current_admin.id
- #    authorize @quiz
- #    if @quiz.save
- #      redirect_to quiz_path(@quiz)
- #    else
- #      render :new
- #    end
- #  end
+  def create
+    @quiz = Quiz.new(quiz_params)
+    @quiz_admin_id = current_admin.id
+    @quiz.admin_id = @quiz_admin_id
+    set_quiz_pin
+    @quiz.pin_number = @random_pin_number
+    # authorize @quiz
+    if @quiz.save
+      redirect_to edit_quiz_path(@quiz)
+    else
+      render :new
+    end
+  end
 
   def show
     @first_round = @rounds.first
@@ -63,6 +66,13 @@ private
 
   def quiz_params
     params.require(:quiz).permit(:name, :language, :timer, :time_bonus)
+  end
+
+  def set_quiz_pin
+    @random_pin_number = rand(1..10) + 10*rand(1..10) + 100*rand(1..10) + 1000*rand(1..10)
+    until Quiz.where(pin_number: @random_pin_number).empty? do
+      @random_pin_number = rand(1..10) + 10*rand(1..10) + 100*rand(1..10) + 1000*rand(1..10)
+    end
   end
 
   def set_quiz

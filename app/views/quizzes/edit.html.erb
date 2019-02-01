@@ -1,131 +1,134 @@
-<div class="wrapper-quiz-details">
-  <div class="quiz-details-container">
-    <%= simple_form_for @quiz do |f| %>
-     <div class="container">
-        <div class="row"></div>
-          <div class="col-md-6 col-sm-3">
-            <div class="quiz-detail-container">
-              <div class="quiz-detail-title">
-                Quiz name
-              </div>
-              <div class="quiz-detail">
-                <%= f.input :name, placeholder: @quiz.name, label: false %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-3">
-            <div class="quiz-detail-container">
-              <div class="quiz-detail-title">
-                Pin number
-              </div>
-              <div class="quiz-detail">
-                <%= f.input :pin_number, placeholder: @quiz.pin_number, disabled: true, label: false %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-3">
-            <div class="quiz-detail-container">
-              <div class="quiz-detail-title">
-                Language
-              </div>
-              <div class="quiz-detail">
-                <%= f.input :language, as: :radio_buttons, collection: [['french', 'French'], ['english', 'English']], label_method: :second, value_method: :first, label: false %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-3">
-            <div class="quiz-detail-container">
-              <div class="quiz-detail-title">
-                Timer
-              </div>
-              <div class="quiz-detail">
-                <%= f.input :timer, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-3">
-            <div class="quiz-detail-container">
-              <div class="quiz-detail-title">
-                Time bonus
-              </div>
-              <div class="quiz-detail">
-                <%= f.input :time_bonus, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-sm-3">
-            <div class="quiz-detail-container">
-              <%= f.submit' Save quiz parameters', class: 'quiz-detail-save' %>
-<!--                 <div class="quiz-detail-title">
-                </div> -->
-              <div class="quiz-detail">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<div class="hidden-md hidden-lg">
+  <div class="container-central-information">
+    <i class="fas fa-tablet"> <i class="fas fa-undo"></i> or </i><i class="fas fa-desktop"></i>
+    <p>Connect on a larger screen (tablet or computer) to edit quiz</p>
   </div>
 </div>
-<div class="wrapper-rounds-edit">
-  <div class="container-rounds-edit">
-    <% @quiz.rounds.each do |round| %>
-      <div id="round<%=round.id%>">
-        <%= render 'quizzes/edit_partials/round_details_edit', round: round %>
-      </div>
-      <div class="container-round-edit-questions collapse" id="round-questions<%=round.id%>">
-        <% round.quiz_questions.each do |quiz_question| %>
-          <%question = Question.find(quiz_question.question_id)%>
-          <div id="question<%=question.id%>" class="question-selector">
-            <%= render 'quizzes/edit_partials/question_details_edit', question: question %>
-          </div>
-          <div class="container-round-edit-question-answers collapse" id="question-answers<%=question.id%>">
-            <% question.answers.each do |answer| %>
-              <div id="answer<%=answer.id%>">
-                <%= render 'quizzes/edit_partials/answer_details_edit', answer: answer %>
+<div class="hidden-xs hidden-sm">
+  <div class="wrapper-quiz-details">
+    <div class="quiz-details-container">
+      <%= simple_form_for @quiz do |f| %>
+       <div class="container">
+            <div class="col-md-6 col-sm-3">
+              <div class="quiz-detail-container">
+                <div class="quiz-detail-title">
+                  Quiz name
+                </div>
+                <div class="quiz-detail">
+                  <%= f.input :name, placeholder: @quiz.name, label: false %>
+                </div>
               </div>
-            <% end %>
+            </div>
+            <div class="col-md-6 col-sm-3">
+              <div class="quiz-detail-container">
+                <div class="quiz-detail-title">
+                  Pin number
+                </div>
+                <div class="quiz-detail">
+                  <%= f.input :pin_number, placeholder: @quiz.pin_number, disabled: true, label: false %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-3">
+              <div class="quiz-detail-container">
+                <div class="quiz-detail-title">
+                  Language
+                </div>
+                <div class="quiz-detail">
+                  <%= f.input :language, as: :radio_buttons, collection: [['french', 'French'], ['english', 'English']], label_method: :second, value_method: :first, label: false %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-3">
+              <div class="quiz-detail-container">
+                <div class="quiz-detail-title">
+                  Timer
+                </div>
+                <div class="quiz-detail">
+                  <%= f.input :timer, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-3">
+              <div class="quiz-detail-container">
+                <div class="quiz-detail-title">
+                  Time bonus
+                </div>
+                <div class="quiz-detail">
+                  <%= f.input :time_bonus, as: :radio_buttons, collection: [[true, 'Yes'], [false, 'No']], label_method: :second, value_method: :first, label: false %>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-3">
+              <div class="quiz-detail-container">
+                <%= f.submit' Save quiz parameters', class: 'quiz-detail-save' %>
+  <!--                 <div class="quiz-detail-title">
+                  </div> -->
+              </div>
+            </div>
           </div>
-        <% end %>
-        <div class="container-new-question">
-          <div class="btn new-question-modal-button" data-toggle="modal" data-target="#newQuestionModal<%=round.id%>" data-id="<%=round.id%>">
-            <i class="fas fa-plus-circle"></i>Add new question
-          </div>
-          <%= render 'quizzes/edit_partials/new_question_modal', round: round %>
-        </div>
-      </div>
-    <% end %>
-    <div class="container-new-round">
-      <div class="btn new-round" data-toggle="modal" data-target="#newRoundModal">
-        <i class="fas fa-plus-circle"></i>Add new round
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="newRoundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-new-round" role="document">
-    <div class="modal-new-round-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <%= simple_form_for(@new_round, remote: true) do |f| %>
-        <div class="modal-body">
-          <%= f.association :category %>
-          <%= f.input :no_of_questions %>
-          <%= f.input :quiz_id, as: :hidden, input_html: {value: f.object.quiz_id || params[:id]} %>
-        </div>
-        <div class="modal-footer">
-          <%= f.submit class: 'quiz-detail-save' %>
-        </div>
       <% end %>
     </div>
   </div>
-</div>
+  <div class="wrapper-rounds-edit">
+    <div class="container-rounds-edit">
+      <% @quiz.rounds.each do |round| %>
+        <div id="round<%=round.id%>">
+          <%= render 'quizzes/edit_partials/round_details_edit', round: round %>
+        </div>
+        <div class="container-round-edit-questions collapse" id="round-questions<%=round.id%>">
+          <% round.quiz_questions.each do |quiz_question| %>
+            <%question = Question.find(quiz_question.question_id)%>
+            <div id="question<%=question.id%>" class="question-selector">
+              <%= render 'quizzes/edit_partials/question_details_edit', question: question %>
+            </div>
+            <div class="container-round-edit-question-answers collapse" id="question-answers<%=question.id%>">
+              <% question.answers.each do |answer| %>
+                <div id="answer<%=answer.id%>">
+                  <%= render 'quizzes/edit_partials/answer_details_edit', answer: answer %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="container-new-question">
+            <div class="btn new-question-modal-button" data-toggle="modal" data-target="#newQuestionModal<%=round.id%>" data-id="<%=round.id%>">
+              <i class="fas fa-plus-circle"></i>Add new question
+            </div>
+            <%= render 'quizzes/edit_partials/new_question_modal', round: round %>
+          </div>
+        </div>
+      <% end %>
+      <div class="container-new-round">
+        <div class="btn new-round" data-toggle="modal" data-target="#newRoundModal">
+          <i class="fas fa-plus-circle"></i>Add new round
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal fade" id="newRoundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-new-round" role="document">
+      <div class="modal-new-round-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= simple_form_for(@new_round, remote: true) do |f| %>
+          <div class="modal-body">
+            <%= f.association :category %>
+            <%= f.input :no_of_questions %>
+            <%= f.input :quiz_id, as: :hidden, input_html: {value: f.object.quiz_id || params[:id]} %>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit class: 'quiz-detail-save' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
