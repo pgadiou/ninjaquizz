@@ -1,0 +1,145 @@
+<div class="container">
+  <div class="row about-row">
+    <div class="col-md-9">
+      <h3>What is NinjaQuiz?</h3>
+      <p>NinjaQuiz is an online trivia game that plays like a digital pub quiz. The idea is to allow for passionate people (such as pub quiz hosts) to create their own quizzes and host games that their friends can play.</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row about-row">
+    <div class="col-md-9">
+      <h3>How does it work?</h3>
+      <p>The game relies on a three-way interaction between the central view, the admin controller and the players controllers. All the action is sprung by the commands on the admin controller. Given the format of each controller, it is necessary to use a smartphone as admin and player controllers.</p>
+      <p>The <strong>central view</strong> is what will show on the screen of a computer that is logged as an admin once a game is launched. It displays the questions, the answers and the results for each round for everyone to see.</p>
+      <p>The <strong>admin controller </strong> is what will show on the screen of a smartphone that is logged as an admin once a game is launched. It allows for the admin to control the game. Like any TV game host, it is his role to ask the questions, give the possible answers before they are displayed to the player and dictate the pace of the game.</p>
+      <p>The <strong>players controllers</strong> is what will show on the screen of the mobile phones that are logged as players. It allows for the players to answer each question, see the points they score and how they rank.</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <button class="btn btn-primary btn-about-collapse" type="button" data-toggle="collapse" data-target="#adminViews" aria-expanded="false" aria-controls="collapseExample">
+      How do I create my quizzes?
+  </button>
+</div>
+<div class="container admin-views-container collapse" id="adminViews">
+  <div class="row about-row">
+    <div class="col-md-9">
+      <div><%= image_tag "adminlog.png",style:"height: 100%; width: 100%" %></div>
+    </div>
+    <div class="col-md-3">
+      <h3>Create your profile</h3>
+      <p>Register to NinjaQuiz to be able to create and play quizzes.</p>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-3">
+      <h3>Manage your quizzes</h3>
+      <p>You can see all the quizzes you created, edit them or create new quizzes.</p>
+    </div>
+    <div class="col-md-9">
+      <div><%= image_tag "quizlist.png",style:"height: 100%; width: 100%" %></div>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-9">
+      <div><%= image_tag "newquiz.png", style:"height: 100%; width: 100%" %></div>
+    </div>
+    <div class="col-md-3">
+      <h3>Create a new quiz</h3>
+      <p>You can create a new quiz and decide if you want a limited amount of time for the players to answer, a point bonus for answering fast or the language of the instructions provided.</p>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-3">
+      <h3>Edit a quiz</h3>
+      <p>You can change any of your quizzes' parameters, create new rounds and new questions.</p>
+    </div>
+    <div class="col-md-9">
+      <div><%= image_tag "edit.png", style:"height: 100%; width: 100%" %></div>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-9">
+      <div><%= image_tag "newround.png", style:"height: 100%; width: 100%" %></div>
+    </div>
+    <div class="col-md-3">
+      <h3>Add round</h3>
+      <p>You can add a new round and select its categories and number of questions to be included.</p>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-3">
+      <h3>Add question</h3>
+      <p>You can add a new question either from picking it randomly from an external database or creating your own question and answers.</p>
+    </div>
+    <div class="col-md-9">
+      <div><%= image_tag "newquestions.png", style:"height: 100%; width: 100%" %></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <button class="btn btn-primary btn-about-collapse" type="button" data-toggle="collapse" data-target="#gameViews" aria-expanded="false" aria-controls="collapseExample">
+      What does a game look like?
+  </button>
+</div>
+<div class="container admin-views-container collapse" id="gameViews">
+  <div class="row about-row">
+    <div class="col-md-3">
+      <h3>Start a new game</h3>
+      <p>The admin selects the quiz to be played and launches it both on the main screen and its phone.</p>
+      <p>Players can join just by entering the game pin and selecting their name and avatar.</p>
+    </div>
+    <div class="col-md-9">
+      <p>Central screen</p>
+      <div><%= image_tag "gameinfo.png",style:"height: 100%; width: 100%" %></div>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-6">
+      <p>Player's screen</p>
+      <div><%= image_tag "playerlogin.png",style:"height: 50%; width: 50%" %></div>
+    </div>
+    <div class="col-md-6">
+      <p>Admin's screen</p>
+      <div><%= image_tag "gamestart.png",style:"height: 50%; width: 50%" %></div>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-9">
+      <p>Central screen</p>
+      <div><%= image_tag "answerdisplayed.png",style:"height: 100%; width: 100%" %></div>
+    </div>
+    <div class="col-md-3">
+      <h3>Play the game</h3>
+      <p>The admin uses his phone to manage the game. He sees the questions to be asked, displays them on the screen and allows the players to answer when needed. He even has information on the number of player who answered, what they answered and when it comes to scoring: who the fastest, slowest and worst player is.</p>
+      <p>Players follow the game on the central screen and answer on their phone when requested.</p>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-6">
+      <p>Player's screen</p>
+      <div><%= image_tag "playerchoices.png",style:"height: 50%; width: 50%" %></div>
+    </div>
+    <div class="col-md-6">
+      <p>Admin's screen</p>
+      <div><%= image_tag "giveanswers.png",style:"height: 50%; width: 50%" %></div>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-12">
+      <p>Central screen</p>
+      <div><%= image_tag "correctanswerdisplayed.png",style:"height: 100%; width: 100%" %></div>
+    </div>
+  </div>
+  <div class="row about-row">
+    <div class="col-md-6">
+      <p>Player's screen</p>
+      <div><%= image_tag "right.png",style:"height: 50%; width: 50%" %></div>
+    </div>
+    <div class="col-md-6">
+      <p>Admin's screen</p>
+      <div><%= image_tag "givecorrectanswer.png",style:"height: 50%; width: 50%" %></div>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/about' => 'pages#about'
+
 put 'admins/:id', to: 'admins#select_quiz', as: :select_quiz
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
